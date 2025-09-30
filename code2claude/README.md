@@ -31,6 +31,13 @@
 - ✅ 自动化工作流程
 
 **一键安装**:
+
+**方式 1: npm 安装 (最简单)**
+```bash
+npm run install
+```
+
+**方式 2: Python 直接安装**
 ```bash
 python install_mcp.py
 ```
@@ -40,7 +47,7 @@ python install_mcp.py
 2. 重启 Claude Desktop
 3. 开始使用！
 
-> 详细说明: [MCP_SETUP.md](./MCP_SETUP.md)
+> 详细说明: [QUICKSTART.md](./QUICKSTART.md) | [MCP_SETUP.md](./MCP_SETUP.md)
 
 ### 模式 2: 传统 CLI 模式
 

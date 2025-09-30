@@ -2,7 +2,22 @@
 
 ## 🚀 一键安装 MCP 服务器
 
-### 方式 1: 自动安装 (推荐)
+### 方式 1: npm 安装 (最简单)
+
+**如果你的项目使用 npm**:
+
+```bash
+npm run install
+```
+
+**或者全局安装**:
+
+```bash
+npm install -g code2claude-mcp
+code2claude-install
+```
+
+### 方式 2: Python 直接安装 (推荐)
 
 **单命令完成所有配置**:
 
@@ -51,7 +66,29 @@ python install_mcp.py
 
 ## 🛠️ 卸载
 
+### npm 卸载
+
 如需卸载 MCP 服务器:
+
+```bash
+npm run uninstall
+```
+
+**或者使用全局命令**:
+
+```bash
+code2claude-uninstall
+```
+
+**可选**: 同时删除依赖包
+
+```bash
+npm run clean
+# 或
+code2claude-uninstall --remove-deps
+```
+
+### Python 直接卸载
 
 ```bash
 python uninstall_mcp.py
