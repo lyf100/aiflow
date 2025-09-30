@@ -12,6 +12,9 @@ from pathlib import Path
 from typing import Dict, List, Any, Optional, Set
 from datetime import datetime, timedelta
 
+# 导入缓存模块
+from .cache import get_cached_rglob, get_cached_hash, get_cached_line_count
+
 
 class ChangeTracker:
     """变更跟踪器 - 识别代码热点和影响分析"""
@@ -273,7 +276,7 @@ class ChangeTracker:
         """收集文件信息"""
         file_info = {}
 
-        for file_path in self.project_path.rglob("*"):
+        for file_path in get_cached_rglob(self.project_path, "*"):
             if file_path.is_file() and not self._should_skip_file(file_path):
                 rel_path = str(file_path.relative_to(self.project_path))
 
@@ -304,7 +307,7 @@ class ChangeTracker:
             "file_types": {}
         }
 
-        for item in self.project_path.rglob("*"):
+        for item in get_cached_rglob(self.project_path, "*"):
             if item.is_dir():
                 rel_path = str(item.relative_to(self.project_path))
                 structure["directories"].append(rel_path)
@@ -423,7 +426,7 @@ class ChangeTracker:
         hotspots = []
 
         # 简单的复杂度分析：基于文件大小和嵌套深度
-        for file_path in self.project_path.rglob("*.py"):
+        for file_path in get_cached_rglob(self.project_path, "*.py"):
             if self._should_skip_file(file_path):
                 continue
 
@@ -449,7 +452,7 @@ class ChangeTracker:
         """分析大小热点"""
         hotspots = []
 
-        for file_path in self.project_path.rglob("*"):
+        for file_path in get_cached_rglob(self.project_path, "*"):
             if file_path.is_file() and not self._should_skip_file(file_path):
                 try:
                     size = file_path.stat().st_size
@@ -500,7 +503,7 @@ class ChangeTracker:
         target_module = self._file_to_module_name(target_file)
 
         # 搜索项目中引用此模块的文件
-        for file_path in self.project_path.rglob("*"):
+        for file_path in get_cached_rglob(self.project_path, "*"):
             if (file_path.is_file() and
                 file_path != target_file and
                 self._is_text_file(file_path)):
@@ -552,7 +555,7 @@ class ChangeTracker:
         """查找函数定义"""
         definitions = []
 
-        search_files = [Path(file_path)] if file_path else self.project_path.rglob("*.py")
+        search_files = [Path(file_path)] if file_path else get_cached_rglob(self.project_path, "*.py")
 
         for py_file in search_files:
             if not py_file.is_file():
@@ -586,7 +589,7 @@ class ChangeTracker:
         """查找函数调用者"""
         callers = []
 
-        for py_file in self.project_path.rglob("*.py"):
+        for py_file in get_cached_rglob(self.project_path, "*.py"):
             try:
                 with open(py_file, 'r', encoding='utf-8') as f:
                     content = f.read()
@@ -757,28 +760,9 @@ class ChangeTracker:
         return file_path.suffix.lower() in text_extensions
 
     def _calculate_file_hash(self, file_path: Path) -> str:
-        """计算文件哈希"""
-        try:
-            hash_md5 = hashlib.md5()
-            with open(file_path, "rb") as f:
-                for chunk in iter(lambda: f.read(4096), b""):
-                    hash_md5.update(chunk)
-            return hash_md5.hexdigest()
-        except (IOError, OSError) as e:
-            logging.warning(f"无法计算文件哈希 {file_path}: {e}")
-            return "unknown"
-        except PermissionError as e:
-            logging.warning(f"文件权限不足,无法计算哈希 {file_path}: {e}")
-            return "unknown"
+        """计算文件哈希 (使用缓存)"""
+        return get_cached_hash(file_path)
 
     def _count_lines(self, file_path: Path) -> int:
-        """统计文件行数"""
-        try:
-            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
-                return sum(1 for line in f)
-        except (IOError, OSError):
-            # 文件读取错误,返回0
-            return 0
-        except PermissionError:
-            # 权限错误,返回0
-            return 0
+        """统计文件行数 (使用缓存)"""
+        return get_cached_line_count(file_path)

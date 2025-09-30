@@ -11,6 +11,9 @@ from pathlib import Path
 from typing import List, Dict, Any, Optional
 import sys
 
+# 导入缓存模块
+from .cache import get_cached_rglob
+
 # 添加 code2flow 路径
 sys.path.insert(0, str(Path(__file__).parent.parent / "code2flow-master"))
 
@@ -93,7 +96,7 @@ class CodeAnalyzer:
         detected = []
         for lang, patterns in language_extensions.items():
             for pattern in patterns:
-                if list(self.project_path.rglob(pattern)):
+                if get_cached_rglob(self.project_path, pattern):
                     detected.append(lang)
                     break
 
@@ -110,7 +113,7 @@ class CodeAnalyzer:
         try:
             # 获取该语言的源文件
             pattern = f"*.{language}"
-            source_files = list(self.project_path.rglob(pattern))
+            source_files = get_cached_rglob(self.project_path, pattern)
 
             if not source_files:
                 return None
@@ -161,7 +164,7 @@ class CodeAnalyzer:
     def _analyze_unsupported_language(self, language: str) -> Dict[str, Any]:
         """分析不被 code2flow 直接支持的语言"""
         pattern = f"*.{language}"
-        source_files = list(self.project_path.rglob(pattern))
+        source_files = get_cached_rglob(self.project_path, pattern)
 
         return {
             "files": [str(f) for f in source_files],
@@ -297,7 +300,7 @@ class CodeAnalyzer:
         }
 
         # 识别大文件
-        for file_path in self.project_path.rglob("*"):
+        for file_path in get_cached_rglob(self.project_path, "*"):
             if file_path.is_file() and not file_path.name.startswith('.'):
                 try:
                     size = file_path.stat().st_size
@@ -329,7 +332,7 @@ class CodeAnalyzer:
         }
 
         # 统计文件类型
-        for file_path in self.project_path.rglob("*"):
+        for file_path in get_cached_rglob(self.project_path, "*"):
             if file_path.is_file():
                 metrics["total_files"] += 1
                 ext = file_path.suffix.lower()

@@ -7,9 +7,13 @@
 import os
 import json
 import hashlib
+import logging
 from pathlib import Path
 from typing import Dict, List, Any, Optional
 from datetime import datetime
+
+# 导入缓存模块
+from .cache import get_cached_rglob, get_cached_hash, get_cached_line_count
 
 
 class ProjectMapper:
@@ -216,7 +220,7 @@ class ProjectMapper:
 
         file_hashes = {}
 
-        for file_path in self.project_path.rglob("*"):
+        for file_path in get_cached_rglob(self.project_path, "*"):
             if file_path.is_file() and not self._should_skip_item(file_path):
                 rel_path = str(file_path.relative_to(self.project_path))
                 ext = file_path.suffix.lower()
@@ -327,7 +331,7 @@ class ProjectMapper:
             '.rs': 'Rust'
         }
 
-        for file_path in self.project_path.rglob("*"):
+        for file_path in get_cached_rglob(self.project_path, "*"):
             if file_path.is_file():
                 rel_path = str(file_path.relative_to(self.project_path))
 
@@ -369,7 +373,7 @@ class ProjectMapper:
         max_depth = 0
         deepest_path = ""
 
-        for item in self.project_path.rglob("*"):
+        for item in get_cached_rglob(self.project_path, "*"):
             if self._should_skip_item(item):
                 continue
 
@@ -695,19 +699,8 @@ class ProjectMapper:
         return False
 
     def _calculate_file_hash(self, file_path: Path) -> str:
-        """计算文件哈希值"""
-        try:
-            hash_md5 = hashlib.md5()
-            with open(file_path, "rb") as f:
-                for chunk in iter(lambda: f.read(4096), b""):
-                    hash_md5.update(chunk)
-            return hash_md5.hexdigest()
-        except (IOError, OSError) as e:
-            logging.warning(f"无法计算文件哈希 {file_path}: {e}")
-            return "unknown"
-        except PermissionError as e:
-            logging.warning(f"文件权限不足,无法计算哈希 {file_path}: {e}")
-            return "unknown"
+        """计算文件哈希值 (使用缓存)"""
+        return get_cached_hash(file_path)
 
     def _detect_file_language(self, file_path: Path) -> str:
         """检测文件语言"""
@@ -726,16 +719,8 @@ class ProjectMapper:
         return ext_mapping.get(file_path.suffix.lower(), 'Unknown')
 
     def _count_lines(self, file_path: Path) -> int:
-        """统计文件行数"""
-        try:
-            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
-                return sum(1 for line in f)
-        except (IOError, OSError):
-            # 文件读取错误,返回0
-            return 0
-        except PermissionError:
-            # 权限错误,返回0
-            return 0
+        """统计文件行数 (使用缓存)"""
+        return get_cached_line_count(file_path)
 
     def save_maps(self) -> Dict[str, str]:
         """保存所有地图到文件"""

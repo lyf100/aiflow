@@ -11,6 +11,9 @@ from pathlib import Path
 from typing import Dict, List, Any, Optional, Tuple
 import sys
 
+# 导入缓存模块
+from .cache import get_cached_rglob
+
 # 添加 code2flow 路径
 sys.path.insert(0, str(Path(__file__).parent.parent / "code2flow-master"))
 
@@ -162,7 +165,7 @@ class DependencyGrapher:
         }
 
         for lang, pattern in extensions.items():
-            files = list(self.project_path.rglob(pattern))
+            files = list(get_cached_rglob(self.project_path, pattern))
             if files:
                 language_counts[lang] = len(files)
 
@@ -184,7 +187,7 @@ class DependencyGrapher:
         if not pattern:
             return []
 
-        files = list(self.project_path.rglob(pattern))
+        files = list(get_cached_rglob(self.project_path, pattern))
         return [str(f) for f in files]
 
     def _create_subset_params(self, target_function: str):
@@ -245,7 +248,7 @@ class DependencyGrapher:
         edges = []
         modules = set()
 
-        for py_file in self.project_path.rglob("*.py"):
+        for py_file in get_cached_rglob(self.project_path, "*.py"):
             if py_file.name.startswith('.'):
                 continue
 
@@ -315,7 +318,7 @@ class DependencyGrapher:
         edges = []
         modules = set()
 
-        for js_file in self.project_path.rglob("*.js"):
+        for js_file in get_cached_rglob(self.project_path, "*.js"):
             if js_file.name.startswith('.'):
                 continue
 
@@ -414,7 +417,7 @@ class DependencyGrapher:
         classes = []
         inheritance = []
 
-        for py_file in self.project_path.rglob("*.py"):
+        for py_file in get_cached_rglob(self.project_path, "*.py"):
             try:
                 with open(py_file, 'r', encoding='utf-8') as f:
                     content = f.read()
@@ -502,7 +505,7 @@ class DependencyGrapher:
         relationships = []
 
         # 找到所有 Python 文件和包
-        for py_file in self.project_path.rglob("*.py"):
+        for py_file in get_cached_rglob(self.project_path, "*.py"):
             rel_path = py_file.relative_to(self.project_path)
             module_path = str(rel_path).replace('/', '.').replace('.py', '')
 
@@ -515,7 +518,7 @@ class DependencyGrapher:
             })
 
         # 找到包目录
-        for init_file in self.project_path.rglob("__init__.py"):
+        for init_file in get_cached_rglob(self.project_path, "__init__.py"):
             package_dir = init_file.parent
             rel_path = package_dir.relative_to(self.project_path)
             package_path = str(rel_path).replace('/', '.')
