@@ -1,0 +1,113 @@
+# ClaudeFlow 配置文件
+# 这是一个示例配置文件，展示所有可用的配置选项
+
+# 项目设置
+project:
+  # 项目名称（可选，默认使用目录名）
+  name: "claudeflow"
+
+  # 编程语言（可选，自动检测）
+  # 支持: py, js, ts, java, go, rb, php
+  language: "py"
+
+  # 排除的目录和文件模式
+  exclude:
+    - "*.pyc"
+    - "__pycache__"
+    - ".git"
+    - "node_modules"
+    - "venv"
+    - ".venv"
+    - "dist"
+    - "build"
+    - ".pytest_cache"
+
+# 分析设置
+analysis:
+  # 分析深度 (1-5，默认: 3)
+  depth: 3
+
+  # 是否包含注释分析 (默认: true)
+  include_comments: true
+
+  # 是否分析测试文件 (默认: true)
+  include_tests: true
+
+  # 复杂度阈值
+  complexity:
+    warning: 10   # 警告阈值
+    error: 20     # 错误阈值
+
+# 热点分析设置
+hotspot:
+  # 分析天数 (默认: 30)
+  days: 30
+
+  # 频率热点阈值（变更次数）
+  frequency_threshold: 5
+
+  # 大小热点阈值（KB）
+  size_threshold: 50
+
+# 输出设置
+output:
+  # 默认输出格式 (json, markdown, html, csv)
+  format: "json"
+
+  # 是否使用彩色输出 (默认: true)
+  colorful: true
+
+  # 是否显示详细输出 (默认: false)
+  verbose: false
+
+  # 是否显示进度条 (默认: true)
+  show_progress: true
+
+# 图表生成设置
+graph:
+  # 图表类型 (call, dependency, class, module)
+  types:
+    - "call"
+    - "dependency"
+
+  # 图表格式 (png, svg, html)
+  format: "html"
+
+  # 最大节点数
+  max_nodes: 100
+
+# Git集成设置
+git:
+  # 是否启用Git分析 (默认: true)
+  enabled: true
+
+  # 是否分析Git历史 (默认: true)
+  analyze_history: true
+
+# AI上下文设置
+ai_context:
+  # 最大函数数量
+  max_functions: 10
+
+  # 最大类数量
+  max_classes: 10
+
+  # 是否包含依赖信息 (默认: true)
+  include_dependencies: true
+
+# 命令默认选项
+commands:
+  # structure命令默认选项
+  structure:
+    # 是否生成交互式地图 (默认: true)
+    interactive_map: true
+
+  # refresh命令默认选项
+  refresh:
+    # 是否需要确认 (默认: true，可用--force跳过)
+    require_confirmation: true
+
+  # export命令默认选项
+  export:
+    # 默认导出格式
+    format: "json"

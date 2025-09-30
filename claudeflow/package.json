@@ -1,0 +1,36 @@
+{
+  "name": "claudeflow-mcp",
+  "version": "1.0.0",
+  "description": "ClaudeFlow MCP Server - AI-powered code analysis and project mapping",
+  "main": "mcp_server.py",
+  "scripts": {
+    "install": "python install_mcp.py",
+    "uninstall": "python uninstall_mcp.py",
+    "test": "python test_mcp.py",
+    "setup": "pip install -r requirements.txt && python install_mcp.py",
+    "clean": "python uninstall_mcp.py --remove-deps"
+  },
+  "bin": {
+    "claudeflow-install": "scripts/install.js",
+    "claudeflow-uninstall": "scripts/uninstall.js"
+  },
+  "keywords": [
+    "mcp",
+    "code-analysis",
+    "ai",
+    "claude",
+    "project-mapping",
+    "dependency-graph",
+    "code-quality"
+  ],
+  "author": "ClaudeFlow Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/claudeflow.git"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "python": ">=3.8.0"
+  }
+}
