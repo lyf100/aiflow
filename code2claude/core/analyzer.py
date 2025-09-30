@@ -148,8 +148,14 @@ class CodeAnalyzer:
                 }
             }
 
+        except (IOError, OSError) as e:
+            logging.error(f"分析 {language} 代码时文件访问错误: {e}")
+            return None
+        except (ImportError, ModuleNotFoundError) as e:
+            logging.error(f"分析 {language} 代码时缺少依赖: {e}")
+            return None
         except Exception as e:
-            logging.error(f"分析 {language} 代码时出错: {e}")
+            logging.error(f"分析 {language} 代码时发生未知错误: {type(e).__name__}: {e}")
             return None
 
     def _analyze_unsupported_language(self, language: str) -> Dict[str, Any]:
@@ -271,8 +277,14 @@ class CodeAnalyzer:
                         break
                 return deps
 
+        except (IOError, OSError) as e:
+            logging.error(f"读取依赖文件 {file_path} 失败: {e}")
+        except yaml.YAMLError as e:
+            logging.error(f"解析YAML依赖文件 {file_path} 失败: {e}")
+        except json.JSONDecodeError as e:
+            logging.error(f"解析JSON依赖文件 {file_path} 失败: {e}")
         except Exception as e:
-            logging.error(f"解析依赖文件 {file_path} 失败: {e}")
+            logging.error(f"解析依赖文件 {file_path} 时发生未知错误: {type(e).__name__}: {e}")
 
         return []
 
@@ -295,7 +307,11 @@ class CodeAnalyzer:
                             "size": size,
                             "lines": len(file_path.read_text(encoding='utf-8', errors='ignore').split('\n'))
                         })
-                except Exception:
+                except (IOError, OSError):
+                    # 文件访问错误,跳过
+                    continue
+                except (UnicodeDecodeError, LookupError):
+                    # 编码错误,跳过二进制文件
                     continue
 
         # 按大小排序
@@ -325,7 +341,8 @@ class CodeAnalyzer:
                     try:
                         content = file_path.read_text(encoding='utf-8', errors='ignore')
                         metrics["code_lines"] += len([line for line in content.split('\n') if line.strip()])
-                    except Exception:
+                    except (IOError, OSError, UnicodeDecodeError):
+                        # 文件读取或编码错误,跳过
                         continue
 
         return metrics

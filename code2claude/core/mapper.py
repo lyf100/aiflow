@@ -180,12 +180,29 @@ class ProjectMapper:
 
             return info
 
-        except Exception as e:
+        except (IOError, OSError) as e:
+            logging.error(f"文件访问错误 {file_path}: {e}")
             return {
                 "name": file_path.name,
                 "path": str(file_path.relative_to(self.project_path)),
                 "type": "file",
-                "error": str(e)
+                "error": f"File access error: {e}"
+            }
+        except PermissionError as e:
+            logging.error(f"文件权限不足 {file_path}: {e}")
+            return {
+                "name": file_path.name,
+                "path": str(file_path.relative_to(self.project_path)),
+                "type": "file",
+                "error": f"Permission denied: {e}"
+            }
+        except Exception as e:
+            logging.error(f"获取文件信息时发生未知错误 {file_path}: {type(e).__name__}: {e}")
+            return {
+                "name": file_path.name,
+                "path": str(file_path.relative_to(self.project_path)),
+                "type": "file",
+                "error": f"Unknown error: {type(e).__name__}: {e}"
             }
 
     def _build_file_index(self) -> Dict[str, Any]:
@@ -242,7 +259,11 @@ class ProjectMapper:
                     else:
                         file_hashes[file_hash] = rel_path
 
-                except Exception:
+                except (IOError, OSError):
+                    # 文件访问错误,跳过
+                    continue
+                except PermissionError:
+                    # 权限错误,跳过
                     continue
 
         # 排序大小索引
@@ -370,7 +391,11 @@ class ProjectMapper:
                         "size": size,
                         "name": item.name
                     })
-                except Exception:
+                except (IOError, OSError):
+                    # 文件访问错误,跳过
+                    continue
+                except PermissionError:
+                    # 权限错误,跳过
                     continue
             else:
                 stats["total_directories"] += 1
@@ -677,7 +702,11 @@ class ProjectMapper:
                 for chunk in iter(lambda: f.read(4096), b""):
                     hash_md5.update(chunk)
             return hash_md5.hexdigest()
-        except Exception:
+        except (IOError, OSError) as e:
+            logging.warning(f"无法计算文件哈希 {file_path}: {e}")
+            return "unknown"
+        except PermissionError as e:
+            logging.warning(f"文件权限不足,无法计算哈希 {file_path}: {e}")
             return "unknown"
 
     def _detect_file_language(self, file_path: Path) -> str:
@@ -701,7 +730,11 @@ class ProjectMapper:
         try:
             with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
                 return sum(1 for line in f)
-        except Exception:
+        except (IOError, OSError):
+            # 文件读取错误,返回0
+            return 0
+        except PermissionError:
+            # 权限错误,返回0
             return 0
 
     def save_maps(self) -> Dict[str, str]:

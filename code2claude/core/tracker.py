@@ -286,8 +286,12 @@ class ChangeTracker:
                         "extension": file_path.suffix.lower(),
                         "lines": self._count_lines(file_path) if self._is_text_file(file_path) else 0
                     }
-                except Exception as e:
-                    file_info[rel_path] = {"error": str(e)}
+                except (IOError, OSError) as e:
+                    logging.warning(f"文件访问错误 {rel_path}: {e}")
+                    file_info[rel_path] = {"error": f"File access error: {e}"}
+                except PermissionError as e:
+                    logging.warning(f"文件权限不足 {rel_path}: {e}")
+                    file_info[rel_path] = {"error": f"Permission denied: {e}"}
 
         return file_info
 
@@ -312,7 +316,11 @@ class ChangeTracker:
 
                     ext = item.suffix.lower()
                     structure["file_types"][ext] = structure["file_types"].get(ext, 0) + 1
-                except Exception:
+                except (IOError, OSError):
+                    # 文件访问错误,跳过
+                    continue
+                except PermissionError:
+                    # 权限错误,跳过
                     continue
 
         return structure
@@ -355,8 +363,15 @@ class ChangeTracker:
                     "message": parts[3]
                 }
 
+        except subprocess.CalledProcessError as e:
+            logging.warning(f"Git命令执行失败: {e}")
+            return {"available": False, "error": f"Git command failed: {e}"}
+        except FileNotFoundError:
+            logging.info("Git未安装或不在PATH中")
+            return {"available": False, "error": "Git not found"}
         except Exception as e:
-            return {"available": False, "error": str(e)}
+            logging.error(f"获取Git信息时发生未知错误: {type(e).__name__}: {e}")
+            return {"available": False, "error": f"Unknown error: {type(e).__name__}: {e}"}
 
         return {"available": False}
 
@@ -394,8 +409,12 @@ class ChangeTracker:
                         "score": change_count / days  # 平均每天变更次数
                     })
 
+        except subprocess.CalledProcessError as e:
+            logging.warning(f"Git热点分析失败: {e}")
+        except FileNotFoundError:
+            logging.info("Git未安装,跳过热点分析")
         except Exception as e:
-            print(f"Git 热点分析失败: {e}")
+            logging.error(f"Git热点分析时发生未知错误: {type(e).__name__}: {e}")
 
         return hotspots[:20]  # 返回前20个热点
 
@@ -417,7 +436,11 @@ class ChangeTracker:
                         "size": file_path.stat().st_size,
                         "lines": self._count_lines(file_path)
                     })
-            except Exception:
+            except (IOError, OSError):
+                # 文件访问错误,跳过
+                continue
+            except PermissionError:
+                # 权限错误,跳过
                 continue
 
         return sorted(hotspots, key=lambda x: x["complexity_score"], reverse=True)[:10]
@@ -436,7 +459,11 @@ class ChangeTracker:
                             "size": size,
                             "lines": self._count_lines(file_path) if self._is_text_file(file_path) else 0
                         })
-                except Exception:
+                except (IOError, OSError):
+                    # 文件访问错误,跳过
+                    continue
+                except PermissionError:
+                    # 权限错误,跳过
                     continue
 
         return sorted(hotspots, key=lambda x: x["size"], reverse=True)[:10]
@@ -458,8 +485,12 @@ class ChangeTracker:
             elif target_file.suffix in ['.js', '.ts']:
                 dependencies.extend(self._parse_js_imports(content))
 
-        except Exception:
-            pass
+        except (IOError, OSError) as e:
+            logging.warning(f"读取文件失败 {target_file}: {e}")
+        except PermissionError as e:
+            logging.warning(f"文件权限不足 {target_file}: {e}")
+        except UnicodeDecodeError as e:
+            logging.warning(f"文件编码错误 {target_file}: {e}")
 
         return dependencies
 
@@ -481,7 +512,14 @@ class ChangeTracker:
                     if self._file_references_module(content, target_module, file_path.suffix):
                         dependents.append(str(file_path.relative_to(self.project_path)))
 
-                except Exception:
+                except (IOError, OSError):
+                    # 文件访问错误,跳过
+                    continue
+                except PermissionError:
+                    # 权限错误,跳过
+                    continue
+                except UnicodeDecodeError:
+                    # 编码错误,跳过二进制文件
                     continue
 
         return dependents
@@ -532,7 +570,14 @@ class ChangeTracker:
                             "definition": line.strip()
                         })
 
-            except Exception:
+            except (IOError, OSError):
+                # 文件访问错误,跳过
+                continue
+            except PermissionError:
+                # 权限错误,跳过
+                continue
+            except UnicodeDecodeError:
+                # 编码错误,跳过
                 continue
 
         return definitions
@@ -554,7 +599,14 @@ class ChangeTracker:
                             "context": line.strip()
                         })
 
-            except Exception:
+            except (IOError, OSError):
+                # 文件访问错误,跳过
+                continue
+            except PermissionError:
+                # 权限错误,跳过
+                continue
+            except UnicodeDecodeError:
+                # 编码错误,跳过
                 continue
 
         return callers
@@ -600,7 +652,14 @@ class ChangeTracker:
 
             return complexity
 
-        except Exception:
+        except (IOError, OSError) as e:
+            logging.warning(f"读取文件失败 {file_path}: {e}")
+            return 0
+        except PermissionError as e:
+            logging.warning(f"文件权限不足 {file_path}: {e}")
+            return 0
+        except UnicodeDecodeError as e:
+            logging.warning(f"文件编码错误 {file_path}: {e}")
             return 0
 
     def _parse_python_imports(self, content: str) -> List[str]:
@@ -705,7 +764,11 @@ class ChangeTracker:
                 for chunk in iter(lambda: f.read(4096), b""):
                     hash_md5.update(chunk)
             return hash_md5.hexdigest()
-        except Exception:
+        except (IOError, OSError) as e:
+            logging.warning(f"无法计算文件哈希 {file_path}: {e}")
+            return "unknown"
+        except PermissionError as e:
+            logging.warning(f"文件权限不足,无法计算哈希 {file_path}: {e}")
             return "unknown"
 
     def _count_lines(self, file_path: Path) -> int:
@@ -713,5 +776,9 @@ class ChangeTracker:
         try:
             with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
                 return sum(1 for line in f)
-        except Exception:
+        except (IOError, OSError):
+            # 文件读取错误,返回0
+            return 0
+        except PermissionError:
+            # 权限错误,返回0
             return 0

@@ -83,7 +83,16 @@ class DependencyGrapher:
 
             return str(output_file)
 
+        except ImportError as e:
+            logging.error(f"code2flow模块导入失败: {e}")
+            print(f"生成调用图失败: code2flow未正确安装")
+            return self._generate_basic_graph()
+        except (IOError, OSError) as e:
+            logging.error(f"生成调用图时文件操作错误: {e}")
+            print(f"生成调用图失败: 文件操作错误")
+            return self._generate_basic_graph()
         except Exception as e:
+            logging.error(f"生成调用图时发生未知错误: {type(e).__name__}: {e}")
             print(f"生成调用图失败: {e}")
             return self._generate_basic_graph()
 
@@ -187,7 +196,11 @@ class DependencyGrapher:
                 upstream_depth=2,
                 downstream_depth=2
             )
-        except Exception:
+        except ImportError as e:
+            logging.warning(f"SubsetParams导入失败: {e}")
+            return None
+        except Exception as e:
+            logging.warning(f"创建子集参数失败: {type(e).__name__}: {e}")
             return None
 
     def _analyze_dependencies(self, graph_type: str) -> Dict[str, Any]:
@@ -255,7 +268,14 @@ class DependencyGrapher:
                                 "type": "import"
                             })
 
-            except Exception:
+            except (IOError, OSError):
+                # 文件访问错误,跳过
+                continue
+            except PermissionError:
+                # 权限错误,跳过
+                continue
+            except UnicodeDecodeError:
+                # 编码错误,跳过
                 continue
 
         # 创建节点
@@ -318,7 +338,14 @@ class DependencyGrapher:
                                 "type": "import"
                             })
 
-            except Exception:
+            except (IOError, OSError):
+                # 文件访问错误,跳过
+                continue
+            except PermissionError:
+                # 权限错误,跳过
+                continue
+            except UnicodeDecodeError:
+                # 编码错误,跳过
                 continue
 
         # 创建节点
@@ -401,7 +428,14 @@ class DependencyGrapher:
                             classes.append(class_info["class"])
                             inheritance.extend(class_info["inheritance"])
 
-            except Exception:
+            except (IOError, OSError):
+                # 文件访问错误,跳过
+                continue
+            except PermissionError:
+                # 权限错误,跳过
+                continue
+            except UnicodeDecodeError:
+                # 编码错误,跳过
                 continue
 
         return {"classes": classes, "inheritance": inheritance}
@@ -767,28 +801,47 @@ class DependencyGrapher:
             # 生成调用图
             call_graph = self.generate_call_graph()
             results["call_graph"] = call_graph
+        except ImportError as e:
+            logging.error(f"生成调用图失败: code2flow未安装: {e}")
+            print(f"生成调用图失败: code2flow未正确安装")
+        except (IOError, OSError) as e:
+            logging.error(f"生成调用图失败: 文件操作错误: {e}")
+            print(f"生成调用图失败: 文件操作错误")
         except Exception as e:
+            logging.error(f"生成调用图失败: {type(e).__name__}: {e}")
             print(f"生成调用图失败: {e}")
 
         try:
             # 生成依赖图
             dep_graph = self.generate_dependency_graph("module")
             results["dependency_graph"] = dep_graph
+        except (IOError, OSError) as e:
+            logging.error(f"生成依赖图失败: 文件操作错误: {e}")
+            print(f"生成依赖图失败: 文件操作错误")
         except Exception as e:
+            logging.error(f"生成依赖图失败: {type(e).__name__}: {e}")
             print(f"生成依赖图失败: {e}")
 
         try:
             # 生成类层次图
             class_hierarchy = self.generate_class_hierarchy()
             results["class_hierarchy"] = class_hierarchy
+        except (IOError, OSError) as e:
+            logging.error(f"生成类层次图失败: 文件操作错误: {e}")
+            print(f"生成类层次图失败: 文件操作错误")
         except Exception as e:
+            logging.error(f"生成类层次图失败: {type(e).__name__}: {e}")
             print(f"生成类层次图失败: {e}")
 
         try:
             # 生成模块地图
             module_map = self.generate_module_map()
             results["module_map"] = module_map
+        except (IOError, OSError) as e:
+            logging.error(f"生成模块地图失败: 文件操作错误: {e}")
+            print(f"生成模块地图失败: 文件操作错误")
         except Exception as e:
+            logging.error(f"生成模块地图失败: {type(e).__name__}: {e}")
             print(f"生成模块地图失败: {e}")
 
         return results
