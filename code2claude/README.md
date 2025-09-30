@@ -20,7 +20,7 @@
 
 ## 🚀 两种使用模式
 
-### 模式 1: MCP 服务器模式 (推荐)
+### 模式 1: MCP 服务器模式 (推荐) ⚡
 
 作为 MCP 服务器运行，直接在 Claude Code 中调用所有分析功能。
 
@@ -30,7 +30,17 @@
 - ✅ 实时交互式分析
 - ✅ 自动化工作流程
 
-**快速开始**: 查看 [MCP_SETUP.md](./MCP_SETUP.md) 获取详细配置指南
+**一键安装**:
+```bash
+python install_mcp.py
+```
+
+**仅需 3 步**:
+1. 运行安装脚本（自动安装依赖 + 配置 Claude Desktop）
+2. 重启 Claude Desktop
+3. 开始使用！
+
+> 详细说明: [MCP_SETUP.md](./MCP_SETUP.md)
 
 ### 模式 2: 传统 CLI 模式
 
