@@ -1,5 +1,5 @@
 """
-Code2Claude MCP Server
+ClaudeFlow MCP Server
 
 基于 Model Context Protocol 的代码分析服务器
 为 AI 工具提供标准化的项目分析能力
@@ -29,7 +29,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # 创建 MCP 服务器实例
-mcp = FastMCP("Code2Claude")
+mcp = FastMCP("ClaudeFlow")
 
 
 @mcp.tool()
@@ -337,7 +337,7 @@ def export_analysis_data(
     Args:
         project_path: 项目根目录路径
         format: 导出格式，可选 "json", "markdown", "html", "csv"
-        output_path: 输出文件路径，默认在项目 code2claude 目录下
+        output_path: 输出文件路径，默认在项目 claudeflow 目录下
 
     Returns:
         导出文件的路径列表
@@ -392,7 +392,7 @@ def export_analysis_data(
 # 服务器主入口
 def main():
     """启动 MCP 服务器"""
-    logger.info("Starting Code2Claude MCP Server...")
+    logger.info("Starting ClaudeFlow MCP Server...")
 
     # 使用 stdio transport 运行服务器
     mcp.run(transport='stdio')

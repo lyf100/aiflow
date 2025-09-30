@@ -1,4 +1,4 @@
-# Code2Claude 快速开始指南
+# ClaudeFlow 快速开始指南
 
 ## 🚀 一键安装 MCP 服务器
 
@@ -13,8 +13,8 @@ npm run install
 **或者全局安装**:
 
 ```bash
-npm install -g code2claude-mcp
-code2claude-install
+npm install -g claudeflow-mcp
+claudeflow-install
 ```
 
 ### 方式 2: Python 直接安装 (推荐)
@@ -77,7 +77,7 @@ npm run uninstall
 **或者使用全局命令**:
 
 ```bash
-code2claude-uninstall
+claudeflow-uninstall
 ```
 
 **可选**: 同时删除依赖包
@@ -85,7 +85,7 @@ code2claude-uninstall
 ```bash
 npm run clean
 # 或
-code2claude-uninstall --remove-deps
+claudeflow-uninstall --remove-deps
 ```
 
 ### Python 直接卸载
@@ -166,9 +166,9 @@ pip install -r requirements.txt
 ```json
 {
   "mcpServers": {
-    "code2claude": {
+    "claudeflow": {
       "command": "python",
-      "args": ["-m", "code2claude.mcp_server"],
+      "args": ["-m", "claudeflow.mcp_server"],
       "env": {}
     }
   }

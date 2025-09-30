@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Code2Claude MCP 一键安装脚本
+ClaudeFlow MCP 一键安装脚本
 
 自动安装依赖、配置 Claude Desktop，无需手动操作
 """
@@ -188,12 +188,12 @@ class MCPInstaller:
         if "mcpServers" not in config:
             config["mcpServers"] = {}
 
-        # 添加 Code2Claude 配置
-        config["mcpServers"]["code2claude"] = {
+        # 添加 ClaudeFlow 配置
+        config["mcpServers"]["claudeflow"] = {
             "command": sys.executable,
-            "args": ["-m", "code2claude.mcp_server"],
+            "args": ["-m", "claudeflow.mcp_server"],
             "env": {},
-            "description": "Code2Claude - AI-powered code analysis and project mapping"
+            "description": "ClaudeFlow - AI-powered code analysis and project mapping"
         }
 
         # 写入配置
@@ -222,8 +222,8 @@ class MCPInstaller:
             with open(config_path, 'r', encoding='utf-8') as f:
                 config = json.load(f)
 
-            if "mcpServers" not in config or "code2claude" not in config["mcpServers"]:
-                Colors.print_error("配置文件中未找到 Code2Claude")
+            if "mcpServers" not in config or "claudeflow" not in config["mcpServers"]:
+                Colors.print_error("配置文件中未找到 ClaudeFlow")
                 return False
 
             Colors.print_success("配置验证通过")
@@ -281,7 +281,7 @@ class MCPInstaller:
 
     def run(self) -> int:
         """运行安装流程"""
-        Colors.print_header("Code2Claude MCP 服务器一键安装")
+        Colors.print_header("ClaudeFlow MCP 服务器一键安装")
 
         # 步骤 1: 检查 Python 版本
         if not self.check_python_version():

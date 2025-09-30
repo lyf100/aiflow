@@ -1,4 +1,4 @@
-# Code2Claude
+# ClaudeFlow
 
 基于 code2flow 的增强代码分析工具，专为 AI 辅助开发设计。
 
@@ -65,8 +65,8 @@ python install_mcp.py
 ### 从源码安装
 
 ```bash
-git clone https://github.com/yourusername/code2claude.git
-cd code2claude
+git clone https://github.com/yourusername/claudeflow.git
+cd claudeflow
 pip install -e .
 ```
 
@@ -86,18 +86,18 @@ pip install -r requirements.txt
 ### 1. 映射项目结构
 
 ```bash
-code2claude structure
+claudeflow structure
 ```
 
 这将生成:
-- `code2claude/maps/structure_map.json` - 项目结构数据
-- `code2claude/maps/code_map.json` - 代码映射
-- `code2claude/maps/interactive_map.html` - 交互式可视化地图
+- `claudeflow/maps/structure_map.json` - 项目结构数据
+- `claudeflow/maps/code_map.json` - 代码映射
+- `claudeflow/maps/interactive_map.html` - 交互式可视化地图
 
 ### 2. 生成依赖关系图
 
 ```bash
-code2claude graph
+claudeflow graph
 ```
 
 生成多种格式的依赖关系图表。
@@ -105,7 +105,7 @@ code2claude graph
 ### 3. 识别代码热点
 
 ```bash
-code2claude hotspot
+claudeflow hotspot
 ```
 
 分析最近30天(可配置)的代码变更，识别:
@@ -116,7 +116,7 @@ code2claude hotspot
 ### 4. 生成AI上下文
 
 ```bash
-code2claude ai-context
+claudeflow ai-context
 ```
 
 生成适合AI工具使用的项目结构化信息。
@@ -125,51 +125,51 @@ code2claude ai-context
 
 ### 结构和映射
 
-- `code2claude structure` (别名: `map`, `/cc:map`, `/cc:structure`)
+- `claudeflow structure` (别名: `map`, `/cc:map`, `/cc:structure`)
   - 映射项目结构和代码组织
 
-- `code2claude refresh` (别名: `sync`, `/cc:sync`, `/cc:refresh`, `/cc:update`)
+- `claudeflow refresh` (别名: `sync`, `/cc:sync`, `/cc:refresh`, `/cc:update`)
   - 刷新分析数据，同步最新变化
 
 ### 分析命令
 
-- `code2claude ai-context` (别名: `context`, `/cc:context`, `/cc:ai-context`)
+- `claudeflow ai-context` (别名: `context`, `/cc:context`, `/cc:ai-context`)
   - 生成AI友好的结构化上下文
 
-- `code2claude graph` (别名: `/cc:graph`)
+- `claudeflow graph` (别名: `/cc:graph`)
   - 生成依赖关系可视化图表
 
-- `code2claude hotspot` (别名: `/cc:hotspot`)
+- `claudeflow hotspot` (别名: `/cc:hotspot`)
   - 识别代码热点（复杂度、变更频率）
 
-- `code2claude impact <file>` (别名: `/cc:impact`)
+- `claudeflow impact <file>` (别名: `/cc:impact`)
   - 分析修改文件的影响范围
 
-- `code2claude trace <function>` (别名: `/cc:trace`)
+- `claudeflow trace <function>` (别名: `/cc:trace`)
   - 追踪函数调用链和依赖关系
 
 ### 版本控制
 
-- `code2claude snapshot [name]` (别名: `/cc:snapshot`)
+- `claudeflow snapshot [name]` (别名: `/cc:snapshot`)
   - 创建项目结构快照
 
-- `code2claude diff <snap1> <snap2>` (别名: `/cc:diff`)
+- `claudeflow diff <snap1> <snap2>` (别名: `/cc:diff`)
   - 对比两个快照的差异
 
 ### 导出和帮助
 
-- `code2claude export` (别名: `/cc:export`)
+- `claudeflow export` (别名: `/cc:export`)
   - 导出分析数据（支持JSON/Markdown/HTML/CSV）
 
-- `code2claude help [command]` (别名: `/cc:help`)
+- `claudeflow help [command]` (别名: `/cc:help`)
   - 显示帮助信息
 
-- `code2claude workflow` (别名: `/cc:workflow`)
+- `claudeflow workflow` (别名: `/cc:workflow`)
   - 显示推荐的工作流程
 
 ## ⚙️ 配置文件
 
-在项目根目录创建 `.code2claude.yml` 或 `code2claude.yml`:
+在项目根目录创建 `.claudeflow.yml` 或 `claudeflow.yml`:
 
 ```yaml
 # 项目设置
@@ -239,19 +239,19 @@ commands:
 
 ```bash
 # 指定项目路径
-code2claude structure -p /path/to/project
+claudeflow structure -p /path/to/project
 
 # 导出为HTML格式
-code2claude export --format html
+claudeflow export --format html
 
 # 分析最近60天的热点
-code2claude hotspot --days 60
+claudeflow hotspot --days 60
 
 # 强制刷新（跳过确认）
-code2claude refresh --force
+claudeflow refresh --force
 
 # 详细输出模式
-code2claude structure -v
+claudeflow structure -v
 ```
 
 ## 📖 推荐工作流程
@@ -260,32 +260,32 @@ code2claude structure -v
 
 1. **初始化分析**
    ```bash
-   code2claude structure
+   claudeflow structure
    ```
    生成项目结构映射，创建基础数据
 
 2. **生成可视化**
    ```bash
-   code2claude graph
+   claudeflow graph
    ```
    创建依赖关系图，直观理解项目
 
 3. **识别问题区域**
    ```bash
-   code2claude hotspot
+   claudeflow hotspot
    ```
    找出需要关注的代码热点
 
 4. **深入分析**
    ```bash
-   code2claude impact core/analyzer.py
-   code2claude trace main
+   claudeflow impact core/analyzer.py
+   claudeflow trace main
    ```
    分析修改影响和追踪调用链
 
 5. **生成AI上下文**
    ```bash
-   code2claude ai-context
+   claudeflow ai-context
    ```
    为AI工具生成结构化项目信息
 
@@ -293,16 +293,16 @@ code2claude structure -v
 
 **代码修改后:**
 ```bash
-code2claude refresh
-code2claude hotspot
+claudeflow refresh
+claudeflow hotspot
 ```
 
 **重大重构前:**
 ```bash
-code2claude snapshot pre-refactor
+claudeflow snapshot pre-refactor
 # ... 进行重构 ...
-code2claude snapshot post-refactor
-code2claude diff pre-refactor post-refactor
+claudeflow snapshot post-refactor
+claudeflow diff pre-refactor post-refactor
 ```
 
 ### 特定场景
@@ -326,7 +326,7 @@ trace <function> → impact <file> → graph
 
 ```
 your-project/
-├── code2claude/
+├── claudeflow/
 │   ├── analysis.json              # 项目分析数据
 │   ├── context.json               # AI上下文
 │   ├── maps/
@@ -340,7 +340,7 @@ your-project/
 │       ├── hotspots.json          # 热点分析
 │       ├── impact_*.json          # 影响分析
 │       └── trace_*.json           # 调用链追踪
-└── .code2claude.yml               # 配置文件(可选)
+└── .claudeflow.yml               # 配置文件(可选)
 ```
 
 ## 💡 提示
@@ -356,10 +356,10 @@ your-project/
 ### 配置文件不生效?
 
 确保配置文件名称正确:
-- `.code2claude.yml` (推荐，隐藏文件)
-- `.code2claude.yaml`
-- `code2claude.yml`
-- `code2claude.yaml`
+- `.claudeflow.yml` (推荐，隐藏文件)
+- `.claudeflow.yaml`
+- `claudeflow.yml`
+- `claudeflow.yaml`
 
 ### Git相关功能不工作?
 
@@ -385,9 +385,9 @@ git init  # 如果还没有初始化Git
 
 ## 📮 联系方式
 
-- GitHub: [yourusername/code2claude](https://github.com/yourusername/code2claude)
+- GitHub: [yourusername/claudeflow](https://github.com/yourusername/claudeflow)
 - Email: your.email@example.com
 
 ---
 
-**Code2Claude** - 让AI更好地理解你的代码!
+**ClaudeFlow** - 让AI更好地理解你的代码!

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Code2Claude MCP 卸载脚本
+ClaudeFlow MCP 卸载脚本
 
 自动卸载 MCP 服务器配置，恢复原始状态
 """
@@ -65,8 +65,8 @@ class MCPUninstaller:
         return base / "claude_desktop_config.json"
 
     def remove_from_config(self) -> bool:
-        """从配置中移除 Code2Claude"""
-        Colors.print_info("正在移除 Code2Claude 配置...")
+        """从配置中移除 ClaudeFlow"""
+        Colors.print_info("正在移除 ClaudeFlow 配置...")
 
         if not self.config_path.exists():
             Colors.print_warning("配置文件不存在，无需卸载")
@@ -77,14 +77,14 @@ class MCPUninstaller:
             with open(self.config_path, 'r', encoding='utf-8') as f:
                 config = json.load(f)
 
-            # 检查是否存在 Code2Claude
-            if "mcpServers" not in config or "code2claude" not in config["mcpServers"]:
-                Colors.print_warning("配置中未找到 Code2Claude，无需卸载")
+            # 检查是否存在 ClaudeFlow
+            if "mcpServers" not in config or "claudeflow" not in config["mcpServers"]:
+                Colors.print_warning("配置中未找到 ClaudeFlow，无需卸载")
                 return True
 
-            # 移除 Code2Claude
-            del config["mcpServers"]["code2claude"]
-            Colors.print_success("已从配置中移除 Code2Claude")
+            # 移除 ClaudeFlow
+            del config["mcpServers"]["claudeflow"]
+            Colors.print_success("已从配置中移除 ClaudeFlow")
 
             # 如果 mcpServers 为空，也可以选择删除整个键
             if not config["mcpServers"]:
@@ -129,7 +129,7 @@ class MCPUninstaller:
         """打印完成信息"""
         Colors.print_header("卸载完成")
 
-        print(f"{Colors.GREEN}✓{Colors.END} Code2Claude MCP 服务器已卸载\n")
+        print(f"{Colors.GREEN}✓{Colors.END} ClaudeFlow MCP 服务器已卸载\n")
 
         print(f"{Colors.BOLD}后续操作:{Colors.END}\n")
         print("1. 重启 Claude Desktop 使配置生效")
@@ -139,10 +139,10 @@ class MCPUninstaller:
 
     def run(self, keep_dependencies: bool = True) -> int:
         """运行卸载流程"""
-        Colors.print_header("Code2Claude MCP 服务器卸载")
+        Colors.print_header("ClaudeFlow MCP 服务器卸载")
 
         # 确认卸载
-        response = input(f"{Colors.YELLOW}确认卸载 Code2Claude MCP 服务器? (y/N): {Colors.END}")
+        response = input(f"{Colors.YELLOW}确认卸载 ClaudeFlow MCP 服务器? (y/N): {Colors.END}")
         if response.lower() not in ['y', 'yes']:
             Colors.print_info("卸载已取消")
             return 0

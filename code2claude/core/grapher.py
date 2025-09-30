@@ -29,7 +29,7 @@ class DependencyGrapher:
 
     def __init__(self, project_path: str):
         self.project_path = Path(project_path)
-        self.output_dir = self.project_path / "code2claude" / "graphs"
+        self.output_dir = self.project_path / "claudeflow" / "graphs"
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
     def generate_call_graph(self, target_language: str = None,

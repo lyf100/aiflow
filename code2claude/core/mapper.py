@@ -21,7 +21,7 @@ class ProjectMapper:
 
     def __init__(self, project_path: str):
         self.project_path = Path(project_path)
-        self.output_dir = self.project_path / "code2claude"
+        self.output_dir = self.project_path / "claudeflow"
         self.maps_dir = self.output_dir / "maps"
         self.maps_dir.mkdir(parents=True, exist_ok=True)
 

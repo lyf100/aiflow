@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Code2Claude MCP 服务器 npm 卸载脚本
+ * ClaudeFlow MCP 服务器 npm 卸载脚本
  *
  * 提供跨平台的 npm 卸载接口
  */
@@ -66,7 +66,7 @@ function getPythonCommand() {
 
 // 主卸载函数
 async function uninstall() {
-  printHeader('Code2Claude MCP 服务器 npm 卸载');
+  printHeader('ClaudeFlow MCP 服务器 npm 卸载');
 
   // 检查 Python
   printInfo('检查 Python 环境...');
@@ -86,7 +86,7 @@ async function uninstall() {
 
   if (!fs.existsSync(uninstallScript)) {
     printError(`卸载脚本不存在: ${uninstallScript}`);
-    printError('请确保 Code2Claude 项目完整');
+    printError('请确保 ClaudeFlow 项目完整');
     process.exit(1);
   }
 

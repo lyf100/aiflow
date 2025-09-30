@@ -17,7 +17,7 @@ class DataExporter:
 
     def __init__(self, project_path: str):
         self.project_path = Path(project_path)
-        self.output_dir = self.project_path / "code2claude" / "exports"
+        self.output_dir = self.project_path / "claudeflow" / "exports"
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
     def export_analysis_data(self, data: Dict[str, Any],
@@ -225,7 +225,7 @@ class DataExporter:
                 for ext, count in sorted(file_counts.items(), key=lambda x: x[1], reverse=True)[:10]:
                     content += f"- **{ext or '无扩展名'}**: {count} 个文件\n"
 
-        content += "\n---\n\n*报告由 Code2Claude 自动生成*\n"
+        content += "\n---\n\n*报告由 ClaudeFlow 自动生成*\n"
 
         return content
 
@@ -646,7 +646,7 @@ class DataExporter:
     </div>
 
     <div class="footer">
-        <p>📊 报告由 Code2Claude 综合分析系统生成</p>
+        <p>📊 报告由 ClaudeFlow 综合分析系统生成</p>
         <p>基于 code2flow 引擎的增强代码分析平台</p>
     </div>
 </body>

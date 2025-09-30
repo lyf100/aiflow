@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Code2Claude MCP 服务器 npm 安装脚本
+ * ClaudeFlow MCP 服务器 npm 安装脚本
  *
  * 提供跨平台的 npm 安装接口
  */
@@ -62,7 +62,7 @@ function getPythonCommand() {
 
 // 主安装函数
 async function install() {
-  printHeader('Code2Claude MCP 服务器 npm 安装');
+  printHeader('ClaudeFlow MCP 服务器 npm 安装');
 
   // 检查 Python
   printInfo('检查 Python 环境...');
@@ -82,7 +82,7 @@ async function install() {
 
   if (!fs.existsSync(installScript)) {
     printError(`安装脚本不存在: ${installScript}`);
-    printError('请确保 Code2Claude 项目完整');
+    printError('请确保 ClaudeFlow 项目完整');
     process.exit(1);
   }
 
@@ -109,7 +109,7 @@ async function install() {
     printSuccess('npm 安装完成！');
     printInfo('后续操作:');
     console.log('  1. 重启 Claude Desktop');
-    console.log('  2. 开始使用 Code2Claude MCP 工具\n');
+    console.log('  2. 开始使用 ClaudeFlow MCP 工具\n');
   });
 }
 

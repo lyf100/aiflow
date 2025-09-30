@@ -1,4 +1,4 @@
-# Code2Claude依赖包
+# ClaudeFlow依赖包
 
 # YAML配置文件支持
 pyyaml>=6.0

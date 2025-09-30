@@ -1,8 +1,8 @@
-# Code2Claude MCP 转换完成报告
+# ClaudeFlow MCP 转换完成报告
 
 ## ✅ 转换成功
 
-Code2Claude 已成功从 CLI 工具升级为支持 MCP (Model Context Protocol) 的双模式系统。
+ClaudeFlow 已成功从 CLI 工具升级为支持 MCP (Model Context Protocol) 的双模式系统。
 
 ## 📊 转换成果
 
@@ -64,8 +64,8 @@ pip install mcp[cli]>=1.4.0
 
 ```bash
 # 命令行直接使用
-python -m code2claude.cli structure
-python -m code2claude.cli analyze
+python -m claudeflow.cli structure
+python -m claudeflow.cli analyze
 ```
 
 ## 📈 测试结果
@@ -143,7 +143,7 @@ AI: 使用 generate_dependency_graph 和 analyze_project 工具...
 
 ## 🎉 总结
 
-Code2Claude 现在是一个**现代化的双模式代码分析工具**：
+ClaudeFlow 现在是一个**现代化的双模式代码分析工具**：
 
 - ✅ 保留所有原有 CLI 功能
 - ✅ 新增 MCP 服务器模式

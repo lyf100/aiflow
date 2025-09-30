@@ -2,7 +2,7 @@
 """
 MCP 服务器快速测试脚本
 
-测试 Code2Claude MCP 服务器的基本功能
+测试 ClaudeFlow MCP 服务器的基本功能
 """
 
 import json
@@ -80,11 +80,11 @@ def test_config_file():
             print("❌ 配置文件格式错误: 缺少 mcpServers")
             return False
 
-        if "code2claude" not in config["mcpServers"]:
-            print("❌ 配置文件格式错误: 缺少 code2claude 配置")
+        if "claudeflow" not in config["mcpServers"]:
+            print("❌ 配置文件格式错误: 缺少 claudeflow 配置")
             return False
 
-        server_config = config["mcpServers"]["code2claude"]
+        server_config = config["mcpServers"]["claudeflow"]
         print("✅ 配置文件格式正确")
         print(f"   命令: {server_config.get('command')}")
         print(f"   参数: {server_config.get('args')}")
@@ -122,7 +122,7 @@ def test_documentation():
 def main():
     """运行所有测试"""
     print("="*60)
-    print("Code2Claude MCP 服务器测试")
+    print("ClaudeFlow MCP 服务器测试")
     print("="*60)
 
     results = []

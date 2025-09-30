@@ -1,7 +1,7 @@
 {
-  "name": "code2claude-mcp",
+  "name": "claudeflow-mcp",
   "version": "1.0.0",
-  "description": "Code2Claude MCP Server - AI-powered code analysis and project mapping",
+  "description": "ClaudeFlow MCP Server - AI-powered code analysis and project mapping",
   "main": "mcp_server.py",
   "scripts": {
     "install": "python install_mcp.py",
@@ -11,8 +11,8 @@
     "clean": "python uninstall_mcp.py --remove-deps"
   },
   "bin": {
-    "code2claude-install": "scripts/install.js",
-    "code2claude-uninstall": "scripts/uninstall.js"
+    "claudeflow-install": "scripts/install.js",
+    "claudeflow-uninstall": "scripts/uninstall.js"
   },
   "keywords": [
     "mcp",
@@ -23,11 +23,11 @@
     "dependency-graph",
     "code-quality"
   ],
-  "author": "Code2Claude Team",
+  "author": "ClaudeFlow Team",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/code2claude.git"
+    "url": "https://github.com/yourusername/claudeflow.git"
   },
   "engines": {
     "node": ">=14.0.0",

@@ -1,4 +1,4 @@
-# Code2Claude 优化改进总结
+# ClaudeFlow 优化改进总结
 
 ## 已完成的改进
 
@@ -331,7 +331,7 @@ mypy>=1.5.0
 ```python
 import pytest
 from pathlib import Path
-from code2claude.core.cache import FileCache, get_cached_rglob
+from claudeflow.core.cache import FileCache, get_cached_rglob
 
 
 class TestFileCache:

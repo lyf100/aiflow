@@ -1,11 +1,11 @@
-# Code2Claude MCP 服务器配置指南
+# ClaudeFlow MCP 服务器配置指南
 
 ## 📦 安装步骤
 
 ### 1. 安装依赖
 
 ```bash
-cd code2claude
+cd claudeflow
 pip install -r requirements.txt
 ```
 
@@ -27,20 +27,20 @@ pip install -r requirements.txt
 ```json
 {
   "mcpServers": {
-    "code2claude": {
+    "claudeflow": {
       "command": "python",
       "args": [
         "-m",
-        "code2claude.mcp_server"
+        "claudeflow.mcp_server"
       ],
       "env": {},
-      "description": "Code2Claude - AI-powered code analysis and project mapping"
+      "description": "ClaudeFlow - AI-powered code analysis and project mapping"
     }
   }
 }
 ```
 
-**注意**: 如果配置文件中已有其他 MCP 服务器，将 `code2claude` 条目添加到 `mcpServers` 对象中。
+**注意**: 如果配置文件中已有其他 MCP 服务器，将 `claudeflow` 条目添加到 `mcpServers` 对象中。
 
 ### 3. 重启 Claude Desktop
 
@@ -51,12 +51,12 @@ pip install -r requirements.txt
 在 Claude Code 中，MCP 服务器启动后会自动加载。你可以通过以下方式验证：
 
 1. 打开 Claude Code
-2. 检查是否有 "code2claude" 相关的工具可用
+2. 检查是否有 "claudeflow" 相关的工具可用
 3. 尝试调用工具测试连接
 
 ## 🚀 可用工具
 
-Code2Claude MCP 服务器提供以下 10 个工具：
+ClaudeFlow MCP 服务器提供以下 10 个工具：
 
 ### 1. analyze_project
 **功能**: 分析项目代码结构

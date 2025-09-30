@@ -1,5 +1,5 @@
 """
-Code2Claude 命令行接口
+ClaudeFlow 命令行接口
 
 基于 code2flow 的增强代码分析命令
 """
@@ -110,10 +110,10 @@ def load_config(project_path: Path) -> Dict[str, Any]:
 
     # 查找配置文件
     config_files = [
-        project_path / ".code2claude.yml",
-        project_path / ".code2claude.yaml",
-        project_path / "code2claude.yml",
-        project_path / "code2claude.yaml",
+        project_path / ".claudeflow.yml",
+        project_path / ".claudeflow.yaml",
+        project_path / "claudeflow.yml",
+        project_path / "claudeflow.yaml",
     ]
 
     for config_file in config_files:
@@ -156,7 +156,7 @@ def print_help_message():
     """打印帮助信息"""
     help_text = """
 ╔══════════════════════════════════════════════════════╗
-║         Code2Claude - 代码分析工具 v1.0              ║
+║         ClaudeFlow - 代码分析工具 v1.0              ║
 ╚══════════════════════════════════════════════════════╝
 
 📚 核心命令:
@@ -188,11 +188,11 @@ def print_help_message():
 
 💡 使用示例:
 
-  code2claude structure              # 映射项目结构
-  code2claude refresh                # 刷新分析数据
-  code2claude impact core/cli.py     # 分析文件影响
-  code2claude trace main             # 追踪main函数
-  code2claude help impact            # 查看impact命令帮助
+  claudeflow structure              # 映射项目结构
+  claudeflow refresh                # 刷新分析数据
+  claudeflow impact core/cli.py     # 分析文件影响
+  claudeflow trace main             # 追踪main函数
+  claudeflow help impact            # 查看impact命令帮助
 
 🔧 常用选项:
 
@@ -203,8 +203,8 @@ def print_help_message():
   --force                     跳过确认提示
 
 📖 获取更多帮助:
-  code2claude help <command>  查看特定命令的详细帮助
-  code2claude workflow        查看推荐的使用流程
+  claudeflow help <command>  查看特定命令的详细帮助
+  claudeflow workflow        查看推荐的使用流程
 """
     print(help_text)
 
@@ -226,13 +226,13 @@ def print_command_help(command: str):
   • 为后续分析提供基础数据
 
 💻 用法:
-  code2claude structure
-  code2claude structure -p /path/to/project
+  claudeflow structure
+  claudeflow structure -p /path/to/project
 
 📤 输出:
-  • code2claude/maps/structure_map.json    结构数据
-  • code2claude/maps/code_map.json         代码映射
-  • code2claude/maps/interactive_map.html  交互式地图
+  • claudeflow/maps/structure_map.json    结构数据
+  • claudeflow/maps/code_map.json         代码映射
+  • claudeflow/maps/interactive_map.html  交互式地图
 
 💡 建议:
   这通常是第一个执行的命令，为后续分析打基础
@@ -251,15 +251,15 @@ def print_command_help(command: str):
   • 更新项目映射和依赖关系
 
 💻 用法:
-  code2claude refresh
-  code2claude refresh --force  # 跳过确认
+  claudeflow refresh
+  claudeflow refresh --force  # 跳过确认
 
 ⚠️  注意:
   此操作会覆盖现有分析数据，大型项目可能需要较长时间
 
 📤 输出:
-  • code2claude/analysis.json              分析结果
-  • code2claude/maps/structure_map.json    更新的映射
+  • claudeflow/analysis.json              分析结果
+  • claudeflow/maps/structure_map.json    更新的映射
 """,
         'impact': """
 ╔══════════════════════════════════════════════════════╗
@@ -275,9 +275,9 @@ def print_command_help(command: str):
   • 理解模块依赖关系
 
 💻 用法:
-  code2claude impact <文件路径>
-  code2claude impact core/analyzer.py
-  code2claude impact src/utils/helper.py
+  claudeflow impact <文件路径>
+  claudeflow impact core/analyzer.py
+  claudeflow impact src/utils/helper.py
 
 📊 分析内容:
   • 直接依赖列表
@@ -287,7 +287,7 @@ def print_command_help(command: str):
 
 📤 输出:
   • 控制台显示摘要信息
-  • code2claude/tracking/impact_*.json  详细分析结果
+  • claudeflow/tracking/impact_*.json  详细分析结果
 """,
         'trace': """
 ╔══════════════════════════════════════════════════════╗
@@ -303,9 +303,9 @@ def print_command_help(command: str):
   • 调试复杂调用链
 
 💻 用法:
-  code2claude trace <函数名>
-  code2claude trace main
-  code2claude trace process_data
+  claudeflow trace <函数名>
+  claudeflow trace main
+  claudeflow trace process_data
 
 📊 分析内容:
   • 函数定义位置
@@ -315,7 +315,7 @@ def print_command_help(command: str):
 
 📤 输出:
   • 控制台显示调用关系摘要
-  • code2claude/tracking/trace_*.json  详细调用链
+  • claudeflow/tracking/trace_*.json  详细调用链
 """,
         'hotspot': """
 ╔══════════════════════════════════════════════════════╗
@@ -331,8 +331,8 @@ def print_command_help(command: str):
   • 优化代码质量
 
 💻 用法:
-  code2claude hotspot
-  code2claude hotspot --days 60  # 分析最近60天
+  claudeflow hotspot
+  claudeflow hotspot --days 60  # 分析最近60天
 
 📊 分析维度:
   • 频率热点: 经常修改的文件（需要Git仓库）
@@ -342,7 +342,7 @@ def print_command_help(command: str):
 📤 输出:
   • 分类热点列表和统计
   • 重构建议
-  • code2claude/tracking/hotspots.json  详细分析
+  • claudeflow/tracking/hotspots.json  详细分析
 """
     }
 
@@ -350,7 +350,7 @@ def print_command_help(command: str):
         print(help_messages[command])
     else:
         print(f"❌ 未找到命令 '{command}' 的帮助信息")
-        print(f"💡 运行 'code2claude help' 查看所有可用命令")
+        print(f"💡 运行 'claudeflow help' 查看所有可用命令")
 
 
 def print_workflow():
@@ -363,36 +363,36 @@ def print_workflow():
 🔄 标准分析流程:
 
   1️⃣  初始化分析
-      code2claude structure
+      claudeflow structure
       └─ 生成项目结构映射，创建基础数据
 
   2️⃣  生成可视化
-      code2claude graph
+      claudeflow graph
       └─ 创建依赖关系图，直观理解项目
 
   3️⃣  识别问题区域
-      code2claude hotspot
+      claudeflow hotspot
       └─ 找出需要关注的代码热点
 
   4️⃣  深入分析
-      code2claude impact <file>    # 分析修改影响
-      code2claude trace <function>  # 追踪调用链
+      claudeflow impact <file>    # 分析修改影响
+      claudeflow trace <function>  # 追踪调用链
 
   5️⃣  生成AI上下文
-      code2claude ai-context
+      claudeflow ai-context
       └─ 为AI工具生成结构化项目信息
 
 📊 持续维护流程:
 
   • 代码修改后:
-    code2claude refresh            # 刷新分析数据
-    code2claude hotspot            # 重新识别热点
+    claudeflow refresh            # 刷新分析数据
+    claudeflow hotspot            # 重新识别热点
 
   • 重大重构前:
-    code2claude snapshot pre-refactor     # 创建快照
+    claudeflow snapshot pre-refactor     # 创建快照
     ... 进行重构 ...
-    code2claude snapshot post-refactor    # 创建新快照
-    code2claude diff pre-refactor post-refactor  # 对比变化
+    claudeflow snapshot post-refactor    # 创建新快照
+    claudeflow diff pre-refactor post-refactor  # 对比变化
 
 🎯 特定场景:
 
@@ -416,11 +416,11 @@ def print_workflow():
 def create_parser() -> argparse.ArgumentParser:
     """创建命令行参数解析器"""
     parser = argparse.ArgumentParser(
-        description="Code2Claude - 基于 code2flow 的增强代码分析工具",
+        description="ClaudeFlow - 基于 code2flow 的增强代码分析工具",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         add_help=False,  # 使用自定义help
         epilog="""
-运行 'code2claude help' 查看详细帮助信息
+运行 'claudeflow help' 查看详细帮助信息
         """
     )
 
@@ -512,8 +512,8 @@ def format_output_path(project_path: Path, output_file: Path) -> tuple:
 
 def check_prerequisites(project_path: Path, command: str) -> bool:
     """检查命令执行的先决条件"""
-    code2claude_dir = project_path / "code2claude"
-    maps_dir = code2claude_dir / "maps"
+    claudeflow_dir = project_path / "claudeflow"
+    maps_dir = claudeflow_dir / "maps"
 
     needs_structure = ['ai-context', 'graph']
 
@@ -588,9 +588,9 @@ def execute_map_command(project_path: str, args: list, options: Dict[str, Any]) 
     # 下一步建议
     print()
     print(colored("💡 下一步建议:", 'yellow', enabled=use_color))
-    print("   • code2claude graph       - 生成依赖关系可视化")
-    print("   • code2claude hotspot     - 识别代码热点")
-    print("   • code2claude ai-context  - 生成AI分析上下文")
+    print("   • claudeflow graph       - 生成依赖关系可视化")
+    print("   • claudeflow hotspot     - 识别代码热点")
+    print("   • claudeflow ai-context  - 生成AI分析上下文")
 
     return {
         "structure_map": structure_map,
@@ -649,13 +649,13 @@ def execute_impact_command(project_path: str, args: list, options: Dict[str, Any
         print("❌ 错误: 缺少必需参数")
         print()
         print("💻 用法:")
-        print("   code2claude impact <文件路径>")
+        print("   claudeflow impact <文件路径>")
         print()
         print("📖 示例:")
-        print("   code2claude impact core/analyzer.py")
-        print("   code2claude impact src/utils/helper.py")
+        print("   claudeflow impact core/analyzer.py")
+        print("   claudeflow impact src/utils/helper.py")
         print()
-        print("❓ 运行 'code2claude help impact' 查看详细帮助")
+        print("❓ 运行 'claudeflow help impact' 查看详细帮助")
         return {"error": "Missing file path"}
 
     file_path = args[0]
@@ -692,7 +692,7 @@ def execute_impact_command(project_path: str, args: list, options: Dict[str, Any
 
     # 保存结果
     safe_filename = file_path.replace('/', '_').replace('\\', '_').replace('.', '_')
-    output_file = Path(project_path) / "code2claude" / "tracking" / f"impact_{safe_filename}.json"
+    output_file = Path(project_path) / "claudeflow" / "tracking" / f"impact_{safe_filename}.json"
     output_file.parent.mkdir(parents=True, exist_ok=True)
 
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -714,14 +714,14 @@ def execute_trace_command(project_path: str, args: list, options: Dict[str, Any]
         print("❌ 错误: 缺少必需参数")
         print()
         print("💻 用法:")
-        print("   code2claude trace <函数名> [文件路径]")
+        print("   claudeflow trace <函数名> [文件路径]")
         print()
         print("📖 示例:")
-        print("   code2claude trace main")
-        print("   code2claude trace process_data")
-        print("   code2claude trace calculate src/utils.py")
+        print("   claudeflow trace main")
+        print("   claudeflow trace process_data")
+        print("   claudeflow trace calculate src/utils.py")
         print()
-        print("❓ 运行 'code2claude help trace' 查看详细帮助")
+        print("❓ 运行 'claudeflow help trace' 查看详细帮助")
         return {"error": "Missing function name"}
 
     function_name = args[0]
@@ -758,7 +758,7 @@ def execute_trace_command(project_path: str, args: list, options: Dict[str, Any]
             print(f"   ... 以及其他 {len(trace_result['callers']) - 5} 处")
 
     # 保存结果
-    output_file = Path(project_path) / "code2claude" / "tracking" / f"trace_{function_name}.json"
+    output_file = Path(project_path) / "claudeflow" / "tracking" / f"trace_{function_name}.json"
     output_file.parent.mkdir(parents=True, exist_ok=True)
 
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -816,7 +816,7 @@ def execute_context_command(project_path: str, args: list, options: Dict[str, An
         ])
 
     # 保存上下文文件
-    output_dir = Path(project_path) / "code2claude"
+    output_dir = Path(project_path) / "claudeflow"
     output_dir.mkdir(exist_ok=True)
     context_file = output_dir / "context.json"
 
@@ -910,7 +910,7 @@ def execute_hotspot_command(project_path: str, args: list, options: Dict[str, An
         print()
 
     # 保存结果
-    output_file = Path(project_path) / "code2claude" / "tracking" / "hotspots.json"
+    output_file = Path(project_path) / "claudeflow" / "tracking" / "hotspots.json"
     output_file.parent.mkdir(parents=True, exist_ok=True)
 
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -960,7 +960,7 @@ def execute_graph_command(project_path: str, args: list, options: Dict[str, Any]
     print()
     print("💡 下一步建议:")
     print("   • 在浏览器中打开HTML文件查看交互式图表")
-    print("   • code2claude hotspot  - 识别需要重构的区域")
+    print("   • claudeflow hotspot  - 识别需要重构的区域")
 
     return {
         "generated_graphs": generated_graphs
@@ -1019,7 +1019,7 @@ def execute_context_command(project_path: str, args: list, options: Dict[str, An
     print_progress("生成上下文文件", 3, 3)
 
     # 保存上下文文件
-    output_dir = Path(project_path) / "code2claude"
+    output_dir = Path(project_path) / "claudeflow"
     output_dir.mkdir(exist_ok=True)
     context_file = output_dir / "context.json"
 
@@ -1072,8 +1072,8 @@ def execute_snapshot_command(project_path: str, args: list, options: Dict[str, A
 
     print()
     print("💡 下一步建议:")
-    print("   • code2claude snapshot <另一个名称>  - 创建另一个快照用于对比")
-    print("   • code2claude diff <快照1> <快照2>   - 对比两个快照的差异")
+    print("   • claudeflow snapshot <另一个名称>  - 创建另一个快照用于对比")
+    print("   • claudeflow diff <快照1> <快照2>   - 对比两个快照的差异")
 
     return {
         "snapshot_file": snapshot_file
@@ -1086,13 +1086,13 @@ def execute_diff_command(project_path: str, args: list, options: Dict[str, Any])
         print("❌ 错误: 缺少必需参数")
         print()
         print("💻 用法:")
-        print("   code2claude diff <快照1> <快照2>")
+        print("   claudeflow diff <快照1> <快照2>")
         print()
         print("📖 示例:")
-        print("   code2claude diff v1.0 v1.1")
-        print("   code2claude diff pre-refactor post-refactor")
+        print("   claudeflow diff v1.0 v1.1")
+        print("   claudeflow diff pre-refactor post-refactor")
         print()
-        print("❓ 运行 'code2claude help diff' 查看详细帮助")
+        print("❓ 运行 'claudeflow help diff' 查看详细帮助")
         return {"error": "Missing snapshot files"}
 
     snapshot1 = args[0]
@@ -1128,7 +1128,7 @@ def execute_diff_command(project_path: str, args: list, options: Dict[str, Any])
     print(f"   • 修改文件: {len(comparison['file_changes']['modified'])} 个")
 
     # 保存对比结果
-    output_file = Path(project_path) / "code2claude" / "tracking" / "comparison.json"
+    output_file = Path(project_path) / "claudeflow" / "tracking" / "comparison.json"
     output_file.parent.mkdir(parents=True, exist_ok=True)
 
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -1287,7 +1287,7 @@ def main():
         print("💡 提示:")
         print("   • 检查路径是否正确")
         print("   • 使用 -p 参数指定项目路径")
-        print(f"   • 示例: code2claude {command} -p /path/to/project")
+        print(f"   • 示例: claudeflow {command} -p /path/to/project")
         sys.exit(1)
 
     # 加载配置文件
@@ -1342,8 +1342,8 @@ def main():
         else:
             print(f"❌ 错误: 未知命令 '{command}'")
             print()
-            print("💡 运行 'code2claude help' 查看所有可用命令")
-            print("   或运行 'code2claude workflow' 查看使用流程")
+            print("💡 运行 'claudeflow help' 查看所有可用命令")
+            print("   或运行 'claudeflow workflow' 查看使用流程")
             sys.exit(1)
 
         if options['verbose'] and result:
