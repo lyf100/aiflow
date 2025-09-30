@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "code2claude": {
+      "command": "python",
+      "args": [
+        "-m",
+        "code2claude.mcp_server"
+      ],
+      "env": {},
+      "description": "Code2Claude - AI-powered code analysis and project mapping"
+    }
+  }
+}
