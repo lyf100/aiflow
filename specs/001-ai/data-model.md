@@ -384,41 +384,60 @@ class ExecutionStep:
 
 @dataclass
 class VariableScope:
-    """变量作用域"""
-    id: str
-    name: str                            # 作用域名称（global, local, closure）
-    parent_scope_id: Optional[str]       # 父作用域 ID
-    variables: list[Variable]            # 变量列表
+    """变量作用域 - 用于单步详情视图"""
+    id: str                              # 作用域唯一标识符
+    scope_type: ScopeType                # 作用域类型（枚举）
+    parent_scope_id: Optional[str]       # 父作用域 ID（支持嵌套）
+    variables: list[Variable]            # 该作用域内的变量列表
+    timestamp: str                       # ISO 8601 时间戳（进入作用域时刻）
+    execution_order: int                 # 执行序号（全局唯一递增）
+
+class ScopeType(Enum):
+    """作用域类型枚举"""
+    GLOBAL = "global"                    # 全局作用域
+    LOCAL = "local"                      # 局部作用域（函数内）
+    CLOSURE = "closure"                  # 闭包作用域
+    CLASS = "class"                      # 类作用域
+    MODULE = "module"                    # 模块作用域
 
 @dataclass
 class Variable:
-    """变量实体"""
-    name: str
-    type: str                            # 变量类型
-    value: Any                           # 变量值
-    memory_address: Optional[str]        # 内存地址（可选）
-    references: list[str]                # 引用关系（可选）
-    history: list[VariableChange]        # 变量变化历史
+    """变量实体 - 单步详情视图中的变量状态"""
+    name: str                            # 变量名
+    type: str                            # 类型（Python: type().__name__）
+    value: Any                           # 当前值（序列化为 JSON）
+    memory_address: Optional[str]        # 内存地址（十六进制字符串，如 "0x7f8b2c3d1e40"）
+    size_bytes: Optional[int]            # 内存占用（字节）
+    is_mutable: bool                     # 是否可变（Python: isinstance(x, (list, dict, set))）
+    references: list[str]                # 引用的其他对象 ID 列表（用于对象引用图）
+    history: list[VariableChange]        # 历史变化轨迹
 
 @dataclass
 class VariableChange:
-    """变量变化记录"""
-    timestamp: float
-    old_value: Any
-    new_value: Any
-    step_id: str                         # 发生变化的步骤 ID
-    location: str                        # 变化位置（文件:行号）
+    """变量变化记录 - 用于变量历史轨迹查看"""
+    timestamp: str                       # 变化时刻（ISO 8601）
+    old_value: Any                       # 旧值
+    new_value: Any                       # 新值
+    changed_at: str                      # 修改位置（格式："file.py:123"）
+    execution_order: int                 # 变化时的执行序号
 
 @dataclass
 class StackFrame:
-    """调用栈帧"""
-    id: str
+    """调用栈帧 - 用于单步详情视图的调用栈显示"""
+    id: str                              # 栈帧唯一标识符
     function_name: str                   # 函数名
-    file_path: str                       # 文件路径
-    line_number: int                     # 行号
-    depth: int                           # 递归深度
-    parameters: dict                     # 参数值
-    return_value: Optional[Any]          # 返回值
+    module_name: str                     # 所属模块
+    file_path: str                       # 源代码文件路径
+    line_number: int                     # 当前执行行号
+    depth: int                           # 调用深度（0 = 顶层入口）
+    is_recursive: bool                   # 是否递归调用
+    recursion_depth: Optional[int]       # 递归深度（如果 is_recursive=True）
+    arguments: dict[str, Any]            # 函数参数（名称 -> 值）
+    local_scope_id: str                  # 关联的局部作用域 ID
+    parent_frame_id: Optional[str]       # 父栈帧 ID（调用链）
+    timestamp: str                       # 进入栈帧的时间戳（ISO 8601）
+    execution_order: int                 # 执行序号
+    return_value: Optional[Any]          # 返回值（函数返回后填充）
 ```
 
 #### ConcurrencyInfo (并发信息)

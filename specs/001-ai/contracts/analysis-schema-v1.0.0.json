@@ -469,14 +469,16 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["id", "order", "file_path", "line_number", "code", "timestamp", "scope_id"],
+            "required": ["id", "order", "file_path", "line_number", "code", "timestamp", "execution_order", "scope_id"],
             "properties": {
               "id": {
-                "type": "string"
+                "type": "string",
+                "description": "步骤唯一标识符（UUID v4）"
               },
               "order": {
                 "type": "integer",
-                "description": "执行顺序"
+                "minimum": 0,
+                "description": "执行顺序（从0开始递增）"
               },
               "file_path": {
                 "type": "string",
@@ -484,27 +486,35 @@
               },
               "line_number": {
                 "type": "integer",
-                "description": "行号"
+                "minimum": 1,
+                "description": "代码行号（从1开始）"
               },
               "code": {
                 "type": "string",
-                "description": "代码内容"
+                "description": "代码内容（单行）"
               },
               "timestamp": {
-                "type": "number",
-                "description": "时间戳"
+                "type": "string",
+                "format": "date-time",
+                "description": "执行时刻（ISO 8601 格式，如 2025-10-10T14:30:00.123Z）"
+              },
+              "execution_order": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "全局唯一执行序号（用于跨作用域排序）"
               },
               "duration": {
                 "type": "number",
-                "description": "执行时长（可选）"
+                "minimum": 0,
+                "description": "执行时长（毫秒，可选）"
               },
               "scope_id": {
                 "type": "string",
-                "description": "所属作用域 ID"
+                "description": "所属作用域 ID（引用 VariableScope.id）"
               }
             }
           },
-          "description": "执行步骤列表"
+          "description": "执行步骤列表（按 execution_order 全局排序）"
         },
         "variableScopes": {
           "type": "array",
@@ -524,26 +534,37 @@
     },
     "VariableScope": {
       "type": "object",
-      "required": ["id", "name", "variables"],
+      "required": ["id", "scope_type", "variables", "timestamp", "execution_order"],
       "properties": {
         "id": {
-          "type": "string"
-        },
-        "name": {
           "type": "string",
-          "enum": ["global", "local", "closure"],
-          "description": "作用域名称"
+          "description": "作用域唯一标识符（UUID v4）"
+        },
+        "scope_type": {
+          "type": "string",
+          "enum": ["global", "local", "closure", "class", "module"],
+          "description": "作用域类型（global: 全局，local: 局部，closure: 闭包，class: 类，module: 模块）"
         },
         "parent_scope_id": {
           "type": "string",
-          "description": "父作用域 ID（可选）"
+          "description": "父作用域 ID（支持嵌套作用域，可选）"
         },
         "variables": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Variable"
           },
-          "description": "变量列表"
+          "description": "该作用域内的变量列表"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "进入作用域时刻（ISO 8601 格式）"
+        },
+        "execution_order": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "执行序号（全局唯一递增，用于跨作用域排序）"
         }
       }
     },
@@ -557,80 +578,131 @@
         },
         "type": {
           "type": "string",
-          "description": "变量类型"
+          "description": "变量类型（Python: type().__name__，JavaScript: typeof 等）"
         },
         "value": {
-          "description": "变量值（任意类型）"
+          "description": "变量值（序列化为 JSON，任意类型）"
         },
         "memory_address": {
           "type": "string",
-          "description": "内存地址（可选）"
+          "pattern": "^0x[0-9a-fA-F]+$",
+          "description": "内存地址（十六进制字符串，如 \"0x7f8b2c3d1e40\"，可选）"
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "内存占用（字节，可选）"
+        },
+        "is_mutable": {
+          "type": "boolean",
+          "description": "是否可变（Python: isinstance(x, (list, dict, set))，可选）"
         },
         "references": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "description": "引用关系（可选）"
+          "description": "引用的其他对象 ID 列表（用于对象引用图，可选）"
         },
         "history": {
           "type": "array",
           "items": {
-            "type": "object",
-            "required": ["timestamp", "old_value", "new_value", "step_id", "location"],
-            "properties": {
-              "timestamp": {
-                "type": "number"
-              },
-              "old_value": {
-                "description": "旧值"
-              },
-              "new_value": {
-                "description": "新值"
-              },
-              "step_id": {
-                "type": "string",
-                "description": "发生变化的步骤 ID"
-              },
-              "location": {
-                "type": "string",
-                "description": "变化位置（文件:行号）"
-              }
-            }
+            "$ref": "#/definitions/VariableChange"
           },
-          "description": "变量变化历史（可选）"
+          "description": "变量变化历史轨迹（可选）"
+        }
+      }
+    },
+    "VariableChange": {
+      "type": "object",
+      "required": ["timestamp", "old_value", "new_value", "execution_order", "changed_at"],
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "变化时刻（ISO 8601 格式）"
+        },
+        "old_value": {
+          "description": "旧值（任意类型）"
+        },
+        "new_value": {
+          "description": "新值（任意类型）"
+        },
+        "execution_order": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "变化时的执行序号（全局唯一）"
+        },
+        "changed_at": {
+          "type": "string",
+          "pattern": "^.+:\\d+$",
+          "description": "修改位置（格式：\"file.py:123\"）"
         }
       }
     },
     "StackFrame": {
       "type": "object",
-      "required": ["id", "function_name", "file_path", "line_number", "depth"],
+      "required": ["id", "function_name", "module_name", "file_path", "line_number", "depth", "local_scope_id", "timestamp", "execution_order"],
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "description": "栈帧唯一标识符（UUID v4）"
         },
         "function_name": {
           "type": "string",
           "description": "函数名"
         },
+        "module_name": {
+          "type": "string",
+          "description": "所属模块名"
+        },
         "file_path": {
           "type": "string",
-          "description": "文件路径"
+          "description": "源代码文件路径"
         },
         "line_number": {
           "type": "integer",
-          "description": "行号"
+          "minimum": 1,
+          "description": "当前执行行号（从1开始）"
         },
         "depth": {
           "type": "integer",
-          "description": "递归深度"
+          "minimum": 0,
+          "description": "调用深度（0 = 顶层入口）"
         },
-        "parameters": {
+        "is_recursive": {
+          "type": "boolean",
+          "description": "是否递归调用"
+        },
+        "recursion_depth": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "递归深度（仅当 is_recursive=true 时有效，可选）"
+        },
+        "arguments": {
           "type": "object",
-          "description": "参数值"
+          "description": "函数参数（名称 -> 值映射）"
+        },
+        "local_scope_id": {
+          "type": "string",
+          "description": "关联的局部作用域 ID（引用 VariableScope.id）"
+        },
+        "parent_frame_id": {
+          "type": "string",
+          "description": "父栈帧 ID（调用链，可选）"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "进入栈帧的时间戳（ISO 8601 格式）"
+        },
+        "execution_order": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "执行序号（全局唯一）"
         },
         "return_value": {
-          "description": "返回值（可选）"
+          "description": "返回值（函数返回后填充，可选）"
         }
       }
     },

@@ -64,6 +64,7 @@
 - [ ] T023 [P] [INFRA] 编写 Prompt 模板 - Python 执行推理 `backend/prompts/python/execution-inference/v1.0.0.yaml`
 - [ ] T024 [P] [INFRA] 编写 Prompt 模板 - Python 并发检测 `backend/prompts/python/concurrency-detection/v1.0.0.yaml`
 - [ ] T025 [INFRA] 实现 Prompt 初始化脚本 `backend/aiflow/prompts/init.py`（从 Git LFS 拉取）
+- [ ] T025a [INFRA] 实现时间戳格式验证 `backend/aiflow/prompts/validator.py:validate_timestamp_format()`（验证所有 Prompt 模板输出的时间戳符合 ISO 8601 格式规范）
 
 ### 2.3 AI 适配器接口（SPI）
 
@@ -77,8 +78,12 @@
 
 - [ ] T031 [INFRA] 实现 AnalysisJob 实体和状态机 `backend/aiflow/analysis/job.py`
 - [ ] T032 [P] [INFRA] 实现 AnalysisEngine 核心调度器 `backend/aiflow/analysis/engine.py`
+- [ ] T032a [P] [INFRA] 收集 AI 置信度分数 `backend/aiflow/analysis/engine.py:collect_confidence_scores()`（每个分析阶段结束后收集 AI 的置信度评分）
 - [ ] T033 [P] [INFRA] 实现 AI 调度策略（5 阶段串行 + 同级并行）`backend/aiflow/analysis/scheduler.py`
 - [ ] T034 [P] [INFRA] 实现分析缓存（SQLite + LRU）`backend/aiflow/analysis/cache.py`
+- [ ] T034a [P] [INFRA] 实现适配器健康检查监控 `backend/aiflow/adapters/health_monitor.py`（定期检查适配器状态，记录响应时间和错误率）
+- [ ] T034b [INFRA] 实现适配器故障降级机制 `backend/aiflow/adapters/fallback.py`（主适配器失败时自动切换到备用适配器）
+- [ ] T034c [INFRA] 实现断路器模式 `backend/aiflow/adapters/circuit_breaker.py`（连续失败达到阈值时暂停调用，等待恢复）
 - [ ] T035 [INFRA] 实现项目内容哈希计算 `backend/aiflow/utils/file_hash.py`（用于缓存失效检测）
 
 ### 2.5 后端 REST API 基础
@@ -274,11 +279,11 @@
 
 ### 6.2 后端实现 - 单步追踪数据（阶段 4 增强）
 
-- [ ] T124 [US4] 生成 StepByStepTrace 数据 `backend/aiflow/protocol/entities.py:generate_step_by_step_trace()`
-- [ ] T125 [US4] 生成 variableScopes 结构 `backend/aiflow/protocol/entities.py:VariableScope`
-- [ ] T126 [US4] 生成 callStack 数据 `backend/aiflow/protocol/entities.py:StackFrame`
-- [ ] T127 [US4] 生成变量历史轨迹 `backend/aiflow/protocol/entities.py:Variable.history`
-- [ ] T128 [US4] 生成递归调用栈数据 `backend/aiflow/protocol/entities.py:StackFrame.depth`
+- [ ] T124 [US4] 生成 StepByStepTrace 数据 `backend/aiflow/protocol/entities.py:generate_step_by_step_trace()`（包含 timestamp（ISO 8601格式）和 execution_order 字段）
+- [ ] T125 [US4] 生成 variableScopes 结构 `backend/aiflow/protocol/entities.py:VariableScope`（包含 scope_type 枚举（global, local, closure, class, module）、timestamp（ISO 8601）、execution_order）
+- [ ] T126 [US4] 生成 callStack 数据 `backend/aiflow/protocol/entities.py:StackFrame`（包含 module_name、is_recursive、recursion_depth、local_scope_id、parent_frame_id、timestamp（ISO 8601）、execution_order）
+- [ ] T127 [US4] 生成变量历史轨迹 `backend/aiflow/protocol/entities.py:Variable.history`（使用 execution_order 而非 step_id，timestamp 为 ISO 8601 格式）
+- [ ] T128 [US4] 生成递归调用栈数据 `backend/aiflow/protocol/entities.py:StackFrame.depth`（使用 is_recursive + recursion_depth 字段，支持递归深度跟踪）
 
 ### 6.3 前端实现 - Monaco Editor 集成
 
