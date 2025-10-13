@@ -1,0 +1,243 @@
+# Prompt Template: Python Execution Inference v1.0.0
+# AI分析指挥与可视化平台 - 阶段 4: 执行推理
+#
+# 职责: 指导 AI 推理 Python 代码的执行轨迹、调用栈、变量作用域、单步详情
+# 输出: 符合标准数据协议的 execution_trace 部分（TraceableUnit 和三种 Trace 格式）
+
+metadata:
+  id: "python-execution-inference-v1.0.0"
+  version: "1.0.0"
+  stage: "execution_inference"
+  target_language: "python"
+  created_at: "2025-10-12"
+  author: "AIFlow Team"
+  description: "推理 Python 代码的执行轨迹、调用栈、变量作用域、单步详情"
+  estimated_tokens: 3000
+  quality_criteria:
+    - 必须为每个功能单元生成三种格式的执行轨迹（flowchart, sequence, step-by-step）
+    - 必须推理完整的函数调用链和参数传递
+    - 必须推理变量作用域和变量生命周期
+    - 必须推理调用栈的构建和销毁过程
+    - 所有时间戳必须使用 ISO 8601 格式
+    - 所有 execution_order 必须全局唯一递增
+    - 输出必须完全符合 analysis-schema-v1.0.0.json 中的 execution_trace 定义
+
+# Jinja2 模板内容
+template: |
+  # AI 分析任务: Python 代码执行推理
+
+  你是一位资深的 Python 运行时专家和调试器开发者。你的任务是推理 Python 代码的执行轨迹，为可视化平台生成三种格式的追踪数据。
+
+  ## 项目上下文
+
+  **项目路径**: {{ project_path }}
+  **功能单元**: {{ functional_unit_name }}
+
+  **前置分析结果**:
+  - 项目认知: `{{ project_metadata_json }}`
+  - 代码结构: `{{ code_structure_json }}`
+  - 语义分析: `{{ behavior_metadata_json }}`
+
+  **功能单元源代码**:
+  ```python
+  {{ functional_unit_code }}
+  ```
+
+  **依赖模块源代码**:
+  {% for dep in dependency_modules %}
+  ### {{ dep.path }}
+  ```python
+  {{ dep.content }}
+  ```
+  {% endfor %}
+
+  ## 分析要求
+
+  ### 1. 流程图格式 (Flowchart)
+
+  使用流程图表示控制流，适合 D3.js 渲染。
+
+  **节点类型**:
+  - `start`: 开始节点
+  - `end`: 结束节点
+  - `process`: 处理步骤（赋值、计算、函数调用）
+  - `decision`: 判断节点（if, while, for 条件）
+  - `fork`: 并发分叉（多线程/协程启动点）
+  - `join`: 并发汇合（等待点）
+
+  **连接类型**:
+  - `control_flow`: 控制流（顺序执行）
+  - `data_flow`: 数据流（参数传递、返回值）
+
+  ### 2. 时序图格式 (Sequence)
+
+  使用时序图表示多实体间的消息传递，适合分析跨模块调用。
+
+  **生命线（Lifeline）**: 代表执行实体（线程、服务、组件）
+  **消息（Message）**:
+  - `sync`: 同步调用（等待返回）
+  - `async`: 异步调用（不等待）
+  - `return`: 返回消息
+
+  **时间戳**: 相对时间（从0开始的毫秒数）
+
+  ### 3. 单步详情格式 (Step-by-Step)
+
+  最详细的执行追踪，包含每行代码的执行状态。
+
+  **ExecutionStep**:
+  - `order`: 局部顺序（0开始递增）
+  - `execution_order`: 全局唯一序号（跨作用域排序）
+  - `file_path`: 源文件路径
+  - `line_number`: 行号（从1开始）
+  - `code`: 代码内容（单行）
+  - `timestamp`: ISO 8601 格式时间戳
+  - `scope_id`: 所属作用域 ID
+
+  **VariableScope**:
+  - `scope_type`: global, local, closure, class, module
+  - `variables`: 该作用域内的变量列表
+  - `parent_scope_id`: 父作用域（支持嵌套）
+  - `timestamp`: 进入作用域的时间（ISO 8601）
+  - `execution_order`: 全局唯一序号
+
+  **StackFrame**:
+  - `function_name`: 函数名
+  - `depth`: 调用深度（0 = 顶层）
+  - `is_recursive`: 是否递归
+  - `local_scope_id`: 关联的局部作用域 ID
+  - `timestamp`: 进入栈帧的时间（ISO 8601）
+  - `execution_order`: 全局唯一序号
+
+  ### 4. 推理策略
+
+  **重要**: 你需要基于代码逻辑进行 **静态推理**，而非真实执行。
+
+  **推理步骤**:
+  1. 识别函数入口点和参数
+  2. 遍历代码行，推理执行顺序
+  3. 分析条件分支（if/else），推理可能的执行路径
+  4. 分析循环（for/while），推理迭代次数（典型场景）
+  5. 分析函数调用，递归构建调用栈
+  6. 推理变量的创建、赋值、修改、销毁
+  7. 推理作用域的进入和退出
+  8. 生成合理的时间戳（基于典型执行时长估算）
+
+  **注意事项**:
+  - 对于条件分支，选择最典型的执行路径（或生成多个 Trace）
+  - 对于循环，展示 2-3 次迭代作为示例
+  - 对于异步调用，标注异步特性并推理并发执行
+  - 时间戳应该合理递增，反映代码执行时长
+
+  ## 输出格式要求
+
+  ```json
+  {
+    "execution_trace": {
+      "traceable_units": [
+        {
+          "id": "uuid-v4",
+          "name": "功能单元名称",
+          "type": "single-trace 或 multi-trace",
+          "subUnitIds": [],
+          "traces": [
+            {
+              "format": "flowchart",
+              "data": {
+                "steps": [...],
+                "connections": [...]
+              }
+            },
+            {
+              "format": "sequence",
+              "data": {
+                "lifelines": [...],
+                "messages": [...]
+              }
+            },
+            {
+              "format": "step-by-step",
+              "data": {
+                "steps": [...],
+                "variableScopes": [...],
+                "callStack": [...]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+  ```
+
+  ## 质量标准检查清单
+
+  - [ ] 是否为功能单元生成了三种格式的 Trace？
+  - [ ] Flowchart 是否包含 start 和 end 节点？
+  - [ ] Sequence 的 timestamp 是否递增？
+  - [ ] Step-by-Step 的 execution_order 是否全局唯一递增？
+  - [ ] 所有时间戳是否使用 ISO 8601 格式？
+  - [ ] 变量作用域的 parent_scope_id 是否正确引用？
+  - [ ] 调用栈的 depth 是否正确递增？
+  - [ ] 输出是否为有效的 JSON 格式？
+
+  ## 开始分析
+
+  现在请基于上述功能单元代码，输出完整的执行推理 JSON 结果：
+
+# 输入数据 JSON Schema
+input_schema:
+  type: object
+  required:
+    - project_path
+    - functional_unit_name
+    - functional_unit_code
+    - project_metadata_json
+    - code_structure_json
+    - behavior_metadata_json
+  properties:
+    project_path:
+      type: string
+    functional_unit_name:
+      type: string
+    functional_unit_code:
+      type: string
+    project_metadata_json:
+      type: string
+    code_structure_json:
+      type: string
+    behavior_metadata_json:
+      type: string
+    dependency_modules:
+      type: array
+      items:
+        type: object
+        properties:
+          path:
+            type: string
+          content:
+            type: string
+
+# 期望输出数据 JSON Schema
+output_schema:
+  $ref: "https://aiflow.dev/schemas/analysis-v1.0.0.json#/properties/execution_trace"
+
+# 示例（简化）
+examples:
+  - name: "简单函数执行推理示例"
+    input:
+      functional_unit_code: |
+        async def login(username: str, password: str) -> User:
+            user = await db.get_user(username)
+            if not user:
+                raise ValueError("User not found")
+            if not verify_password(password, user.password_hash):
+                raise ValueError("Invalid password")
+            token = generate_token(user.id)
+            return {"user": user, "token": token}
+    expected_output_summary:
+      traceable_units_count: 1
+      traces_per_unit: 3
+      flowchart_steps_count: 7
+      sequence_messages_count: 5
+      step_by_step_steps_count: 15

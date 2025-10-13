@@ -1,0 +1,232 @@
+# Prompt Template: Python Concurrency Detection v1.0.0
+# AI分析指挥与可视化平台 - 阶段 5: 并发检测
+#
+# 职责: 指导 AI 检测 Python 代码的并发模式、线程/进程/协程、同步点、竞态条件
+# 输出: 符合标准数据协议的 concurrency_info 部分（ConcurrencyFlow 和 SyncPoint）
+
+metadata:
+  id: "python-concurrency-detection-v1.0.0"
+  version: "1.0.0"
+  stage: "concurrency_detection"
+  target_language: "python"
+  created_at: "2025-10-12"
+  author: "AIFlow Team"
+  description: "检测 Python 代码的并发模式、线程/进程/协程、同步点、竞态条件"
+  estimated_tokens: 2500
+  quality_criteria:
+    - 必须识别所有并发流（threading, multiprocessing, asyncio）
+    - 必须识别所有同步点（Lock, Semaphore, Event, Queue, Barrier）
+    - 必须分析潜在的竞态条件和死锁风险
+    - 必须推理并发流的依赖关系和执行顺序
+    - 输出必须完全符合 analysis-schema-v1.0.0.json 中的 concurrency_info 定义
+
+# Jinja2 模板内容
+template: |
+  # AI 分析任务: Python 并发检测
+
+  你是一位并发编程专家和 Python 运行时分析师。你的任务是检测 Python 项目中的并发模式、识别同步点、分析潜在的并发问题。
+
+  ## 项目上下文
+
+  **项目路径**: {{ project_path }}
+  **项目名称**: {{ project_name }}
+
+  **前置分析结果**:
+  - 项目认知: `{{ project_metadata_json }}`
+  - 代码结构: `{{ code_structure_json }}`
+  - 执行追踪: `{{ execution_trace_json }}`
+
+  **关键并发相关代码**:
+  {% for file in concurrent_code_files %}
+  ### {{ file.path }}
+  ```python
+  {{ file.content }}
+  ```
+  {% endfor %}
+
+  ## 分析要求
+
+  ### 1. 并发模式识别
+
+  **Python 并发机制**:
+  - **threading**: 多线程（适合 I/O 密集型任务，受 GIL 限制）
+  - **multiprocessing**: 多进程（适合 CPU 密集型任务，绕过 GIL）
+  - **asyncio**: 协程/异步编程（高效的单线程并发）
+  - **concurrent.futures**: 线程池/进程池（简化并发管理）
+
+  **检测标志**:
+  - `threading.Thread`, `threading.Lock`, `threading.Event`
+  - `multiprocessing.Process`, `multiprocessing.Queue`
+  - `async def`, `await`, `asyncio.create_task()`, `asyncio.gather()`
+  - `ThreadPoolExecutor`, `ProcessPoolExecutor`
+
+  ### 2. 并发流（ConcurrencyFlow）定义
+
+  **并发流类型**:
+  - `parallel`: 真正的并行执行（多进程/多核）
+  - `concurrent`: 并发执行（多线程/协程，可能非并行）
+  - `async`: 异步执行（asyncio）
+  - `sync_wait`: 同步等待（join, wait, gather）
+
+  **并发流属性**:
+  - `id`: UUID v4
+  - `type`: 并发类型
+  - `involved_units`: 涉及的代码单元 ID（引用 TraceableUnit）
+  - `start_point`: 并发流启动的节点 ID（引用 CodeNode）
+  - `end_point`: 并发流结束的节点 ID
+  - `dependencies`: 依赖的其他并发流 ID（执行顺序依赖）
+
+  ### 3. 同步点（SyncPoint）识别
+
+  **同步机制**:
+  - `barrier`: 栅栏（所有流到达才继续）
+    - `threading.Barrier`, `asyncio.Barrier`
+  - `mutex`: 互斥锁（保护临界区）
+    - `threading.Lock`, `threading.RLock`, `asyncio.Lock`
+  - `semaphore`: 信号量（限制并发数量）
+    - `threading.Semaphore`, `asyncio.Semaphore`
+  - `join`: Join 操作（等待线程/进程完成）
+    - `thread.join()`, `process.join()`, `asyncio.gather()`
+
+  **同步点属性**:
+  - `id`: UUID v4
+  - `location`: 同步点位置（文件路径:行号）
+  - `waiting_flows`: 等待的并发流 ID 列表
+  - `type`: 同步类型
+
+  ### 4. 并发问题分析
+
+  **潜在问题**:
+  - **竞态条件（Race Condition）**: 多个流访问共享资源，结果依赖执行顺序
+  - **死锁（Deadlock）**: 多个流互相等待，永久阻塞
+  - **资源泄漏（Resource Leak）**: 线程/进程未正确关闭
+  - **GIL 争用（GIL Contention）**: 多线程 CPU 密集型任务性能低下
+
+  **分析输出**: 在 metadata 中提供警告和建议
+
+  ## 输出格式要求
+
+  ```json
+  {
+    "concurrency_info": {
+      "flows": [
+        {
+          "id": "uuid-v4",
+          "type": "parallel | concurrent | async | sync_wait",
+          "involved_units": ["引用 TraceableUnit ID"],
+          "start_point": "引用 CodeNode ID",
+          "end_point": "引用 CodeNode ID",
+          "dependencies": ["依赖的其他并发流 ID"],
+          "metadata": {
+            "mechanism": "threading | multiprocessing | asyncio | concurrent.futures",
+            "concurrency_level": 并发数量（整数）,
+            "estimated_duration": "预估执行时长",
+            "ai_confidence": 0.90,
+            "ai_explanation": "推理依据"
+          }
+        }
+      ],
+      "sync_points": [
+        {
+          "id": "uuid-v4",
+          "location": "文件路径:行号",
+          "waiting_flows": ["等待的并发流 ID"],
+          "type": "barrier | mutex | semaphore | join",
+          "metadata": {
+            "sync_object": "同步对象变量名",
+            "timeout": "超时时间（秒，可选）",
+            "ai_confidence": 0.85,
+            "ai_explanation": "推理依据"
+          }
+        }
+      ],
+      "analysis_metadata": {
+        "has_concurrency": true,
+        "concurrency_mechanisms": ["asyncio", "threading"],
+        "potential_issues": [
+          {
+            "type": "race_condition | deadlock | resource_leak | gil_contention",
+            "location": "文件路径:行号",
+            "description": "问题描述",
+            "severity": "low | medium | high | critical",
+            "recommendation": "修复建议"
+          }
+        ],
+        "overall_assessment": {
+          "complexity": "简单 | 中等 | 复杂",
+          "safety": "安全 | 有风险 | 高风险",
+          "performance": "优秀 | 良好 | 可改进 | 差"
+        }
+      }
+    }
+  }
+  ```
+
+  ## 质量标准检查清单
+
+  - [ ] 是否识别了所有并发流？
+  - [ ] 是否识别了所有同步点？
+  - [ ] involved_units 是否正确引用了 TraceableUnit ID？
+  - [ ] start_point 和 end_point 是否正确引用了 CodeNode ID？
+  - [ ] 是否分析了潜在的并发问题？
+  - [ ] 是否提供了修复建议？
+  - [ ] 所有 ID 是否使用 UUID v4 格式？
+  - [ ] 输出是否为有效的 JSON 格式？
+
+  ## 开始分析
+
+  现在请基于上述项目上下文和并发相关代码，输出完整的并发检测 JSON 结果：
+
+# 输入数据 JSON Schema
+input_schema:
+  type: object
+  required:
+    - project_path
+    - project_name
+    - project_metadata_json
+    - code_structure_json
+    - execution_trace_json
+    - concurrent_code_files
+  properties:
+    project_path:
+      type: string
+    project_name:
+      type: string
+    project_metadata_json:
+      type: string
+    code_structure_json:
+      type: string
+    execution_trace_json:
+      type: string
+    concurrent_code_files:
+      type: array
+      items:
+        type: object
+        properties:
+          path:
+            type: string
+          content:
+            type: string
+
+# 期望输出数据 JSON Schema
+output_schema:
+  $ref: "https://aiflow.dev/schemas/analysis-v1.0.0.json#/properties/concurrency_info"
+
+# 示例（简化）
+examples:
+  - name: "asyncio 并发检测示例"
+    input_summary:
+      concurrent_code_snippet: |
+        async def fetch_data():
+            tasks = [fetch_user(), fetch_orders(), fetch_products()]
+            results = await asyncio.gather(*tasks)
+            return results
+    expected_output_summary:
+      flows_count: 4
+      sync_points_count: 1
+      potential_issues_count: 0
+      concurrency_mechanisms: ["asyncio"]
+      overall_assessment:
+        complexity: "简单"
+        safety: "安全"
+        performance: "优秀"

@@ -1,0 +1,372 @@
+/**
+ * App Styles - 主应用样式
+ */
+
+/* 工作区 */
+.app-workspace {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 工作区头部 */
+.workspace-header {
+  padding: 16px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+/* 工作区内容 */
+.workspace-content {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 可视化容器 */
+.visualization-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  overflow: hidden;
+}
+
+/* 可视化主区域 */
+.visualization-main {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 可视化侧边栏（启动按钮列表） */
+.visualization-sidebar {
+  width: 100%;
+  max-height: 40%;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 可视化控制区（动画控制器） */
+.visualization-controls {
+  flex-shrink: 0;
+}
+
+/* 结构视图特殊布局 */
+.visualization-container:has(.visualization-sidebar) {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  gap: 16px;
+}
+
+/* 错误状态 */
+.visualization-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 32px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+/* 主题变量（继承自 AppLayout） */
+:root {
+  --primary-color: #667eea;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f7f9fc;
+  --bg-hover: #e8edf5;
+  --text-primary: #1a202c;
+  --text-secondary: #718096;
+  --border-color: #e2e8f0;
+}
+
+.dark-theme {
+  --bg-primary: #1a202c;
+  --bg-secondary: #2d3748;
+  --bg-hover: #4a5568;
+  --text-primary: #f7fafc;
+  --text-secondary: #a0aec0;
+  --border-color: #4a5568;
+}
+
+/* 响应式设计 */
+@media (min-width: 1440px) {
+  /* 大屏幕：代码结构图和按钮列表并排显示 */
+  .visualization-container:has(.visualization-sidebar) {
+    grid-template-columns: 1fr 400px;
+    grid-template-rows: 1fr;
+  }
+
+  .visualization-sidebar {
+    max-height: none;
+    height: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .workspace-header {
+    padding: 12px;
+  }
+
+  .workspace-content {
+    padding: 12px;
+  }
+
+  .visualization-container {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .visualization-sidebar {
+    max-height: 35%;
+  }
+}
+
+@media (max-width: 768px) {
+  .workspace-header {
+    padding: 10px;
+  }
+
+  .workspace-content {
+    padding: 10px;
+  }
+
+  .visualization-container {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .visualization-main {
+    border-radius: 6px;
+  }
+
+  .visualization-sidebar {
+    max-height: 30%;
+    border-radius: 6px;
+  }
+}
+
+/* 加载动画 */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.visualization-main,
+.visualization-sidebar,
+.visualization-controls {
+  animation: fade-in 0.3s ease-out;
+}
+
+.visualization-main {
+  animation-delay: 0s;
+}
+
+.visualization-sidebar {
+  animation-delay: 0.1s;
+}
+
+.visualization-controls {
+  animation-delay: 0.15s;
+}
+
+/* 打印样式 */
+@media print {
+  .workspace-header {
+    display: none;
+  }
+
+  .visualization-controls {
+    display: none;
+  }
+
+  .visualization-container {
+    padding: 0;
+    gap: 0;
+  }
+
+  .visualization-main {
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
+
+/* 性能优化 */
+.visualization-main,
+.visualization-sidebar {
+  contain: layout style paint;
+  will-change: contents;
+}
+
+/* 全局滚动条样式 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* 文本选择样式 */
+::selection {
+  background: rgba(102, 126, 234, 0.2);
+  color: inherit;
+}
+
+::-moz-selection {
+  background: rgba(102, 126, 234, 0.2);
+  color: inherit;
+}
+
+/* 焦点样式 */
+*:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* 禁用状态 */
+[disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* 链接样式 */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+/* 代码块样式 */
+code {
+  padding: 2px 6px;
+  background: var(--bg-hover);
+  border-radius: 3px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9em;
+  color: var(--text-primary);
+}
+
+pre {
+  padding: 12px;
+  background: var(--bg-secondary);
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+/* 表格样式 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+tr:hover {
+  background: var(--bg-hover);
+}
+
+/* 表单元素样式 */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+textarea,
+select {
+  padding: 8px 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--text-primary);
+  transition: border-color 0.2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* 工具提示样式 */
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  font-size: 12px;
+  white-space: nowrap;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 1000;
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+}

@@ -1,0 +1,358 @@
+# Confidence Output Schema for AI Analysis Platform
+# Version: 1.0.0
+# Last Updated: 2025-10-10
+# Purpose: Standard confidence score output format for all AI adapters
+
+---
+schema_version: "1.0.0"
+description: |
+  This schema defines the standard format for AI confidence scores that all adapters
+  must follow when returning analysis results. Confidence scores indicate the AI's
+  certainty level for each analysis stage and individual entities.
+
+# Stage-Level Confidence (Required for all adapters)
+stage_confidence:
+  description: "Overall confidence for the entire analysis stage"
+  required: true
+  type: "object"
+  properties:
+    stage_name:
+      type: "string"
+      description: "Name of the analysis stage"
+      enum:
+        - "project_understanding"
+        - "structure_recognition"
+        - "semantic_analysis"
+        - "execution_inference"
+        - "concurrency_detection"
+      required: true
+
+    overall_confidence:
+      type: "number"
+      description: "Overall confidence score for this stage (0.0 to 1.0)"
+      minimum: 0.0
+      maximum: 1.0
+      required: true
+
+    min_threshold:
+      type: "number"
+      description: "Minimum required confidence threshold for this stage"
+      minimum: 0.0
+      maximum: 1.0
+      required: true
+      stage_specific_defaults:
+        project_understanding: 0.70
+        structure_recognition: 0.80
+        semantic_analysis: 0.70
+        execution_inference: 0.60
+        concurrency_detection: 0.60
+
+    recommended_threshold:
+      type: "number"
+      description: "Recommended confidence threshold for production use"
+      minimum: 0.0
+      maximum: 1.0
+      required: false
+      stage_specific_defaults:
+        project_understanding: 0.85
+        structure_recognition: 0.90
+        semantic_analysis: 0.85
+        execution_inference: 0.80
+        concurrency_detection: 0.80
+
+    validation_level:
+      type: "string"
+      description: "Validation enforcement level"
+      enum: ["error", "warning"]
+      required: true
+      stage_specific_defaults:
+        project_understanding: "error"
+        structure_recognition: "error"
+        semantic_analysis: "error"
+        execution_inference: "warning"
+        concurrency_detection: "warning"
+
+    timestamp:
+      type: "string"
+      format: "iso8601"
+      description: "ISO 8601 timestamp when confidence was calculated"
+      required: true
+      example: "2025-10-10T14:30:00.123Z"
+
+    metadata:
+      type: "object"
+      description: "Additional stage-specific confidence metadata"
+      required: false
+      properties:
+        reasoning:
+          type: "string"
+          description: "Human-readable explanation of confidence score"
+        factors:
+          type: "array"
+          description: "List of factors affecting confidence"
+          items:
+            type: "object"
+            properties:
+              factor_name:
+                type: "string"
+              impact:
+                type: "string"
+                enum: ["positive", "negative", "neutral"]
+              weight:
+                type: "number"
+                minimum: 0.0
+                maximum: 1.0
+
+# Entity-Level Confidence (Optional, for fine-grained analysis)
+entity_confidence:
+  description: "Confidence scores for individual entities (nodes, edges, etc.)"
+  required: false
+  type: "array"
+  items:
+    type: "object"
+    properties:
+      entity_type:
+        type: "string"
+        description: "Type of entity"
+        enum:
+          - "node"
+          - "edge"
+          - "execution_trace"
+          - "concurrent_flow"
+          - "sync_point"
+          - "variable_scope"
+          - "stack_frame"
+        required: true
+
+      entity_id:
+        type: "string"
+        description: "Unique identifier for this entity"
+        required: true
+
+      confidence_score:
+        type: "number"
+        description: "Confidence score for this specific entity (0.0 to 1.0)"
+        minimum: 0.0
+        maximum: 1.0
+        required: true
+
+      source_basis:
+        type: "string"
+        description: "Basis for confidence assessment"
+        enum:
+          - "direct_code_analysis"
+          - "semantic_inference"
+          - "pattern_matching"
+          - "heuristic_analysis"
+          - "external_documentation"
+        required: false
+
+      uncertainty_factors:
+        type: "array"
+        description: "Factors contributing to uncertainty"
+        required: false
+        items:
+          type: "string"
+          examples:
+            - "ambiguous_naming"
+            - "complex_control_flow"
+            - "missing_type_annotations"
+            - "dynamic_behavior"
+            - "insufficient_context"
+
+# Aggregated Confidence Metrics (Optional, for reporting)
+aggregated_metrics:
+  description: "Cross-stage aggregated confidence metrics"
+  required: false
+  type: "object"
+  properties:
+    overall_analysis_confidence:
+      type: "number"
+      description: "Weighted average confidence across all stages"
+      minimum: 0.0
+      maximum: 1.0
+      calculation: "Weighted average based on stage importance and complexity"
+
+    confidence_distribution:
+      type: "object"
+      description: "Distribution of confidence scores"
+      properties:
+        high_confidence_percentage:
+          type: "number"
+          description: "Percentage of entities with confidence >= 0.8"
+        medium_confidence_percentage:
+          type: "number"
+          description: "Percentage of entities with 0.6 <= confidence < 0.8"
+        low_confidence_percentage:
+          type: "number"
+          description: "Percentage of entities with confidence < 0.6"
+
+    quality_indicators:
+      type: "object"
+      description: "Quality indicators derived from confidence data"
+      properties:
+        meets_all_thresholds:
+          type: "boolean"
+          description: "Whether all stage confidences meet minimum thresholds"
+        stages_below_threshold:
+          type: "array"
+          description: "List of stages that failed to meet thresholds"
+          items:
+            type: "string"
+        recommendation:
+          type: "string"
+          description: "Recommendation based on confidence analysis"
+          enum:
+            - "production_ready"
+            - "review_required"
+            - "re_analysis_recommended"
+
+# Output Format Examples
+examples:
+  - name: "Complete Stage Confidence Output"
+    description: "Example of full stage-level confidence output for Structure Recognition stage"
+    data:
+      stage_name: "structure_recognition"
+      overall_confidence: 0.92
+      min_threshold: 0.80
+      recommended_threshold: 0.90
+      validation_level: "error"
+      timestamp: "2025-10-10T14:30:00.123Z"
+      metadata:
+        reasoning: "High confidence due to clear class/function boundaries and comprehensive type annotations"
+        factors:
+          - factor_name: "type_annotations_coverage"
+            impact: "positive"
+            weight: 0.4
+          - factor_name: "code_complexity"
+            impact: "neutral"
+            weight: 0.3
+          - factor_name: "naming_clarity"
+            impact: "positive"
+            weight: 0.3
+
+  - name: "Entity-Level Confidence Output"
+    description: "Example of fine-grained entity confidence for a specific node"
+    data:
+      - entity_type: "node"
+        entity_id: "node-function-calculate_total"
+        confidence_score: 0.95
+        source_basis: "direct_code_analysis"
+        uncertainty_factors: []
+      - entity_type: "node"
+        entity_id: "node-function-process_payment"
+        confidence_score: 0.72
+        source_basis: "semantic_inference"
+        uncertainty_factors:
+          - "complex_control_flow"
+          - "dynamic_behavior"
+
+  - name: "Aggregated Metrics Output"
+    description: "Example of cross-stage aggregated confidence metrics"
+    data:
+      overall_analysis_confidence: 0.83
+      confidence_distribution:
+        high_confidence_percentage: 72.5
+        medium_confidence_percentage: 22.0
+        low_confidence_percentage: 5.5
+      quality_indicators:
+        meets_all_thresholds: true
+        stages_below_threshold: []
+        recommendation: "production_ready"
+
+# Integration Guidelines for AI Adapters
+integration_guidelines:
+  prompt_template_usage:
+    description: |
+      AI adapters MUST include this confidence schema in their prompt templates
+      to ensure consistent confidence reporting across all AI tools.
+
+    required_prompt_sections:
+      - section: "Output Format Specification"
+        content: |
+          "After completing each analysis stage, you must provide confidence scores
+          in the following format: {include stage_confidence schema}"
+
+      - section: "Confidence Calculation Guidance"
+        content: |
+          "Calculate confidence based on:
+          1. Quality and completeness of available code/context
+          2. Ambiguity level in naming and structure
+          3. Complexity of control flow and logic
+          4. Availability of type information and documentation
+          5. Certainty of semantic interpretations"
+
+      - section: "Threshold Awareness"
+        content: |
+          "Be aware of minimum confidence thresholds:
+          - Project Understanding: 0.70 (error-level validation)
+          - Structure Recognition: 0.80 (error-level validation)
+          - Semantic Analysis: 0.70 (error-level validation)
+          - Execution Inference: 0.60 (warning-level validation)
+          - Concurrency Detection: 0.60 (warning-level validation)"
+
+  validation_integration:
+    description: |
+      All confidence outputs will be validated against api-contracts.md Section 8.5
+      (Confidence Threshold Validation) during AI adapter response processing.
+
+    validation_steps:
+      - step: "Schema Conformance Check"
+        action: "Verify confidence output matches this YAML schema structure"
+      - step: "Threshold Validation"
+        action: "Compare overall_confidence against min_threshold for each stage"
+      - step: "Timestamp Format Check"
+        action: "Validate ISO 8601 timestamp format"
+      - step: "Validation Level Enforcement"
+        action: "Trigger errors or warnings based on validation_level"
+
+  error_handling:
+    missing_confidence:
+      severity: "error"
+      action: "Reject analysis result and request re-analysis with confidence scores"
+      message: "AI adapter response missing required stage_confidence data"
+
+    below_error_threshold:
+      severity: "error"
+      action: "Reject analysis result for stages with error-level validation"
+      message: "Stage {stage_name} confidence {score} below minimum threshold {threshold}"
+
+    below_warning_threshold:
+      severity: "warning"
+      action: "Accept analysis result but log warning for review"
+      message: "Stage {stage_name} confidence {score} below recommended threshold {threshold}"
+
+    invalid_confidence_range:
+      severity: "error"
+      action: "Reject analysis result due to invalid confidence value"
+      message: "Confidence score {score} outside valid range [0.0, 1.0]"
+
+# Version History
+version_history:
+  - version: "1.0.0"
+    date: "2025-10-10"
+    changes:
+      - "Initial confidence schema definition"
+      - "Stage-level confidence with thresholds"
+      - "Entity-level confidence support"
+      - "Aggregated metrics structure"
+      - "Integration guidelines for AI adapters"
+      - "Alignment with api-contracts.md Section 8.5"
+
+# Related Documentation
+related_docs:
+  - file: "contracts/api-contracts.md"
+    section: "Section 8.5 - 置信度阈值验证"
+    description: "Validation rules for confidence thresholds"
+
+  - file: "contracts/analysis-schema-v1.0.0.json"
+    section: "All stages"
+    description: "JSON Schema for complete analysis results"
+
+  - file: "data-model.md"
+    section: "All entities"
+    description: "Data model entities that can have confidence scores"
+
+  - file: "spec.md"
+    section: "FR-006"
+    description: "Functional requirement for confidence scoring"

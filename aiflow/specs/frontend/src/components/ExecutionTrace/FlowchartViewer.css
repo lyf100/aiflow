@@ -1,0 +1,376 @@
+/**
+ * Flowchart Viewer Styles - D3.js 流程图可视化样式
+ */
+
+/* 主容器 */
+.flowchart-viewer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: var(--bg-primary);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.flowchart-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+}
+
+.flowchart-svg:active {
+  cursor: grabbing;
+}
+
+/* 空状态 */
+.flowchart-viewer-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 32px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.flowchart-viewer-empty p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+/* 流程图容器 */
+.flowchart-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* 步骤节点 */
+.step {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.step:hover .step-shape {
+  opacity: 0.8;
+  filter: brightness(1.1);
+}
+
+.step-shape {
+  transition: all 0.3s ease;
+}
+
+/* 步骤标签 */
+.step-label {
+  font-size: 12px;
+  font-weight: 500;
+  fill: var(--text-primary);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* 步骤类型样式 */
+.step--start .step-shape {
+  filter: drop-shadow(0 2px 4px rgba(76, 175, 80, 0.3));
+}
+
+.step--end .step-shape {
+  filter: drop-shadow(0 2px 4px rgba(244, 67, 54, 0.3));
+}
+
+.step--process .step-shape {
+  filter: drop-shadow(0 2px 4px rgba(33, 150, 243, 0.3));
+}
+
+.step--decision .step-shape {
+  filter: drop-shadow(0 2px 4px rgba(255, 193, 7, 0.3));
+}
+
+.step--fork .step-shape,
+.step--join .step-shape {
+  filter: drop-shadow(0 2px 4px rgba(156, 39, 176, 0.3));
+}
+
+/* 激活状态 */
+.step--active .step-shape {
+  stroke-width: 3 !important;
+  filter: drop-shadow(0 4px 12px rgba(255, 64, 129, 0.5));
+  animation: step-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes step-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+/* 连接线 */
+.connection {
+  pointer-events: none;
+}
+
+.connection-path {
+  transition: all 0.3s ease;
+}
+
+.connection-path--control_flow {
+  stroke-dasharray: 0;
+}
+
+.connection-path--data_flow {
+  stroke-dasharray: 5, 5;
+}
+
+/* 连接线标签 */
+.connection-label {
+  font-size: 11px;
+  fill: var(--text-secondary);
+  font-weight: 500;
+  text-anchor: middle;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* 箭头标记 */
+marker path {
+  transition: fill 0.3s ease;
+}
+
+/* 控制按钮 */
+.flowchart-controls {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: 8px;
+  background: var(--bg-secondary);
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.flowchart-control-btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 16px;
+  color: var(--text-primary);
+}
+
+.flowchart-control-btn:hover {
+  background: var(--bg-hover);
+  border-color: var(--primary-color);
+  transform: translateY(-1px);
+}
+
+.flowchart-control-btn:active {
+  transform: translateY(0);
+}
+
+/* 图例 */
+.flowchart-legend {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: var(--bg-secondary);
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.legend-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  border: 2px solid var(--border-color);
+}
+
+.legend-icon--start { background-color: #4CAF50; }
+.legend-icon--end { background-color: #F44336; }
+.legend-icon--process { background-color: #2196F3; }
+.legend-icon--decision { background-color: #FFC107; transform: rotate(45deg); }
+.legend-icon--fork { background-color: #9C27B0; }
+.legend-icon--join { background-color: #673AB7; }
+
+.legend-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* 主题变量 */
+:root {
+  --primary-color: #667eea;
+}
+
+/* 暗色主题 */
+:root[data-theme="dark"] .step-label {
+  fill: #ffffff;
+}
+
+:root[data-theme="dark"] .connection-label {
+  fill: #aaaaaa;
+}
+
+:root[data-theme="dark"] .flowchart-svg {
+  background: #1a1a1a;
+}
+
+:root[data-theme="dark"] marker path {
+  fill: #ffffff;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .flowchart-controls {
+    top: 8px;
+    right: 8px;
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .flowchart-control-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .flowchart-legend {
+    bottom: 8px;
+    left: 8px;
+    padding: 10px 12px;
+  }
+
+  .legend-title {
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+
+  .legend-items {
+    gap: 4px;
+  }
+
+  .legend-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .legend-label {
+    font-size: 10px;
+  }
+
+  .step-label {
+    font-size: 11px;
+  }
+
+  .connection-label {
+    font-size: 10px;
+  }
+}
+
+/* 加载状态 */
+.flowchart-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-secondary);
+}
+
+.flowchart-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 错误状态 */
+.flowchart-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 32px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.flowchart-error-icon {
+  font-size: 48px;
+  color: #F44336;
+  margin-bottom: 16px;
+}
+
+.flowchart-error-message {
+  font-size: 14px;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.flowchart-error-details {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-family: monospace;
+  background: var(--bg-secondary);
+  padding: 8px 12px;
+  border-radius: 4px;
+  max-width: 600px;
+  overflow-x: auto;
+}
+
+/* 性能优化 */
+.step,
+.connection {
+  will-change: transform, opacity;
+}
+
+/* 打印样式 */
+@media print {
+  .flowchart-controls,
+  .flowchart-legend {
+    display: none;
+  }
+
+  .flowchart-viewer {
+    background: white;
+  }
+}

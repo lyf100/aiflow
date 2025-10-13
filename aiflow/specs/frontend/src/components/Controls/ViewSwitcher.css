@@ -1,0 +1,325 @@
+/**
+ * View Switcher Styles - 视图切换器样式
+ */
+
+/* 主容器 */
+.view-switcher {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 标签式切换（紧凑模式） */
+.view-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 4px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.view-tabs::-webkit-scrollbar {
+  height: 6px;
+}
+
+.view-tabs::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.view-tabs::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+.view-tab {
+  flex: 1;
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  position: relative;
+}
+
+.view-tab:hover:not(.disabled) {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.view-tab.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.view-tab.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.tab-icon {
+  font-size: 18px;
+}
+
+.tab-label {
+  white-space: nowrap;
+}
+
+.tab-lock {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+/* 卡片式选择（展开模式） */
+.view-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.view-card {
+  position: relative;
+  padding: 16px;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  overflow: hidden;
+}
+
+.view-card:hover:not(.disabled) {
+  transform: translateY(-2px);
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.view-card.active {
+  border-color: var(--primary-color);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.view-card.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.card-lock-overlay {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  font-size: 16px;
+  z-index: 1;
+}
+
+.card-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.card-description {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.card-active-indicator {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.card-unavailable-hint {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: rgba(255, 193, 7, 0.1);
+  border-left: 3px solid #FFC107;
+  border-radius: 4px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* 数据可用性状态 */
+.data-status {
+  display: flex;
+  gap: 16px;
+  padding: 12px 16px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  justify-content: center;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.status-item.available {
+  color: #4CAF50;
+}
+
+.status-item.unavailable {
+  color: #F44336;
+  opacity: 0.6;
+}
+
+.status-icon {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.status-label {
+  white-space: nowrap;
+}
+
+/* 主题变量 */
+:root {
+  --primary-color: #667eea;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .view-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .view-tab {
+    min-width: 120px;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .tab-icon {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .view-tabs {
+    gap: 6px;
+    padding: 3px;
+  }
+
+  .view-tab {
+    min-width: 100px;
+    padding: 8px 10px;
+    font-size: 12px;
+    gap: 6px;
+  }
+
+  .tab-icon {
+    font-size: 14px;
+  }
+
+  .tab-label {
+    display: none;
+  }
+
+  .view-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .view-card {
+    padding: 12px;
+  }
+
+  .card-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .card-title {
+    font-size: 14px;
+  }
+
+  .card-description {
+    font-size: 12px;
+  }
+
+  .data-status {
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .status-item {
+    font-size: 12px;
+  }
+}
+
+/* 动画 */
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.view-card {
+  animation: slide-in 0.3s ease-out;
+}
+
+.view-card:nth-child(1) { animation-delay: 0s; }
+.view-card:nth-child(2) { animation-delay: 0.05s; }
+.view-card:nth-child(3) { animation-delay: 0.1s; }
+.view-card:nth-child(4) { animation-delay: 0.15s; }
+
+/* 打印样式 */
+@media print {
+  .view-switcher {
+    display: none;
+  }
+}

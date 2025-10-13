@@ -1,0 +1,368 @@
+# Prompt Template: Python Structure Recognition v1.1.0
+# AI分析指挥与可视化平台 - 阶段 2: 结构识别
+#
+# 职责: 指导 AI 识别 Python 代码的层级结构、依赖关系、模块组织、类和函数定义
+# 输出: 符合标准数据协议的 code_structure 部分（CodeNode 和 CodeEdge）
+
+metadata:
+  id: "python-structure-recognition-v1.1.0"
+  version: "1.1.0"
+  stage: "structure_recognition"
+  target_language: "python"
+  created_at: "2025-10-12"
+  author: "AIFlow Team"
+  description: "识别 Python 代码的层级结构、依赖关系、模块组织、类和函数定义"
+  estimated_tokens: 2000
+  quality_criteria:
+    - 必须识别所有模块、类、函数的层级关系
+    - 必须识别模块间的依赖关系（import 语句分析）
+    - 必须识别类的继承关系和组合关系
+    - 必须识别函数调用关系（静态分析）
+    - 必须为每个节点生成业务语义化的标签（label）
+    - 输出必须完全符合 analysis-schema-v1.0.0.json 中的 code_structure 定义
+    - 所有节点 ID 必须使用 UUID v4 格式
+
+# Jinja2 模板内容
+template: |
+  # AI 分析任务: Python 代码结构识别
+
+  你是一位资深的 Python 架构师和代码分析专家。你的任务是对以下 Python 项目进行全面的代码结构识别分析。
+
+  ## 项目上下文
+
+  **项目路径**: {{ project_path }}
+  **项目名称**: {{ project_name }}
+
+  **第一阶段分析结果（项目认知）**:
+  ```json
+  {{ project_metadata_json }}
+  ```
+
+  **项目源代码目录结构**:
+  ```
+  {{ source_code_tree }}
+  ```
+
+  **关键源代码文件内容**:
+  {% for file in source_files %}
+  ### {{ file.path }}
+  ```python
+  {{ file.content }}
+  ```
+
+  {% endfor %}
+
+  ## 分析要求
+
+  请对项目进行深入的结构识别分析，识别代码的层级组织、依赖关系、继承关系、调用关系，并生成符合 **Cytoscape.js 渲染要求** 的节点和边数据。
+
+  ### 1. 节点识别（CodeNode）
+
+  请识别以下类型的代码节点:
+
+  #### 1.1 系统级节点 (system)
+  - **定义**: 代表整个项目系统
+  - **Label 生成规则**: 使用项目的业务功能描述（而非项目名），如 "电商订单管理系统"、"RESTful API 服务"
+  - **Parent**: 无（顶层节点）
+  - **Classes**: ["system"]
+
+  #### 1.2 模块级节点 (module)
+  - **定义**: Python 模块（.py 文件或包目录）
+  - **Label 生成规则**: 使用业务功能描述，如 "用户认证模块"、"订单处理模块"（而非 auth.py, order.py）
+  - **Parent**: 所属的父模块或系统节点 ID
+  - **Classes**: ["module"]
+  - **Metadata**: 包含文件路径（file_path）
+
+  #### 1.3 类级节点 (class)
+  - **定义**: Python 类定义
+  - **Label 生成规则**: 使用业务实体或职责描述，如 "用户实体"、"订单服务"（而非 User, OrderService）
+  - **Parent**: 所属模块节点 ID
+  - **Classes**: ["class"]
+  - **Metadata**: 包含代码位置（file_path, start_line, end_line）
+
+  #### 1.4 函数级节点 (function)
+  - **定义**: 顶层函数、类方法、静态方法
+  - **Label 生成规则**: 使用功能描述，如 "验证用户登录"、"计算订单总价"（而非 validate_login, calculate_total）
+  - **Parent**: 所属类节点或模块节点 ID
+  - **Classes**: ["function", "method"（如果是类方法）, "static"（如果是静态方法）]
+  - **Metadata**: 包含代码位置
+
+  #### 1.5 服务级节点 (service)（可选）
+  - **定义**: 提供特定业务功能的服务类或模块
+  - **Label 生成规则**: 使用服务功能描述，如 "邮件通知服务"、"支付网关服务"
+  - **Parent**: 所属模块节点 ID
+  - **Classes**: ["service"]
+
+  #### 1.6 组件级节点 (component)（可选）
+  - **定义**: 可重用的功能组件
+  - **Label 生成规则**: 使用组件功能描述，如 "日志记录组件"、"缓存管理组件"
+  - **Parent**: 所属模块节点 ID
+  - **Classes**: ["component"]
+
+  ### 2. 边识别（CodeEdge）
+
+  请识别以下类型的代码边:
+
+  #### 2.1 依赖关系 (dependency)
+  - **定义**: 模块 A 导入模块 B（import 语句）
+  - **Source**: 导入方模块节点 ID
+  - **Target**: 被导入模块节点 ID
+  - **Label**: "导入" 或 "依赖"
+  - **Type**: "dependency"
+
+  #### 2.2 继承关系 (inheritance)
+  - **定义**: 类 A 继承类 B（class A(B)）
+  - **Source**: 子类节点 ID
+  - **Target**: 父类节点 ID
+  - **Label**: "继承自"
+  - **Type**: "inheritance"
+
+  #### 2.3 组合关系 (composition)
+  - **定义**: 类 A 包含类 B 的实例作为属性
+  - **Source**: 包含方类节点 ID
+  - **Target**: 被包含类节点 ID
+  - **Label**: "包含"
+  - **Type**: "composition"
+
+  #### 2.4 调用关系 (call)
+  - **定义**: 函数 A 调用函数 B
+  - **Source**: 调用方函数节点 ID
+  - **Target**: 被调用函数节点 ID
+  - **Label**: "调用"
+  - **Type**: "call"
+
+  ### 3. 节点 ID 生成规则
+
+  **重要**: 所有节点 ID 必须使用 UUID v4 格式，确保全局唯一性。
+
+  ### 4. 业务语义化标签（Label）生成策略
+
+  **核心原则**: Label 应该反映节点的 **业务功能** 而非技术命名。
+
+  **示例**:
+  - ❌ 技术命名: `auth.py` → ✅ 业务描述: "用户认证模块"
+  - ❌ 技术命名: `UserService` → ✅ 业务描述: "用户管理服务"
+  - ❌ 技术命名: `calculate_price()` → ✅ 业务描述: "计算商品价格"
+
+  **Label 生成步骤**:
+  1. 分析节点的代码内容和注释
+  2. 推断节点的业务职责和功能
+  3. 使用自然语言描述业务功能
+  4. 如果无法推断业务语义，保留技术命名并标注低置信度
+
+  ### 5. AI 置信度与解释
+
+  为每个节点和边提供:
+  - **AI Confidence** (0.0-1.0): 对该节点/边识别结果的置信度
+  - **AI Explanation**: 决策依据和推理过程
+  - 标注不确定的部分，建议进一步分析的方向
+
+  ## 输出格式要求
+
+  **重要**: 你的输出必须是一个完整的、有效的 JSON 对象，严格遵循以下 schema:
+
+  ```json
+  {
+    "code_structure": {
+      "nodes": [
+        {
+          "id": "uuid-v4-格式的唯一 ID",
+          "label": "业务语义化标签（自然语言）",
+          "parent": "父节点 ID（UUID v4，顶层节点为 null）",
+          "classes": ["节点样式类名"],
+          "stereotype": "节点类型（system, module, class, function, service, component）",
+          "metadata": {
+            "ai_confidence": 0.92,
+            "ai_explanation": "推理依据说明",
+            "code_location": {
+              "file_path": "相对路径（如 src/auth/user.py）",
+              "start_line": 10,
+              "end_line": 50
+            }
+          },
+          "position": null,
+          "collapsed": false
+        }
+      ],
+      "edges": [
+        {
+          "id": "edge-uuid-v4",
+          "source": "源节点 ID（UUID v4）",
+          "target": "目标节点 ID（UUID v4）",
+          "type": "边类型（dependency, inheritance, composition, call）",
+          "label": "边标签（如 \"导入\", \"继承自\", \"调用\"）",
+          "metadata": {
+            "ai_confidence": 0.88,
+            "ai_explanation": "该依赖关系来自 import 语句分析"
+          }
+        }
+      ]
+    }
+  }
+  ```
+
+  ## 质量标准检查清单
+
+  在输出结果前，请自我检查:
+  - [ ] 是否识别了所有主要模块、类、函数？
+  - [ ] 所有节点 ID 是否使用 UUID v4 格式？
+  - [ ] 所有节点的 parent 字段是否正确指向父节点（层级关系正确）？
+  - [ ] 是否识别了主要的依赖关系（import 语句）？
+  - [ ] 是否识别了类的继承关系？
+  - [ ] 节点 Label 是否使用了业务语义化描述（而非技术命名）？
+  - [ ] 是否为每个节点和边提供了 AI 置信度和解释？
+  - [ ] 输出是否为有效的 JSON 格式？
+  - [ ] 是否符合 analysis-schema-v1.0.0.json 的 code_structure 定义？
+
+  ## 开始分析
+
+  现在请基于上述项目上下文和源代码内容，输出完整的代码结构 JSON 分析结果：
+
+# 输入数据 JSON Schema
+input_schema:
+  type: object
+  required:
+    - project_path
+    - project_name
+    - project_metadata_json
+    - source_code_tree
+    - source_files
+  properties:
+    project_path:
+      type: string
+      description: "项目根目录的绝对路径"
+    project_name:
+      type: string
+      description: "项目名称"
+    project_metadata_json:
+      type: string
+      description: "第一阶段分析结果（项目认知）的 JSON 字符串"
+    source_code_tree:
+      type: string
+      description: "源代码目录结构的文本表示"
+    source_files:
+      type: array
+      description: "关键源代码文件列表"
+      items:
+        type: object
+        required:
+          - path
+          - content
+        properties:
+          path:
+            type: string
+            description: "文件相对路径"
+          content:
+            type: string
+            description: "文件内容"
+
+# 期望输出数据 JSON Schema（引用标准数据协议）
+output_schema:
+  $ref: "https://aiflow.dev/schemas/analysis-v1.0.0.json#/properties/code_structure"
+
+# 示例输入输出
+examples:
+  - name: "FastAPI 项目结构识别示例"
+    input:
+      project_path: "/home/user/my-api"
+      project_name: "my-api"
+      project_metadata_json: |
+        {
+          "project_name": "my-api",
+          "language": "python",
+          "framework": "FastAPI"
+        }
+      source_code_tree: |
+        src/
+        ├── main.py
+        ├── api/
+        │   ├── routes.py
+        │   └── dependencies.py
+        ├── models/
+        │   └── user.py
+        └── services/
+            └── auth_service.py
+      source_files:
+        - path: "src/main.py"
+          content: |
+            from fastapi import FastAPI
+            from api.routes import router
+
+            app = FastAPI(title="My API")
+            app.include_router(router)
+        - path: "src/api/routes.py"
+          content: |
+            from fastapi import APIRouter
+            from services.auth_service import AuthService
+
+            router = APIRouter()
+            auth_service = AuthService()
+
+            @router.post("/login")
+            async def login(username: str, password: str):
+                return await auth_service.authenticate(username, password)
+        - path: "src/models/user.py"
+          content: |
+            from pydantic import BaseModel
+
+            class User(BaseModel):
+                id: int
+                username: str
+                email: str
+        - path: "src/services/auth_service.py"
+          content: |
+            from models.user import User
+
+            class AuthService:
+                async def authenticate(self, username: str, password: str) -> User:
+                    # Authentication logic
+                    pass
+    expected_output_structure:
+      nodes_count: 10
+      edges_count: 7
+      node_types:
+        - system: 1
+        - module: 5
+        - class: 3
+        - function: 1
+      edge_types:
+        - dependency: 4
+        - inheritance: 1
+        - call: 2
+      sample_nodes:
+        - id: "uuid-system"
+          label: "RESTful API 服务系统"
+          stereotype: "system"
+          parent: null
+        - id: "uuid-main-module"
+          label: "应用入口模块"
+          stereotype: "module"
+          parent: "uuid-system"
+          metadata:
+            code_location:
+              file_path: "src/main.py"
+        - id: "uuid-auth-service-class"
+          label: "用户认证服务"
+          stereotype: "class"
+          parent: "uuid-auth-service-module"
+          metadata:
+            code_location:
+              file_path: "src/services/auth_service.py"
+              start_line: 3
+              end_line: 6
+      sample_edges:
+        - id: "edge-uuid-1"
+          source: "uuid-main-module"
+          target: "uuid-routes-module"
+          type: "dependency"
+          label: "导入"
+        - id: "edge-uuid-2"
+          source: "uuid-user-class"
+          target: "uuid-basemodel-class"
+          type: "inheritance"
+          label: "继承自"
+        - id: "edge-uuid-3"
+          source: "uuid-login-function"
+          target: "uuid-authenticate-method"
+          type: "call"
+          label: "调用"

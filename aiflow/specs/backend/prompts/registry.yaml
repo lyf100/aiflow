@@ -1,0 +1,137 @@
+# Prompt Template Registry v1.0.0
+# AI分析指挥与可视化平台 - 核心指令集索引
+#
+# 职责: 注册所有可用的 Prompt 模板，支持版本管理和快速查找
+#
+# 更新规则:
+# 1. 新增模板时必须更新此注册表
+# 2. 模板版本升级时需保留旧版本引用（向后兼容）
+# 3. 模板 ID 格式: {language}-{stage}-v{version}
+# 4. 文件路径使用相对路径（相对于 backend/prompts/ 目录）
+
+version: "1.0.0"
+last_updated: "2025-10-12"
+
+# Python 语言 Prompt 模板集
+python:
+  # 阶段 1: 项目认知 (Project Understanding)
+  project_understanding:
+    latest: "v1.0.0"
+    templates:
+      - id: "python-project-understanding-v1.0.0"
+        version: "1.0.0"
+        file_path: "python/project-understanding/v1.0.0.yaml"
+        description: "分析 Python 项目的整体架构、技术栈、业务领域、入口点"
+        target_ai_models: ["Claude", "GPT-4", "Gemini"]
+        estimated_tokens: 1500
+        quality_score: null  # 首次发布，待测试
+        created_at: "2025-10-12"
+        status: "active"
+
+  # 阶段 2: 结构识别 (Structure Recognition)
+  structure_recognition:
+    latest: "v1.1.0"
+    templates:
+      - id: "python-structure-recognition-v1.1.0"
+        version: "1.1.0"
+        file_path: "python/structure-recognition/v1.1.0.yaml"
+        description: "识别 Python 代码的层级结构、依赖关系、模块组织、类和函数定义"
+        target_ai_models: ["Claude", "GPT-4", "Gemini"]
+        estimated_tokens: 2000
+        quality_score: null
+        created_at: "2025-10-12"
+        status: "active"
+
+  # 阶段 3: 语义分析 (Semantic Analysis)
+  semantic_analysis:
+    latest: "v1.0.0"
+    templates:
+      - id: "python-semantic-analysis-v1.0.0"
+        version: "1.0.0"
+        file_path: "python/semantic-analysis/v1.0.0.yaml"
+        description: "分析 Python 代码的业务语义、功能单元、数据流、控制流"
+        target_ai_models: ["Claude", "GPT-4", "Gemini"]
+        estimated_tokens: 2500
+        quality_score: null
+        created_at: "2025-10-12"
+        status: "active"
+
+  # 阶段 4: 执行推理 (Execution Inference)
+  execution_inference:
+    latest: "v1.0.0"
+    templates:
+      - id: "python-execution-inference-v1.0.0"
+        version: "1.0.0"
+        file_path: "python/execution-inference/v1.0.0.yaml"
+        description: "推理 Python 代码的执行轨迹、调用栈、变量作用域、单步详情"
+        target_ai_models: ["Claude", "GPT-4", "Gemini"]
+        estimated_tokens: 3000
+        quality_score: null
+        created_at: "2025-10-12"
+        status: "active"
+
+  # 阶段 5: 并发检测 (Concurrency Detection)
+  concurrency_detection:
+    latest: "v1.0.0"
+    templates:
+      - id: "python-concurrency-detection-v1.0.0"
+        version: "1.0.0"
+        file_path: "python/concurrency-detection/v1.0.0.yaml"
+        description: "检测 Python 代码的并发模式、线程/进程/协程、同步点、竞态条件"
+        target_ai_models: ["Claude", "GPT-4", "Gemini"]
+        estimated_tokens: 2500
+        quality_score: null
+        created_at: "2025-10-12"
+        status: "active"
+
+# JavaScript/TypeScript 语言 Prompt 模板集 (待实现)
+javascript:
+  project_understanding:
+    latest: null
+    templates: []
+  structure_recognition:
+    latest: null
+    templates: []
+  semantic_analysis:
+    latest: null
+    templates: []
+  execution_inference:
+    latest: null
+    templates: []
+  concurrency_detection:
+    latest: null
+    templates: []
+
+# Dart 语言 Prompt 模板集 (待实现)
+dart:
+  project_understanding:
+    latest: null
+    templates: []
+  structure_recognition:
+    latest: null
+    templates: []
+  semantic_analysis:
+    latest: null
+    templates: []
+  execution_inference:
+    latest: null
+    templates: []
+  concurrency_detection:
+    latest: null
+    templates: []
+
+# 模板状态说明:
+# - active: 当前活跃使用的模板
+# - deprecated: 已废弃但仍可用（向后兼容）
+# - experimental: 实验性模板，不建议生产使用
+# - archived: 已归档，不再维护
+
+# 质量评分标准 (quality_score):
+# - 0.0-0.5: 实验性，需要大量改进
+# - 0.5-0.7: 可用，但仍有优化空间
+# - 0.7-0.9: 良好，适合生产环境
+# - 0.9-1.0: 优秀，经过充分验证
+
+# Token 估算规则:
+# - estimated_tokens: 包括模板内容 + 典型项目上下文的 token 消耗估算
+# - 实际消耗会因项目规模和 AI 模型而异

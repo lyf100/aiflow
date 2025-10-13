@@ -1,0 +1,529 @@
+# Prompt Template: Comprehensive Project Analysis v1.0.0
+# AI分析指挥与可视化平台 - 综合分析提示词
+#
+# 职责: 指导 AI 对软件项目进行全面的多维度分析，生成结构化 JSON 数据
+# 输出: 完整的项目分析结果，包含可靠性评估、静态结构、运行时行为、执行轨迹
+
+metadata:
+  id: "comprehensive-project-analysis-v1.0.0"
+  version: "1.0.0"
+  stage: "comprehensive_analysis"
+  target_language: "any"
+  created_at: "2025-10-12"
+  author: "AIFlow Team"
+  description: "对软件项目进行全面的多维度分析，生成完整的结构化数据"
+  estimated_tokens: 5000
+  quality_criteria:
+    - 必须评估文档可靠性，文档与代码冲突时优先采信代码
+    - 必须识别3-5个核心业务场景
+    - 必须为每个场景估算执行时间线
+    - 必须输出完整的单一JSON对象
+    - 输出必须符合 analysis-schema-v1.0.0.json
+
+# Jinja2 模板内容
+template: |
+  <prompt>
+  <role>
+  你是一个专精于深度源代码分析的AI助手。你的任务是基于提供的文档和源代码，对一个软件项目进行客观、系统的分析，并以结构化的JSON格式输出分析结果。你必须具备评估文档可靠性的能力，并在文档与代码不一致时，优先采信源代码作为事实依据。
+  </role>
+
+  <context>
+  以下是待分析项目的文档和源代码。
+
+  <document>
+    <source>
+      文件路径: {{ readme_path }}
+    </source>
+    <document_content>
+      {{ readme_content }}
+    </document_content>
+  </document>
+
+  <document>
+    <source>
+      项目完整源代码及文件结构
+    </source>
+    <document_content>
+      <file_tree>
+      {{ file_tree }}
+      </file_tree>
+
+      <dependency_files>
+      {% for dep_file in dependency_files %}
+      ### {{ dep_file.path }}
+      ```
+      {{ dep_file.content }}
+      ```
+      {% endfor %}
+      </dependency_files>
+
+      <source_code>
+      {% for source_file in source_files %}
+      ### {{ source_file.path }}
+      ```{{ source_file.language }}
+      {{ source_file.content }}
+      ```
+      {% endfor %}
+      </source_code>
+    </document_content>
+  </document>
+  </context>
+
+  <objective>
+  生成一份单一、完整的JSON对象。这份对象需要系统性地包含对项目结构、行为、预估执行流程的分析数据，以及对文档可靠性的评估。
+  </objective>
+
+  <instructions>
+  请严格按照以下四个步骤进行分析。在输出最终的JSON之前，必须在`<thinking>`标签内，展示你执行这些步骤时的分析过程。
+
+  <step_1 name="Documentation Reliability Assessment and Analysis Strategy Selection">
+    <instruction>
+      1. **解析文档**: 首先，解析 README.md 文件，提取其中关于项目目标、架构、技术栈等关键信息的声明。
+
+      2. **初步代码扫描**: 快速检查项目的依赖管理文件（如 package.json, requirements.txt, pom.xml 等）和主要文件类型，获取关于技术栈和项目类型的基本事实。
+
+      3. **评估可靠性**: 对比以上两点的信息。
+          - 若核心信息（语言、框架）一致，标记为"可靠"
+          - 若存在重大偏差，标记为"部分可靠"或"不可靠"，并记录具体偏差点
+          - 在后续分析中，**优先采信源代码事实**
+
+      4. **选择分析策略**:
+          - 若文档可靠：采用"文档引导+代码验证"策略
+          - 若文档不可靠：采用"代码优先+文档参考"策略
+
+      输出到JSON的 `project_identity.readme_validation` 字段。
+    </instruction>
+  </step_1>
+
+  <step_2 name="Static Structure Analysis">
+    <instruction>
+      分析项目的静态代码结构，构建项目的层级依赖图。
+
+      1. **识别模块和组件**:
+          - 扫描所有源文件，识别模块、类、函数的定义
+          - 为每个代码单元生成业务语义化的标签（如"用户认证模块"而非"auth.py"）
+
+      2. **分析依赖关系**:
+          - 导入/引用关系 (import, require, include)
+          - 继承关系 (class inheritance)
+          - 组合关系 (composition)
+          - 函数调用关系 (function calls)
+
+      3. **构建层级结构**:
+          - 系统级 (整个项目)
+          - 模块级 (包/目录)
+          - 类级 (class definitions)
+          - 函数级 (functions/methods)
+
+      4. **生成节点和边**:
+          - 每个节点包含: id (UUID v4), label (业务语义化名称), stereotype (类型), parent (父节点ID)
+          - 每条边包含: id, source, target, type (dependency/inheritance/composition/call)
+
+      输出到JSON的 `code_structure` 字段，包含 nodes 和 edges 数组。
+    </instruction>
+  </step_2>
+
+  <step_3 name="Runtime Behavior Analysis">
+    <instruction>
+      分析项目在运行时的主要行为模式。
+
+      1. **识别核心场景**: 找出3-5个最主要的业务场景或用户流程，例如：
+          - Web应用: 用户登录、创建订单、支付流程
+          - CLI工具: 初始化项目、执行构建、部署发布
+          - 数据处理: 数据导入、转换、导出
+
+      2. **为每个场景分析**:
+          a. **入口点识别**: 确定场景的触发点（API端点、CLI命令、事件处理器等）
+
+          b. **执行路径推理**: 基于代码静态分析，推理典型执行路径
+              - 函数调用链
+              - 条件分支的典型走向
+              - 循环的典型迭代次数（如2-3次）
+
+          c. **时间线估算**: 为执行路径中的每个步骤估算相对时间
+              - 简单操作: 1-10ms
+              - 数据库查询: 10-100ms
+              - 网络请求: 100-500ms
+              - 复杂计算: 100-1000ms
+              - 生成ISO 8601格式的时间戳序列
+
+          d. **变量作用域追踪**: 推理关键变量的创建、修改、销毁过程
+
+          e. **并发检测**: 识别是否存在多线程、异步、并行执行
+
+      3. **生成可追踪单元**:
+          - 每个场景对应一个 TraceableUnit
+          - 为每个单元生成三种格式的 Trace:
+              * flowchart: 控制流图 (适合D3.js渲染)
+              * sequence: 时序图 (消息传递)
+              * step-by-step: 单步详情 (变量、调用栈)
+
+      输出到JSON的 `execution_trace` 和 `behavior_metadata` 字段。
+    </instruction>
+  </step_3>
+
+  <step_4 name="Concurrency and Advanced Patterns">
+    <instruction>
+      检测并发模式和高级编程模式。
+
+      1. **并发机制检测**:
+          - Python: threading, multiprocessing, asyncio
+          - JavaScript: async/await, Promise, Worker threads
+          - Java: Thread, ExecutorService, CompletableFuture
+          - Go: goroutine, channel
+
+      2. **识别并发流**:
+          - 类型: parallel (真并行), concurrent (并发), async (异步), sync_wait (同步等待)
+          - 起止点: 并发流的启动和结束位置
+          - 涉及单元: 哪些代码单元参与了并发执行
+
+      3. **识别同步点**:
+          - barrier (栅栏): 所有流到达才继续
+          - mutex (互斥锁): 保护临界区
+          - semaphore (信号量): 限制并发数
+          - join: 等待线程/进程完成
+
+      4. **潜在问题分析**:
+          - race_condition: 竞态条件
+          - deadlock: 死锁风险
+          - resource_leak: 资源泄漏
+          - gil_contention: GIL争用（Python特有）
+
+      输出到JSON的 `concurrency_info` 字段。
+    </instruction>
+  </step_4>
+
+  </instructions>
+
+  <output_format>
+  最终输出必须是一个完整、有效的JSON对象，严格遵循以下结构：
+
+  ```json
+  {
+    "$schema": "https://aiflow.dev/schemas/analysis-v1.0.0.json",
+    "version": "1.0.0",
+    "project_metadata": {
+      "project_name": "项目名称",
+      "project_path": "{{ project_path }}",
+      "language": "主要编程语言",
+      "framework": "主要框架（可选）",
+      "architecture_pattern": "架构模式（可选）",
+      "analyzed_at": "{{ current_timestamp_iso8601 }}",
+      "ai_model": "{{ ai_model_name }}",
+      "total_lines": 估算的代码总行数,
+      "business_domain": {
+        "primary": "主要业务领域",
+        "secondary": ["次要领域1", "次要领域2"],
+        "confidence": 0.85,
+        "explanation": "领域推断依据"
+      },
+      "readme_validation": {
+        "reliability_level": "可靠 | 部分可靠 | 不可靠",
+        "discrepancies": [
+          {
+            "category": "技术栈 | 架构 | 功能描述",
+            "readme_claim": "README中的声明",
+            "code_reality": "代码中的实际情况",
+            "severity": "minor | moderate | major"
+          }
+        ],
+        "confidence": 0.90,
+        "recommendation": "分析策略建议"
+      }
+    },
+    "code_structure": {
+      "nodes": [
+        {
+          "id": "uuid-v4",
+          "label": "业务语义化名称",
+          "stereotype": "system|module|class|function|service|component",
+          "parent": "父节点ID或null",
+          "classes": ["样式类"],
+          "metadata": {
+            "ai_confidence": 0.92,
+            "ai_explanation": "推理依据",
+            "code_location": {
+              "file_path": "相对路径",
+              "start_line": 10,
+              "end_line": 50
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "edge-uuid",
+          "source": "源节点ID",
+          "target": "目标节点ID",
+          "type": "dependency|inheritance|composition|call",
+          "label": "边标签"
+        }
+      ]
+    },
+    "behavior_metadata": {
+      "launch_buttons": [
+        {
+          "id": "uuid-v4",
+          "node_id": "关联的节点ID",
+          "name": "启动按钮名称（业务语义化）",
+          "description": "功能描述",
+          "type": "macro|micro",
+          "level": "system|module|component|function",
+          "icon": "图标名称",
+          "traceable_unit_id": "关联的执行轨迹ID",
+          "parent_button_id": "父按钮ID（嵌套关系，顶层为null）",
+          "child_button_ids": ["子按钮ID列表"],
+          "metadata": {
+            "ai_confidence": 0.90,
+            "ai_explanation": "按钮命名和功能推理依据",
+            "estimated_duration": "预估执行时间（毫秒）",
+            "requires_input": false,
+            "has_side_effects": true
+          }
+        }
+      ]
+    },
+    "execution_trace": {
+      "traceable_units": [
+        {
+          "id": "uuid-v4",
+          "name": "场景名称（如：用户登录流程）",
+          "type": "single-trace",
+          "traces": [
+            {
+              "format": "flowchart",
+              "data": {
+                "steps": [
+                  {
+                    "id": "step-uuid",
+                    "label": "步骤描述",
+                    "type": "start|end|process|decision|fork|join"
+                  }
+                ],
+                "connections": [
+                  {
+                    "id": "conn-uuid",
+                    "source": "源步骤ID",
+                    "target": "目标步骤ID",
+                    "type": "control_flow|data_flow",
+                    "label": "连接标签"
+                  }
+                ]
+              }
+            },
+            {
+              "format": "sequence",
+              "data": {
+                "lifelines": [
+                  {
+                    "id": "lifeline-uuid",
+                    "label": "实体名称（如：UserService）",
+                    "type": "service|component|thread"
+                  }
+                ],
+                "messages": [
+                  {
+                    "id": "msg-uuid",
+                    "source": "源生命线ID",
+                    "target": "目标生命线ID",
+                    "type": "sync|async|return",
+                    "timestamp": 相对时间戳（毫秒）,
+                    "label": "消息内容"
+                  }
+                ]
+              }
+            },
+            {
+              "format": "step-by-step",
+              "data": {
+                "steps": [
+                  {
+                    "id": "uuid-v4",
+                    "order": 0,
+                    "file_path": "文件路径",
+                    "line_number": 123,
+                    "code": "代码内容",
+                    "timestamp": "2025-10-12T14:30:00.000Z",
+                    "execution_order": 全局唯一序号,
+                    "scope_id": "作用域ID"
+                  }
+                ],
+                "variableScopes": [
+                  {
+                    "id": "uuid-v4",
+                    "scope_type": "global|local|closure",
+                    "variables": [
+                      {
+                        "name": "变量名",
+                        "type": "类型",
+                        "value": "值"
+                      }
+                    ],
+                    "timestamp": "2025-10-12T14:30:00.000Z",
+                    "execution_order": 序号
+                  }
+                ],
+                "callStack": [
+                  {
+                    "id": "uuid-v4",
+                    "function_name": "函数名",
+                    "module_name": "模块名",
+                    "file_path": "文件路径",
+                    "line_number": 123,
+                    "depth": 0,
+                    "local_scope_id": "作用域ID",
+                    "timestamp": "2025-10-12T14:30:00.000Z",
+                    "execution_order": 序号
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "concurrency_info": {
+      "flows": [
+        {
+          "id": "uuid-v4",
+          "type": "parallel|concurrent|async|sync_wait",
+          "involved_units": ["涉及的单元ID"],
+          "start_point": "起点节点ID",
+          "end_point": "终点节点ID",
+          "dependencies": ["依赖的并发流ID"],
+          "metadata": {
+            "mechanism": "threading|multiprocessing|asyncio",
+            "concurrency_level": 并发数量,
+            "ai_confidence": 0.88
+          }
+        }
+      ],
+      "sync_points": [
+        {
+          "id": "uuid-v4",
+          "location": "文件路径:行号",
+          "waiting_flows": ["等待的并发流ID"],
+          "type": "barrier|mutex|semaphore|join",
+          "metadata": {
+            "sync_object": "同步对象变量名",
+            "ai_confidence": 0.85
+          }
+        }
+      ],
+      "analysis_metadata": {
+        "has_concurrency": true,
+        "concurrency_mechanisms": ["asyncio", "threading"],
+        "potential_issues": [
+          {
+            "type": "race_condition|deadlock|resource_leak|gil_contention",
+            "location": "文件路径:行号",
+            "description": "问题描述",
+            "severity": "low|medium|high|critical",
+            "recommendation": "修复建议"
+          }
+        ]
+      }
+    }
+  }
+  ```
+
+  **输出要求**:
+  1. 所有节点ID必须使用UUID v4格式
+  2. 所有时间戳必须使用ISO 8601格式 (YYYY-MM-DDTHH:mm:ss.sssZ)
+  3. 所有execution_order必须全局唯一递增
+  4. Label必须使用业务语义化描述（中文或英文，取决于项目语言）
+  5. 必须提供AI置信度和解释说明
+  6. 输出必须为有效的JSON格式（不包含注释）
+  </output_format>
+
+  <quality_checklist>
+  在输出JSON之前，请自我检查：
+  - [ ] README可靠性评估是否完成？
+  - [ ] 是否识别了所有主要模块和依赖关系？
+  - [ ] 是否为3-5个核心场景生成了完整的执行轨迹？
+  - [ ] 每个场景是否包含三种格式的Trace（flowchart, sequence, step-by-step）？
+  - [ ] 是否检测了并发模式和同步点？
+  - [ ] 所有ID是否使用UUID v4格式？
+  - [ ] 所有时间戳是否使用ISO 8601格式？
+  - [ ] 节点Label是否使用业务语义化描述？
+  - [ ] 是否为每个分析提供了AI置信度和解释？
+  - [ ] 输出是否为有效的JSON格式？
+  </quality_checklist>
+
+  </prompt>
+
+# 输入数据 JSON Schema
+input_schema:
+  type: object
+  required:
+    - project_path
+    - project_name
+    - readme_path
+    - readme_content
+    - file_tree
+    - dependency_files
+    - source_files
+    - current_timestamp_iso8601
+    - ai_model_name
+  properties:
+    project_path:
+      type: string
+      description: "项目根目录路径"
+    project_name:
+      type: string
+      description: "项目名称"
+    readme_path:
+      type: string
+      description: "README文件路径"
+    readme_content:
+      type: string
+      description: "README文件完整内容"
+    file_tree:
+      type: string
+      description: "项目文件树（tree命令输出）"
+    dependency_files:
+      type: array
+      description: "依赖管理文件列表"
+      items:
+        type: object
+        properties:
+          path:
+            type: string
+          content:
+            type: string
+    source_files:
+      type: array
+      description: "源代码文件列表"
+      items:
+        type: object
+        properties:
+          path:
+            type: string
+          language:
+            type: string
+          content:
+            type: string
+    current_timestamp_iso8601:
+      type: string
+      format: date-time
+    ai_model_name:
+      type: string
+
+# 期望输出数据 JSON Schema
+output_schema:
+  $ref: "https://aiflow.dev/schemas/analysis-v1.0.0.json"
+
+# 示例
+examples:
+  - name: "综合分析示例 - FastAPI项目"
+    input_summary:
+      project_name: "my-api"
+      language: "python"
+      framework: "FastAPI"
+      file_count: 15
+    expected_output_summary:
+      nodes_count: 25
+      edges_count: 30
+      traceable_units_count: 4
+      has_concurrency: true
+      readme_reliability: "可靠"

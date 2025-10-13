@@ -1,0 +1,250 @@
+/**
+ * Launch Button List Styles
+ */
+
+.launch-button-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-primary);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* 头部 */
+.launch-button-list__header {
+  padding: 16px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.launch-button-list__title {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.launch-button-list__stats {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.stat-item strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.stat-item--macro strong {
+  color: #FF6B6B;
+}
+
+.stat-item--micro strong {
+  color: #4ECDC4;
+}
+
+/* 过滤和搜索 */
+.launch-button-list__filters {
+  padding: 12px 16px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filter-group {
+  display: flex;
+  gap: 8px;
+}
+
+.filter-btn {
+  padding: 6px 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  background: var(--bg-hover);
+}
+
+.filter-btn.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 32px 8px 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  border-color: var(--primary-color);
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.search-clear {
+  position: absolute;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  font-size: 14px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.search-clear:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+/* 内容区域 */
+.launch-button-list__content {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.launch-button-list__content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.launch-button-list__content::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.launch-button-list__content::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.launch-button-list__content::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* 空状态 */
+.launch-button-list-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.launch-button-list-empty p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.launch-button-list-empty .hint {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+/* 帮助提示 */
+.launch-button-list__help {
+  padding: 12px 16px;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+}
+
+.help-text {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.help-text strong {
+  color: var(--text-primary);
+}
+
+/* 主题变量 */
+:root {
+  --primary-color: #667eea;
+  --text-tertiary: #999;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .launch-button-list__header {
+    padding: 12px;
+  }
+
+  .launch-button-list__title {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .launch-button-list__stats {
+    gap: 12px;
+  }
+
+  .stat-item {
+    font-size: 12px;
+  }
+
+  .launch-button-list__filters {
+    padding: 10px 12px;
+  }
+
+  .filter-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .search-input {
+    padding: 6px 28px 6px 10px;
+    font-size: 13px;
+  }
+
+  .launch-button-list__content {
+    padding: 12px;
+  }
+
+  .launch-button-list__help {
+    padding: 10px 12px;
+  }
+
+  .help-text {
+    font-size: 11px;
+  }
+}

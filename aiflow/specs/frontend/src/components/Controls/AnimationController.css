@@ -1,0 +1,349 @@
+/**
+ * Animation Controller Styles - 动画控制器样式
+ */
+
+/* 主容器 */
+.animation-controller {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 禁用状态 */
+.animation-controller--disabled {
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+.controller-disabled-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.disabled-icon {
+  font-size: 20px;
+  opacity: 0.5;
+}
+
+/* 进度信息 */
+.controller-progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.progress-step {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.progress-time {
+  font-family: monospace;
+  color: var(--text-secondary);
+}
+
+/* 进度条 */
+.controller-progress-bar {
+  position: relative;
+  height: 8px;
+  background: var(--bg-hover);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4px;
+  transition: width 0.2s ease;
+  pointer-events: none;
+}
+
+/* 控制按钮 */
+.controller-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.control-btn {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.control-btn:hover:not(:disabled) {
+  background: var(--bg-primary);
+  border-color: var(--primary-color);
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.control-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.control-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.control-btn--primary {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+  font-size: 24px;
+}
+
+.control-btn--primary:hover:not(:disabled) {
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  transform: scale(1.1);
+}
+
+/* 速度控制 */
+.controller-speed {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.speed-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.speed-icon {
+  font-size: 16px;
+}
+
+.speed-text {
+  font-family: monospace;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.speed-slider {
+  width: 100%;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--bg-hover);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+.speed-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s;
+}
+
+.speed-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 3px 8px rgba(102, 126, 234, 0.4);
+}
+
+.speed-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s;
+}
+
+.speed-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 3px 8px rgba(102, 126, 234, 0.4);
+}
+
+.speed-marks {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px;
+  font-size: 10px;
+  color: var(--text-secondary);
+  font-family: monospace;
+}
+
+/* 主题变量 */
+:root {
+  --primary-color: #667eea;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .animation-controller {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .controller-progress-info {
+    font-size: 12px;
+  }
+
+  .controller-progress-bar {
+    height: 6px;
+  }
+
+  .controller-buttons {
+    gap: 6px;
+  }
+
+  .control-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .control-btn--primary {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+
+  .speed-label {
+    font-size: 12px;
+  }
+
+  .speed-icon {
+    font-size: 14px;
+  }
+
+  .speed-slider {
+    height: 5px;
+  }
+
+  .speed-slider::-webkit-slider-thumb {
+    width: 16px;
+    height: 16px;
+  }
+
+  .speed-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+  }
+
+  .speed-marks {
+    font-size: 9px;
+  }
+}
+
+/* 键盘快捷键提示 */
+.controller-shortcuts {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-color);
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.shortcut-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.shortcut-key {
+  padding: 2px 6px;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  font-family: monospace;
+  font-weight: 600;
+  font-size: 10px;
+}
+
+/* 动画 */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.control-btn--primary.playing {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* 打印样式 */
+@media print {
+  .animation-controller {
+    display: none;
+  }
+}
+
+/* 悬停提示 */
+.control-btn[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 12px;
+  white-space: nowrap;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.control-btn {
+  position: relative;
+}

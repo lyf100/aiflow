@@ -1,0 +1,56 @@
+## Clarifications
+
+### Session 2025-10-09
+
+- Q: 什么是"标准数据协议"的详细结构定义? → A: 标准数据协议是整个平台的核心契约，是一份严格定义的JSON格式，包含以下完整结构：
+
+#### 层级结构 (for Cytoscape.js)
+- 节点间的父子关系定义 (parent 属性)
+- 用于视觉渲染的 classes, stereotype 等属性
+- 支持多层级嵌套和动态展开/折叠
+
+#### 可执行单元 (Traceable Unit)
+每个可执行单元对象包含：
+- id: 对应结构图中的节点ID
+- name: 由AI生成的、有意义的功能名称
+- type: "single-trace" (单线程) 或 "multi-trace" (多线程联动)
+- subUnitIds: 可选数组，定义行为的父子组合关系
+- traces: 描述其行为的一个或多个流程轨迹
+
+#### 轨迹细节 (for D3.js)
+traces 对象内部支持多种格式：
+
+**流程图格式**:
+- steps 列表：每个step有 id, label, type 等
+- connections 列表：定义步骤间的连接关系
+- type 需支持 fork 和 join 以表达并发分叉和汇合
+
+**时序图格式**:
+- lifelines 列表：表示参与的执行实体（线程、服务、组件）
+- messages 列表：每个message有 source, target, type（同步/异步）等
+
+**变量范围与状态**:
+在单步轨迹中，需要专门的结构来描述：
+- 不同作用域（全局、局部）
+- 每一步的变量状态快照
+- 作用域嵌套关系
+
+**递归展示方式**:
+在"单步运行详情"视图中，通过调用堆栈的可视化（层层嵌套的区块）来清晰展示递归关系。
+
+
+--- Updated FR Requirements ---
+
+FR-011 (Updated): 标准化数据格式 MUST 包含 code_structure 字段，该字段定义 Cytoscape.js 所需的层级结构，包括：节点列表（每个节点包含 id, label, parent, classes, stereotype 等属性）、节点间父子关系（通过 parent 属性定义）、逻辑分组元数据、功能单元标识
+
+FR-013 (Updated): 标准化数据格式 MUST 包含 execution_trace 字段，该字段定义所有可执行单元（Traceable Unit）的轨迹数据，每个可执行单元对象包含：id（对应结构图节点ID）、name（AI生成的功能名称）、type（"single-trace" 或 "multi-trace"）、subUnitIds（子单元ID数组，定义行为父子关系）、traces（流程轨迹数组，支持流程图格式、时序图格式、变量状态快照）
+
+FR-016a (New): execution_trace 中的 traces 对象 MUST 支持流程图格式，包含 steps 列表（每个step有 id, label, type, data等字段）和 connections 列表（source, target, label等字段），type字段必须支持 "fork"（并发分叉）和 "join"（并发汇合）类型
+
+FR-016b (New): execution_trace 中的 traces 对象 MUST 支持时序图格式，包含 lifelines 列表（表示参与的执行实体：线程、服务、组件）和 messages 列表（每个message有 source, target, type[同步/异步], timestamp, label等字段）
+
+FR-016c (New): execution_trace 中的单步轨迹 MUST 包含 variableScopes 结构，描述不同作用域（global、local、closure等）及其内部变量在每一步的状态快照（变量名、类型、值、内存地址、引用关系）
+
+FR-016d (New): 递归调用场景下，execution_trace MUST 在调用栈结构中记录递归深度、每层递归的参数值和返回值，支持在"单步运行详情"视图中通过层层嵌套的可视化区块展示递归关系
+
+FR-016e (New): 所有 traces 数据 MUST 包含时间戳（timestamp）、执行顺序（executionOrder）、持续时间（duration）等时间序列信息，支持时间回溯和播放控制功能

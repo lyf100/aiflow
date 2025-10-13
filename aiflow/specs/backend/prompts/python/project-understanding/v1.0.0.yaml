@@ -1,0 +1,394 @@
+# Prompt Template: Python Project Understanding v1.0.0
+# AI分析指挥与可视化平台 - 阶段 1: 项目认知
+#
+# 职责: 指导 AI 分析 Python 项目的整体架构、技术栈、业务领域、入口点
+# 输出: 符合标准数据协议的 project_metadata 部分
+
+metadata:
+  id: "python-project-understanding-v1.0.0"
+  version: "1.0.0"
+  stage: "project_understanding"
+  target_language: "python"
+  created_at: "2025-10-12"
+  author: "AIFlow Team"
+  description: "分析 Python 项目的整体架构、技术栈、业务领域、入口点"
+  estimated_tokens: 1500
+  quality_criteria:
+    - 必须识别项目主要技术栈（框架、库）
+    - 必须推断项目业务领域（Web服务、数据分析、CLI工具等）
+    - 必须识别项目入口点（main函数、启动脚本）
+    - 必须评估项目规模和复杂度
+    - 输出必须完全符合 analysis-schema-v1.0.0.json 中的 project_metadata 定义
+
+# Jinja2 模板内容
+template: |
+  # AI 分析任务: Python 项目认知
+
+  你是一位资深的 Python 架构师和代码分析专家。你的任务是对以下 Python 项目进行全面的项目认知分析。
+
+  ## 项目上下文
+
+  **项目路径**: {{ project_path }}
+  **项目名称**: {{ project_name }}
+
+  **项目文件结构**:
+  ```
+  {{ file_tree }}
+  ```
+
+  **关键配置文件内容**:
+  {% if has_requirements_txt %}
+  ### requirements.txt
+  ```
+  {{ requirements_txt_content }}
+  ```
+  {% endif %}
+
+  {% if has_pyproject_toml %}
+  ### pyproject.toml
+  ```
+  {{ pyproject_toml_content }}
+  ```
+  {% endif %}
+
+  {% if has_setup_py %}
+  ### setup.py
+  ```
+  {{ setup_py_content }}
+  ```
+  {% endif %}
+
+  {% if has_pipfile %}
+  ### Pipfile
+  ```
+  {{ pipfile_content }}
+  ```
+  {% endif %}
+
+  **主入口文件内容**:
+  {% if has_main_py %}
+  ### main.py / __main__.py
+  ```python
+  {{ main_py_content }}
+  ```
+  {% endif %}
+
+  {% if has_app_py %}
+  ### app.py
+  ```python
+  {{ app_py_content }}
+  ```
+  {% endif %}
+
+  {% if has_manage_py %}
+  ### manage.py (Django)
+  ```python
+  {{ manage_py_content }}
+  ```
+  {% endif %}
+
+  ## 分析要求
+
+  请按照以下维度对项目进行深入分析，并以 **严格符合标准数据协议** 的 JSON 格式输出结果。
+
+  ### 1. 技术栈识别
+  - 识别项目使用的主要 Python 版本（从配置文件推断）
+  - 识别核心框架（Django, Flask, FastAPI, Tornado, asyncio 等）
+  - 识别关键依赖库和它们的用途
+  - 判断项目是否使用异步编程（asyncio, aiohttp 等）
+  - 判断项目是否使用类型注解（typing, mypy）
+
+  ### 2. 业务领域推断
+  根据项目结构、依赖库、代码特征，推断项目的业务领域：
+  - Web 服务（RESTful API, GraphQL, WebSocket）
+  - 数据分析与科学计算（NumPy, Pandas, Scikit-learn）
+  - 机器学习与深度学习（TensorFlow, PyTorch, Keras）
+  - CLI 工具与自动化脚本
+  - 网络爬虫与数据采集
+  - 桌面应用（PyQt, Tkinter, Kivy）
+  - 游戏开发（Pygame, Panda3D）
+  - 区块链与加密货币
+  - DevOps 与基础设施管理
+  - 其他（请具体说明）
+
+  ### 3. 架构模式识别
+  - 单体应用 (Monolithic)
+  - 微服务架构 (Microservices)
+  - 分层架构 (Layered: MVC, MTV)
+  - 事件驱动架构 (Event-Driven)
+  - 领域驱动设计 (DDD)
+  - 插件架构 (Plugin-based)
+  - 其他（请具体说明）
+
+  ### 4. 项目入口点识别
+  - 主入口文件路径（相对于项目根目录）
+  - 启动命令示例（如 `python main.py`, `uvicorn app:main`, `flask run`）
+  - 是否支持多种启动方式
+
+  ### 5. 项目规模评估
+  - 代码总行数估算（基于文件数量和典型文件大小推断）
+  - 项目复杂度评估（简单 / 中等 / 复杂 / 极复杂）
+  - 评估依据说明
+
+  ### 6. AI 置信度与解释
+  - 对每个判断结果提供置信度分数（0.0-1.0）
+  - 提供决策依据和推理过程
+  - 标注不确定的部分，建议进一步分析的方向
+
+  ## 输出格式要求
+
+  **重要**: 你的输出必须是一个完整的、有效的 JSON 对象，严格遵循以下 schema:
+
+  ```json
+  {
+    "$schema": "https://aiflow.dev/schemas/analysis-v1.0.0.json",
+    "version": "1.0.0",
+    "project_metadata": {
+      "project_name": "项目名称",
+      "project_path": "{{ project_path }}",
+      "language": "python",
+      "framework": "主要框架名称（如 FastAPI, Django, Flask, 若无框架则填 null）",
+      "architecture_pattern": "架构模式（如 Microservices, Monolithic, Layered）",
+      "analyzed_at": "{{ current_timestamp_iso8601 }}",
+      "ai_model": "{{ ai_model_name }}",
+      "total_lines": 代码总行数估算值（整数）,
+      "business_domain": {
+        "primary": "主要业务领域",
+        "secondary": ["次要业务领域1", "次要业务领域2"],
+        "confidence": 0.85,
+        "explanation": "业务领域推断依据说明"
+      },
+      "tech_stack": {
+        "python_version": "推断的 Python 版本（如 3.11, 3.10）",
+        "core_frameworks": ["FastAPI", "SQLAlchemy", "Pydantic"],
+        "key_libraries": [
+          {
+            "name": "库名称",
+            "purpose": "用途说明",
+            "confidence": 0.9
+          }
+        ],
+        "uses_async": true,
+        "uses_type_hints": true
+      },
+      "entry_points": [
+        {
+          "file_path": "相对路径（如 src/main.py）",
+          "function_name": "函数名（如 main, app）",
+          "startup_command": "启动命令（如 python src/main.py）",
+          "type": "类型（如 CLI, Web Server, Script）",
+          "confidence": 0.95
+        }
+      ],
+      "complexity_assessment": {
+        "level": "中等",
+        "score": 0.65,
+        "factors": [
+          "依赖库数量较多（30+）",
+          "使用了异步编程",
+          "存在多模块交互",
+          "代码量适中（5000-10000行）"
+        ]
+      },
+      "ai_analysis_metadata": {
+        "overall_confidence": 0.88,
+        "uncertain_areas": [
+          "无法确定 Python 确切版本，建议检查 .python-version 或运行环境",
+          "部分依赖库用途不明确，需要进一步代码分析"
+        ],
+        "recommendations": [
+          "建议进行结构识别阶段，明确模块依赖关系",
+          "建议检查是否存在 Docker 配置文件以确认部署方式"
+        ]
+      }
+    }
+  }
+  ```
+
+  ## 质量标准检查清单
+
+  在输出结果前，请自我检查:
+  - [ ] 输出是否为有效的 JSON 格式？
+  - [ ] 是否包含了 `$schema` 和 `version` 字段？
+  - [ ] `project_metadata` 是否包含所有必需字段（project_name, project_path, language, analyzed_at）？
+  - [ ] 所有置信度分数是否在 0.0-1.0 范围内？
+  - [ ] 时间戳是否使用 ISO 8601 格式（如 2025-10-12T14:30:00.123Z）？
+  - [ ] 是否提供了充分的推理依据和解释？
+  - [ ] 是否标注了不确定的部分？
+
+  ## 开始分析
+
+  现在请基于上述项目上下文，输出完整的 JSON 分析结果：
+
+# 输入数据 JSON Schema
+input_schema:
+  type: object
+  required:
+    - project_path
+    - project_name
+    - file_tree
+    - current_timestamp_iso8601
+    - ai_model_name
+  properties:
+    project_path:
+      type: string
+      description: "项目根目录的绝对路径"
+    project_name:
+      type: string
+      description: "项目名称（通常从目录名或配置文件提取）"
+    file_tree:
+      type: string
+      description: "项目文件树的文本表示（tree 命令输出）"
+    current_timestamp_iso8601:
+      type: string
+      format: date-time
+      description: "当前时间戳（ISO 8601 格式）"
+    ai_model_name:
+      type: string
+      description: "使用的 AI 模型名称（如 Claude 3.5 Sonnet）"
+    has_requirements_txt:
+      type: boolean
+      default: false
+    requirements_txt_content:
+      type: string
+      description: "requirements.txt 文件内容"
+    has_pyproject_toml:
+      type: boolean
+      default: false
+    pyproject_toml_content:
+      type: string
+      description: "pyproject.toml 文件内容"
+    has_setup_py:
+      type: boolean
+      default: false
+    setup_py_content:
+      type: string
+      description: "setup.py 文件内容"
+    has_pipfile:
+      type: boolean
+      default: false
+    pipfile_content:
+      type: string
+      description: "Pipfile 文件内容"
+    has_main_py:
+      type: boolean
+      default: false
+    main_py_content:
+      type: string
+      description: "main.py / __main__.py 文件内容"
+    has_app_py:
+      type: boolean
+      default: false
+    app_py_content:
+      type: string
+      description: "app.py 文件内容"
+    has_manage_py:
+      type: boolean
+      default: false
+    manage_py_content:
+      type: string
+      description: "manage.py 文件内容（Django 项目）"
+
+# 期望输出数据 JSON Schema（引用标准数据协议）
+output_schema:
+  $ref: "https://aiflow.dev/schemas/analysis-v1.0.0.json#/properties/project_metadata"
+
+# 示例输入输出
+examples:
+  - name: "FastAPI 项目示例"
+    input:
+      project_path: "/home/user/my-api"
+      project_name: "my-api"
+      file_tree: |
+        my-api/
+        ├── src/
+        │   ├── main.py
+        │   ├── api/
+        │   │   ├── routes.py
+        │   │   └── dependencies.py
+        │   ├── models/
+        │   │   └── user.py
+        │   └── services/
+        │       └── auth_service.py
+        ├── tests/
+        │   └── test_api.py
+        ├── requirements.txt
+        ├── pyproject.toml
+        └── README.md
+      current_timestamp_iso8601: "2025-10-12T10:00:00.000Z"
+      ai_model_name: "Claude 3.5 Sonnet"
+      has_requirements_txt: true
+      requirements_txt_content: |
+        fastapi==0.109.0
+        uvicorn==0.27.0
+        sqlalchemy==2.0.25
+        pydantic==2.5.3
+        python-jose==3.3.0
+      has_pyproject_toml: true
+      pyproject_toml_content: |
+        [tool.poetry]
+        name = "my-api"
+        version = "1.0.0"
+        description = "RESTful API built with FastAPI"
+
+        [tool.poetry.dependencies]
+        python = "^3.11"
+        fastapi = "^0.109.0"
+      has_main_py: true
+      main_py_content: |
+        from fastapi import FastAPI
+        from api.routes import router
+
+        app = FastAPI(title="My API")
+        app.include_router(router)
+
+        if __name__ == "__main__":
+            import uvicorn
+            uvicorn.run(app, host="0.0.0.0", port=8000)
+    expected_output:
+      project_name: "my-api"
+      project_path: "/home/user/my-api"
+      language: "python"
+      framework: "FastAPI"
+      architecture_pattern: "Layered"
+      analyzed_at: "2025-10-12T10:00:00.000Z"
+      ai_model: "Claude 3.5 Sonnet"
+      total_lines: 500
+      business_domain:
+        primary: "Web Service - RESTful API"
+        secondary: ["Authentication & Authorization"]
+        confidence: 0.92
+        explanation: "项目使用 FastAPI 框架，依赖 python-jose 进行 JWT 认证，明确的 API 路由结构"
+      tech_stack:
+        python_version: "3.11"
+        core_frameworks: ["FastAPI", "SQLAlchemy", "Pydantic"]
+        key_libraries:
+          - name: "uvicorn"
+            purpose: "ASGI 服务器，用于运行 FastAPI 应用"
+            confidence: 1.0
+          - name: "python-jose"
+            purpose: "JWT 令牌生成与验证"
+            confidence: 0.95
+        uses_async: true
+        uses_type_hints: true
+      entry_points:
+        - file_path: "src/main.py"
+          function_name: "app"
+          startup_command: "uvicorn src.main:app --reload"
+          type: "Web Server"
+          confidence: 0.98
+      complexity_assessment:
+        level: "简单"
+        score: 0.35
+        factors:
+          - "项目结构清晰，层次分明"
+          - "依赖库数量适中（5个核心库）"
+          - "代码量较小（估计 500 行）"
+          - "使用现代 Python 特性（类型注解、异步）"
+      ai_analysis_metadata:
+        overall_confidence: 0.92
+        uncertain_areas:
+          - "无法确定数据库类型，需要检查 SQLAlchemy 配置"
+        recommendations:
+          - "建议进行结构识别阶段，分析 API 路由和模型关系"
+          - "建议进行语义分析，理解认证流程的业务逻辑"
