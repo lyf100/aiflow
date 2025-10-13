@@ -1,0 +1,6 @@
+# Ignore all conversation logs
+*.md
+*.txt
+
+# But track the gitignore itself
+!.gitignore

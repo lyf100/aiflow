@@ -1,0 +1,1880 @@
+{
+  "metadata": {
+    "project_name": "NewPipe-dev",
+    "project_type": "Java/Kotlin (Gradle)",
+    "analysis_timestamp": "2025-10-12T17:38:26.152144",
+    "protocol_version": "1.0.0",
+    "analyzer_version": "2.0.0"
+  },
+  "code_structure": {
+    "nodes": [
+      {
+        "id": "node_1",
+        "name": "NewPipe-dev",
+        "type": "class",
+        "stereotype": "system",
+        "file_path": "D:\\dart\\flutter\\aiflow\\NewPipe-dev"
+      },
+      {
+        "id": "node_92",
+        "name": "NewVersionManagerTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "java\\org\\schabi\\newpipe\\NewVersionManagerTest.kt"
+      },
+      {
+        "id": "node_93",
+        "name": "ReCaptchaActivityTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "org\\schabi\\newpipe\\error\\ReCaptchaActivityTest.kt"
+      },
+      {
+        "id": "node_94",
+        "name": "ThrowableExtensionsTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "org\\schabi\\newpipe\\ktx\\ThrowableExtensionsTest.kt"
+      },
+      {
+        "id": "node_95",
+        "name": "ImportAllCombinationsTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "org\\schabi\\newpipe\\settings\\ImportAllCombinationsTest.kt"
+      },
+      {
+        "id": "node_96",
+        "name": "ImportExportManagerTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "org\\schabi\\newpipe\\settings\\ImportExportManagerTest.kt"
+      },
+      {
+        "id": "node_97",
+        "name": "ListHelperTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "org\\schabi\\newpipe\\util\\ListHelperTest.java"
+      },
+      {
+        "id": "node_98",
+        "name": "LocalizationTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "org\\schabi\\newpipe\\util\\LocalizationTest.kt"
+      },
+      {
+        "id": "node_99",
+        "name": "QuadraticSliderStrategyTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "org\\schabi\\newpipe\\util\\QuadraticSliderStrategyTest.java"
+      },
+      {
+        "id": "node_100",
+        "name": "TimestampExtractorTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "schabi\\newpipe\\util\\external_communication\\TimestampExtractorTest.java"
+      },
+      {
+        "id": "node_101",
+        "name": "ImageStrategyTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "schabi\\newpipe\\util\\image\\ImageStrategyTest.java"
+      },
+      {
+        "id": "node_102",
+        "name": "UrlFinderTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "schabi\\newpipe\\util\\urlfinder\\UrlFinderTest.kt"
+      },
+      {
+        "id": "node_103",
+        "name": "TabsJsonHelperTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "schabi\\newpipe\\settings\\tabs\\TabsJsonHelperTest.java"
+      },
+      {
+        "id": "node_104",
+        "name": "TabTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "schabi\\newpipe\\settings\\tabs\\TabTest.java"
+      },
+      {
+        "id": "node_105",
+        "name": "PlayQueueItemTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "schabi\\newpipe\\player\\playqueue\\PlayQueueItemTest.java"
+      },
+      {
+        "id": "node_106",
+        "name": "PlayQueueTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "schabi\\newpipe\\player\\playqueue\\PlayQueueTest.java"
+      },
+      {
+        "id": "node_107",
+        "name": "ExportPlaylistTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "schabi\\newpipe\\local\\playlist\\ExportPlaylistTest.kt"
+      },
+      {
+        "id": "node_108",
+        "name": "FeedGroupIconTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "schabi\\newpipe\\local\\subscription\\FeedGroupIconTest.kt"
+      },
+      {
+        "id": "node_109",
+        "name": "ImportExportJsonHelperTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "newpipe\\local\\subscription\\services\\ImportExportJsonHelperTest.java"
+      },
+      {
+        "id": "node_110",
+        "name": "PlaylistLocalItemTest",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "schabi\\newpipe\\database\\playlist\\PlaylistLocalItemTest.java"
+      },
+      {
+        "id": "node_111",
+        "name": "DownloadInitializer",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "us\\shandian\\giga\\get\\DownloadInitializer.java"
+      },
+      {
+        "id": "node_112",
+        "name": "DownloadMission",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "us\\shandian\\giga\\get\\DownloadMission.java"
+      },
+      {
+        "id": "node_113",
+        "name": "DownloadMissionRecover",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "us\\shandian\\giga\\get\\DownloadMissionRecover.java"
+      },
+      {
+        "id": "node_114",
+        "name": "DownloadRunnable",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "us\\shandian\\giga\\get\\DownloadRunnable.java"
+      },
+      {
+        "id": "node_115",
+        "name": "DownloadRunnableFallback",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "us\\shandian\\giga\\get\\DownloadRunnableFallback.java"
+      },
+      {
+        "id": "node_116",
+        "name": "FinishedMission",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "us\\shandian\\giga\\get\\FinishedMission.java"
+      },
+      {
+        "id": "node_117",
+        "name": "Mission",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "us\\shandian\\giga\\get\\Mission.java"
+      },
+      {
+        "id": "node_118",
+        "name": "MissionRecoveryInfo",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "us\\shandian\\giga\\get\\MissionRecoveryInfo.kt"
+      },
+      {
+        "id": "node_119",
+        "name": "ChunkFileInputStream",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "us\\shandian\\giga\\io\\ChunkFileInputStream.java"
+      },
+      {
+        "id": "node_120",
+        "name": "CircularFileWriter",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "us\\shandian\\giga\\io\\CircularFileWriter.java"
+      },
+      {
+        "id": "node_121",
+        "name": "FileStream",
+        "type": "class",
+        "stereotype": "component",
+        "file_path": "us\\shandian\\giga\\io\\FileStream.java"
+      }
+    ],
+    "edges": [
+      {
+        "id": "edge_91",
+        "source": "node_2",
+        "target": "node_92",
+        "type": "contains"
+      },
+      {
+        "id": "edge_92",
+        "source": "node_3",
+        "target": "node_93",
+        "type": "contains"
+      },
+      {
+        "id": "edge_93",
+        "source": "node_4",
+        "target": "node_94",
+        "type": "contains"
+      },
+      {
+        "id": "edge_94",
+        "source": "node_5",
+        "target": "node_95",
+        "type": "contains"
+      },
+      {
+        "id": "edge_95",
+        "source": "node_5",
+        "target": "node_96",
+        "type": "contains"
+      },
+      {
+        "id": "edge_96",
+        "source": "node_6",
+        "target": "node_97",
+        "type": "contains"
+      },
+      {
+        "id": "edge_97",
+        "source": "node_6",
+        "target": "node_98",
+        "type": "contains"
+      },
+      {
+        "id": "edge_98",
+        "source": "node_6",
+        "target": "node_99",
+        "type": "contains"
+      },
+      {
+        "id": "edge_99",
+        "source": "node_7",
+        "target": "node_100",
+        "type": "contains"
+      },
+      {
+        "id": "edge_100",
+        "source": "node_8",
+        "target": "node_101",
+        "type": "contains"
+      },
+      {
+        "id": "edge_101",
+        "source": "node_9",
+        "target": "node_102",
+        "type": "contains"
+      },
+      {
+        "id": "edge_102",
+        "source": "node_10",
+        "target": "node_103",
+        "type": "contains"
+      },
+      {
+        "id": "edge_103",
+        "source": "node_10",
+        "target": "node_104",
+        "type": "contains"
+      },
+      {
+        "id": "edge_104",
+        "source": "node_11",
+        "target": "node_105",
+        "type": "contains"
+      },
+      {
+        "id": "edge_105",
+        "source": "node_11",
+        "target": "node_106",
+        "type": "contains"
+      },
+      {
+        "id": "edge_106",
+        "source": "node_12",
+        "target": "node_107",
+        "type": "contains"
+      },
+      {
+        "id": "edge_107",
+        "source": "node_13",
+        "target": "node_108",
+        "type": "contains"
+      },
+      {
+        "id": "edge_108",
+        "source": "node_14",
+        "target": "node_109",
+        "type": "contains"
+      },
+      {
+        "id": "edge_109",
+        "source": "node_15",
+        "target": "node_110",
+        "type": "contains"
+      },
+      {
+        "id": "edge_110",
+        "source": "node_16",
+        "target": "node_111",
+        "type": "contains"
+      },
+      {
+        "id": "edge_111",
+        "source": "node_16",
+        "target": "node_112",
+        "type": "contains"
+      },
+      {
+        "id": "edge_112",
+        "source": "node_16",
+        "target": "node_113",
+        "type": "contains"
+      },
+      {
+        "id": "edge_113",
+        "source": "node_16",
+        "target": "node_114",
+        "type": "contains"
+      },
+      {
+        "id": "edge_114",
+        "source": "node_16",
+        "target": "node_115",
+        "type": "contains"
+      },
+      {
+        "id": "edge_115",
+        "source": "node_16",
+        "target": "node_116",
+        "type": "contains"
+      },
+      {
+        "id": "edge_116",
+        "source": "node_16",
+        "target": "node_117",
+        "type": "contains"
+      },
+      {
+        "id": "edge_117",
+        "source": "node_16",
+        "target": "node_118",
+        "type": "contains"
+      },
+      {
+        "id": "edge_118",
+        "source": "node_17",
+        "target": "node_119",
+        "type": "contains"
+      },
+      {
+        "id": "edge_119",
+        "source": "node_17",
+        "target": "node_120",
+        "type": "contains"
+      },
+      {
+        "id": "edge_120",
+        "source": "node_17",
+        "target": "node_121",
+        "type": "contains"
+      },
+      {
+        "id": "edge_622",
+        "source": "node_92",
+        "target": "node_557",
+        "type": "contains"
+      },
+      {
+        "id": "edge_623",
+        "source": "node_93",
+        "target": "node_558",
+        "type": "contains"
+      },
+      {
+        "id": "edge_624",
+        "source": "node_95",
+        "target": "node_559",
+        "type": "contains"
+      },
+      {
+        "id": "edge_625",
+        "source": "node_96",
+        "target": "node_560",
+        "type": "contains"
+      },
+      {
+        "id": "edge_626",
+        "source": "node_97",
+        "target": "node_561",
+        "type": "contains"
+      },
+      {
+        "id": "edge_627",
+        "source": "node_97",
+        "target": "node_562",
+        "type": "contains"
+      },
+      {
+        "id": "edge_628",
+        "source": "node_97",
+        "target": "node_563",
+        "type": "contains"
+      },
+      {
+        "id": "edge_629",
+        "source": "node_97",
+        "target": "node_564",
+        "type": "contains"
+      },
+      {
+        "id": "edge_630",
+        "source": "node_97",
+        "target": "node_565",
+        "type": "contains"
+      },
+      {
+        "id": "edge_631",
+        "source": "node_97",
+        "target": "node_566",
+        "type": "contains"
+      },
+      {
+        "id": "edge_632",
+        "source": "node_97",
+        "target": "node_567",
+        "type": "contains"
+      },
+      {
+        "id": "edge_633",
+        "source": "node_97",
+        "target": "node_568",
+        "type": "contains"
+      },
+      {
+        "id": "edge_634",
+        "source": "node_97",
+        "target": "node_569",
+        "type": "contains"
+      },
+      {
+        "id": "edge_635",
+        "source": "node_97",
+        "target": "node_570",
+        "type": "contains"
+      },
+      {
+        "id": "edge_636",
+        "source": "node_97",
+        "target": "node_571",
+        "type": "contains"
+      },
+      {
+        "id": "edge_637",
+        "source": "node_97",
+        "target": "node_572",
+        "type": "contains"
+      },
+      {
+        "id": "edge_638",
+        "source": "node_97",
+        "target": "node_573",
+        "type": "contains"
+      },
+      {
+        "id": "edge_639",
+        "source": "node_97",
+        "target": "node_574",
+        "type": "contains"
+      },
+      {
+        "id": "edge_640",
+        "source": "node_97",
+        "target": "node_575",
+        "type": "contains"
+      },
+      {
+        "id": "edge_641",
+        "source": "node_97",
+        "target": "node_576",
+        "type": "contains"
+      }
+    ]
+  },
+  "behavior_metadata": {
+    "launch_buttons": [
+      {
+        "id": "btn_1",
+        "name": "分析 androidx.fragment.app 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 androidx.fragment.app 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_2",
+        "name": "分析 com.google.android.material.appbar 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 com.google.android.material.appbar 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_3",
+        "name": "分析 org.apache.commons.text.similarity 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.apache.commons.text.similarity 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_4",
+        "name": "分析 org.schabi.newpipe 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_5",
+        "name": "分析 org.schabi.newpipe.about 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.about 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_6",
+        "name": "分析 org.schabi.newpipe.database 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.database 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_7",
+        "name": "分析 org.schabi.newpipe.database.feed.dao 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.database.feed.dao 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_8",
+        "name": "分析 org.schabi.newpipe.database.feed.model 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.database.feed.model 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_9",
+        "name": "分析 org.schabi.newpipe.database.history.dao 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.database.history.dao 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_10",
+        "name": "分析 org.schabi.newpipe.database.history.model 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.database.history.model 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_11",
+        "name": "分析 org.schabi.newpipe.database.playlist 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.database.playlist 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_12",
+        "name": "分析 org.schabi.newpipe.database.playlist.dao 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.database.playlist.dao 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_13",
+        "name": "分析 org.schabi.newpipe.database.playlist.model 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.database.playlist.model 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_14",
+        "name": "分析 org.schabi.newpipe.database.stream 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.database.stream 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_15",
+        "name": "分析 org.schabi.newpipe.database.stream.dao 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.database.stream.dao 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_16",
+        "name": "分析 org.schabi.newpipe.database.stream.model 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.database.stream.model 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_17",
+        "name": "分析 org.schabi.newpipe.database.subscription 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.database.subscription 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_18",
+        "name": "分析 org.schabi.newpipe.download 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.download 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_19",
+        "name": "分析 org.schabi.newpipe.error 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.error 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_20",
+        "name": "分析 org.schabi.newpipe.fragments 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.fragments 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_21",
+        "name": "分析 org.schabi.newpipe.fragments.detail 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.fragments.detail 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_22",
+        "name": "分析 org.schabi.newpipe.fragments.list 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.fragments.list 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_23",
+        "name": "分析 org.schabi.newpipe.fragments.list.channel 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.fragments.list.channel 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_24",
+        "name": "分析 org.schabi.newpipe.fragments.list.comments 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.fragments.list.comments 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_25",
+        "name": "分析 org.schabi.newpipe.fragments.list.kiosk 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.fragments.list.kiosk 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_26",
+        "name": "分析 org.schabi.newpipe.fragments.list.playlist 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.fragments.list.playlist 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_27",
+        "name": "分析 org.schabi.newpipe.fragments.list.search 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.fragments.list.search 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_28",
+        "name": "分析 org.schabi.newpipe.fragments.list.videos 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.fragments.list.videos 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_29",
+        "name": "分析 org.schabi.newpipe.info_list 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.info_list 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_30",
+        "name": "分析 org.schabi.newpipe.info_list.dialog 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.info_list.dialog 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_31",
+        "name": "分析 org.schabi.newpipe.info_list.holder 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.info_list.holder 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_32",
+        "name": "分析 org.schabi.newpipe.ktx 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.ktx 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_33",
+        "name": "分析 org.schabi.newpipe.local 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.local 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_34",
+        "name": "分析 org.schabi.newpipe.local.bookmark 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.local.bookmark 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_35",
+        "name": "分析 org.schabi.newpipe.local.dialog 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.local.dialog 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_36",
+        "name": "分析 org.schabi.newpipe.local.feed 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.local.feed 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_37",
+        "name": "分析 org.schabi.newpipe.local.feed.item 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.local.feed.item 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_38",
+        "name": "分析 org.schabi.newpipe.local.feed.notifications 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.local.feed.notifications 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_39",
+        "name": "分析 org.schabi.newpipe.local.feed.service 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.local.feed.service 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_40",
+        "name": "分析 org.schabi.newpipe.local.history 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.local.history 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_41",
+        "name": "分析 org.schabi.newpipe.local.holder 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.local.holder 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_42",
+        "name": "分析 org.schabi.newpipe.local.playlist 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.local.playlist 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_43",
+        "name": "分析 org.schabi.newpipe.local.subscription 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.local.subscription 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_44",
+        "name": "分析 org.schabi.newpipe.local.subscription.dialog 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.local.subscription.dialog 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_45",
+        "name": "分析 org.schabi.newpipe.local.subscription.item 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.local.subscription.item 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_46",
+        "name": "分析 org.schabi.newpipe.local.subscription.services 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.local.subscription.services 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_47",
+        "name": "分析 org.schabi.newpipe.player 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.player 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_48",
+        "name": "分析 org.schabi.newpipe.player.datasource 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.player.datasource 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_49",
+        "name": "分析 org.schabi.newpipe.player.event 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.player.event 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_50",
+        "name": "分析 org.schabi.newpipe.player.gesture 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.player.gesture 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_51",
+        "name": "分析 org.schabi.newpipe.player.helper 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.player.helper 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_52",
+        "name": "分析 org.schabi.newpipe.player.mediabrowser 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.player.mediabrowser 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_53",
+        "name": "分析 org.schabi.newpipe.player.mediaitem 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.player.mediaitem 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_54",
+        "name": "分析 org.schabi.newpipe.player.mediasession 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.player.mediasession 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_55",
+        "name": "分析 org.schabi.newpipe.player.mediasource 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.player.mediasource 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_56",
+        "name": "分析 org.schabi.newpipe.player.notification 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.player.notification 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_57",
+        "name": "分析 org.schabi.newpipe.player.playback 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.player.playback 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_58",
+        "name": "分析 org.schabi.newpipe.player.playqueue 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.player.playqueue 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_59",
+        "name": "分析 org.schabi.newpipe.player.playqueue.events 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.player.playqueue.events 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_60",
+        "name": "分析 org.schabi.newpipe.player.resolver 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.player.resolver 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_61",
+        "name": "分析 org.schabi.newpipe.player.seekbarpreview 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.player.seekbarpreview 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_62",
+        "name": "分析 org.schabi.newpipe.player.ui 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.player.ui 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_63",
+        "name": "分析 org.schabi.newpipe.settings 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.settings 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_64",
+        "name": "分析 org.schabi.newpipe.settings.custom 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.settings.custom 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_65",
+        "name": "分析 org.schabi.newpipe.settings.export 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.settings.export 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_66",
+        "name": "分析 org.schabi.newpipe.settings.migration 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.settings.migration 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_67",
+        "name": "分析 org.schabi.newpipe.settings.notifications 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.settings.notifications 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_68",
+        "name": "分析 org.schabi.newpipe.settings.preferencesearch 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.settings.preferencesearch 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_69",
+        "name": "分析 org.schabi.newpipe.settings.tabs 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.settings.tabs 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_70",
+        "name": "分析 org.schabi.newpipe.streams 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.streams 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_71",
+        "name": "分析 org.schabi.newpipe.streams.io 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.streams.io 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_72",
+        "name": "分析 org.schabi.newpipe.testUtil 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.testUtil 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_73",
+        "name": "分析 org.schabi.newpipe.util 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.util 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_74",
+        "name": "分析 org.schabi.newpipe.util.debounce 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.util.debounce 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_75",
+        "name": "分析 org.schabi.newpipe.util.external_communication 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.util.external_communication 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_76",
+        "name": "分析 org.schabi.newpipe.util.image 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.util.image 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_77",
+        "name": "分析 org.schabi.newpipe.util.potoken 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.util.potoken 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_78",
+        "name": "分析 org.schabi.newpipe.util.text 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.util.text 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_79",
+        "name": "分析 org.schabi.newpipe.util.urlfinder 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.util.urlfinder 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_80",
+        "name": "分析 org.schabi.newpipe.views 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.views 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_81",
+        "name": "分析 org.schabi.newpipe.views.player 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 org.schabi.newpipe.views.player 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_82",
+        "name": "分析 us.shandian.giga.get 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 us.shandian.giga.get 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_83",
+        "name": "分析 us.shandian.giga.get.sqlite 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 us.shandian.giga.get.sqlite 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_84",
+        "name": "分析 us.shandian.giga.io 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 us.shandian.giga.io 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_85",
+        "name": "分析 us.shandian.giga.postprocessing 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 us.shandian.giga.postprocessing 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_86",
+        "name": "分析 us.shandian.giga.service 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 us.shandian.giga.service 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_87",
+        "name": "分析 us.shandian.giga.ui.adapter 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 us.shandian.giga.ui.adapter 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_88",
+        "name": "分析 us.shandian.giga.ui.common 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 us.shandian.giga.ui.common 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_89",
+        "name": "分析 us.shandian.giga.ui.fragment 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 us.shandian.giga.ui.fragment 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_90",
+        "name": "分析 us.shandian.giga.util 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "分析 us.shandian.giga.util 包中的所有类和方法调用",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.85,
+        "estimated_duration_seconds": 30
+      },
+      {
+        "id": "btn_91",
+        "name": "执行 NewVersionManagerTest",
+        "type": "micro",
+        "level": "component",
+        "description": "追踪 NewVersionManagerTest 类的执行流程",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.75,
+        "estimated_duration_seconds": 15
+      },
+      {
+        "id": "btn_92",
+        "name": "执行 ReCaptchaActivityTest",
+        "type": "micro",
+        "level": "component",
+        "description": "追踪 ReCaptchaActivityTest 类的执行流程",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.75,
+        "estimated_duration_seconds": 15
+      },
+      {
+        "id": "btn_93",
+        "name": "执行 ThrowableExtensionsTest",
+        "type": "micro",
+        "level": "component",
+        "description": "追踪 ThrowableExtensionsTest 类的执行流程",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.75,
+        "estimated_duration_seconds": 15
+      },
+      {
+        "id": "btn_94",
+        "name": "执行 ImportAllCombinationsTest",
+        "type": "micro",
+        "level": "component",
+        "description": "追踪 ImportAllCombinationsTest 类的执行流程",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.75,
+        "estimated_duration_seconds": 15
+      },
+      {
+        "id": "btn_95",
+        "name": "执行 ImportExportManagerTest",
+        "type": "micro",
+        "level": "component",
+        "description": "追踪 ImportExportManagerTest 类的执行流程",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.75,
+        "estimated_duration_seconds": 15
+      },
+      {
+        "id": "btn_96",
+        "name": "执行 ListHelperTest",
+        "type": "micro",
+        "level": "component",
+        "description": "追踪 ListHelperTest 类的执行流程",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.75,
+        "estimated_duration_seconds": 15
+      },
+      {
+        "id": "btn_97",
+        "name": "执行 LocalizationTest",
+        "type": "micro",
+        "level": "component",
+        "description": "追踪 LocalizationTest 类的执行流程",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.75,
+        "estimated_duration_seconds": 15
+      },
+      {
+        "id": "btn_98",
+        "name": "执行 QuadraticSliderStrategyTest",
+        "type": "micro",
+        "level": "component",
+        "description": "追踪 QuadraticSliderStrategyTest 类的执行流程",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.75,
+        "estimated_duration_seconds": 15
+      },
+      {
+        "id": "btn_99",
+        "name": "执行 TimestampExtractorTest",
+        "type": "micro",
+        "level": "component",
+        "description": "追踪 TimestampExtractorTest 类的执行流程",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.75,
+        "estimated_duration_seconds": 15
+      },
+      {
+        "id": "btn_100",
+        "name": "执行 ImageStrategyTest",
+        "type": "micro",
+        "level": "component",
+        "description": "追踪 ImageStrategyTest 类的执行流程",
+        "parent_button_id": null,
+        "child_button_ids": [],
+        "traceable_unit_id": null,
+        "ai_confidence": 0.75,
+        "estimated_duration_seconds": 15
+      }
+    ]
+  },
+  "execution_trace": {
+    "traceable_units": [
+      {
+        "id": "unit_1",
+        "name": "NewVersionManagerTest.assertNearlyEqual",
+        "type": "function",
+        "entry_point_node_id": "node_557",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_2",
+        "name": "ReCaptchaActivityTest.assertSanitized",
+        "type": "function",
+        "entry_point_node_id": "node_558",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_3",
+        "name": "ImportAllCombinationsTest.testZipCombination",
+        "type": "function",
+        "entry_point_node_id": "node_559",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_4",
+        "name": "ImportExportManagerTest.setupFileLocator",
+        "type": "function",
+        "entry_point_node_id": "node_560",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_5",
+        "name": "ListHelperTest.getSortedStreamVideosListTest",
+        "type": "function",
+        "entry_point_node_id": "node_561",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_6",
+        "name": "ListHelperTest.getSortedStreamVideosListWithPreferVideoOnlyStreamsTest",
+        "type": "function",
+        "entry_point_node_id": "node_562",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_7",
+        "name": "ListHelperTest.getSortedStreamVideosExceptHighResolutionsTest",
+        "type": "function",
+        "entry_point_node_id": "node_563",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_8",
+        "name": "ListHelperTest.getDefaultResolutionTest",
+        "type": "function",
+        "entry_point_node_id": "node_564",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_9",
+        "name": "ListHelperTest.getHighestQualityAudioFormatTest",
+        "type": "function",
+        "entry_point_node_id": "node_565",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_10",
+        "name": "ListHelperTest.getHighestQualityAudioFormatPreferredAbsent",
+        "type": "function",
+        "entry_point_node_id": "node_566",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_11",
+        "name": "ListHelperTest.getHighestQualityAudioNull",
+        "type": "function",
+        "entry_point_node_id": "node_567",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_12",
+        "name": "ListHelperTest.getLowestQualityAudioFormatTest",
+        "type": "function",
+        "entry_point_node_id": "node_568",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_13",
+        "name": "ListHelperTest.getLowestQualityAudioFormatPreferredAbsent",
+        "type": "function",
+        "entry_point_node_id": "node_569",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_14",
+        "name": "ListHelperTest.getLowestQualityAudioNull",
+        "type": "function",
+        "entry_point_node_id": "node_570",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_15",
+        "name": "ListHelperTest.getAudioTrack",
+        "type": "function",
+        "entry_point_node_id": "node_571",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_16",
+        "name": "ListHelperTest.getVideoDefaultStreamIndexCombinations",
+        "type": "function",
+        "entry_point_node_id": "node_572",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_17",
+        "name": "ListHelperTest.assertEquals",
+        "type": "function",
+        "entry_point_node_id": "node_578",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_18",
+        "name": "ListHelperTest.assertEquals",
+        "type": "function",
+        "entry_point_node_id": "node_578",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_19",
+        "name": "ListHelperTest.assertEquals",
+        "type": "function",
+        "entry_point_node_id": "node_578",
+        "execution_steps": []
+      },
+      {
+        "id": "unit_20",
+        "name": "ListHelperTest.assertEquals",
+        "type": "function",
+        "entry_point_node_id": "node_578",
+        "execution_steps": []
+      }
+    ]
+  }
+}

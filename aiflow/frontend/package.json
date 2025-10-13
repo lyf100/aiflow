@@ -1,0 +1,48 @@
+{
+  "name": "aiflow-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "AIFlow - AI Analysis Visualization Platform Frontend",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^4.5.2",
+    "cytoscape": "^3.29.2",
+    "cytoscape-dagre": "^2.5.0",
+    "d3": "^7.9.0",
+    "monaco-editor": "^0.47.0",
+    "@monaco-editor/react": "^4.6.0",
+    "pako": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "@types/d3": "^7.4.3",
+    "@types/pako": "^2.0.3",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.10",
+    "vitest": "^1.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0"
+}

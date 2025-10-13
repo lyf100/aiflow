@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 页面标题 -->
+    <title>AIFlow - AI 分析可视化平台</title>
+
+    <!-- Meta 信息 -->
+    <meta name="description" content="AIFlow 是一个无外壳 MCP Tools，通过 Prompt 模板指挥 AI 进行项目分析，并提供强大的可视化功能。" />
+    <meta name="keywords" content="AIFlow, MCP Tools, AI 分析, 代码可视化, 嵌套式行为启动" />
+    <meta name="author" content="AIFlow Team" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="AIFlow - AI 分析可视化平台" />
+    <meta property="og:description" content="无外壳 MCP Tools · 嵌套式行为启动 · 智能委托策略" />
+    <meta property="og:type" content="website" />
+
+    <!-- 预加载关键资源 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+
+    <!-- 主题色 -->
+    <meta name="theme-color" content="#667eea" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a202c" />
+
+    <!-- 性能优化 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <style>
+      /* 加载屏幕样式 */
+      #loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+      }
+
+      #loading-screen.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .loading-logo {
+        font-size: 80px;
+        margin-bottom: 24px;
+        animation: bounce 1s ease-in-out infinite;
+      }
+
+      .loading-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 12px;
+        letter-spacing: 2px;
+      }
+
+      .loading-subtitle {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 32px;
+      }
+
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes bounce {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* 阻止 FOUC（闪烁） */
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      #root {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 根节点 -->
+    <div id="root"></div>
+
+    <!-- 加载屏幕 -->
+    <div id="loading-screen">
+      <div class="loading-logo">🚀</div>
+      <h1 class="loading-title">AIFlow</h1>
+      <p class="loading-subtitle">无外壳 MCP Tools · AI 分析可视化平台</p>
+      <div class="loading-spinner"></div>
+    </div>
+
+    <!-- 脚本 -->
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- 加载完成后隐藏加载屏幕 -->
+    <script>
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const loadingScreen = document.getElementById('loading-screen');
+          if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+            setTimeout(() => {
+              loadingScreen.remove();
+            }, 500);
+          }
+        }, 500);
+      });
+    </script>
+
+    <!-- Noscript 提示 -->
+    <noscript>
+      <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; align-items: center; justify-content: center; font-family: sans-serif; text-align: center; padding: 20px;">
+        <div>
+          <h1 style="color: #F44336; margin-bottom: 16px;">⚠️ JavaScript 未启用</h1>
+          <p style="color: #666; font-size: 16px;">AIFlow 需要 JavaScript 才能运行。<br/>请在浏览器设置中启用 JavaScript 并刷新页面。</p>
+        </div>
+      </div>
+    </noscript>
+  </body>
+</html>

@@ -1,0 +1,2734 @@
+{
+  "metadata": {
+    "project_id": "27c81fe5-b7e7-4dc1-89db-b16904ace1c0",
+    "project_name": "NewPipe",
+    "timestamp": "2025-10-12T07:18:52.898846Z",
+    "ai_model": "code-analyzer-v1.0",
+    "protocol_version": "1.0.0",
+    "analysis_stats": {
+      "total_files": 475,
+      "analyzed_files": 0,
+      "total_nodes": 180,
+      "total_edges": 179,
+      "languages": {
+        "Java": 358,
+        "Kotlin": 116,
+        "JavaScript": 1
+      }
+    }
+  },
+  "code_structure": {
+    "nodes": [
+      {
+        "id": "2858440e-4231-4392-a908-1731a43915bb",
+        "name": "NewPipe",
+        "type": "class",
+        "stereotype": "system",
+        "file_path": "..\\NewPipe-dev",
+        "description": "NewPipe 项目根节点"
+      },
+      {
+        "id": "dcbf01f8-5280-4444-998b-0aae001132f8",
+        "name": "androidTest",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\androidTest",
+        "description": "androidTest 模块"
+      },
+      {
+        "id": "c671e5be-d345-413b-a374-a695da9ae063",
+        "name": "java",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\androidTest\\java",
+        "description": "java 模块"
+      },
+      {
+        "id": "fdb569c5-70c3-43c5-b2b1-d1c10d1a1707",
+        "name": "org",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\androidTest\\java\\org",
+        "description": "org 模块"
+      },
+      {
+        "id": "9e1bb20f-cae3-43ab-b80b-35e06e0bd6d8",
+        "name": "schabi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\androidTest\\java\\org\\schabi",
+        "description": "schabi 模块"
+      },
+      {
+        "id": "8527f55d-b77e-4348-8c7e-9d7026c39bca",
+        "name": "debug",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\debug",
+        "description": "debug 模块"
+      },
+      {
+        "id": "def2e1ba-2edf-44bd-b96c-91e7f65c1e79",
+        "name": "java",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\debug\\java",
+        "description": "java 模块"
+      },
+      {
+        "id": "a4c8f9d3-4431-4581-a7c2-96f7d79e15f2",
+        "name": "org",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\debug\\java\\org",
+        "description": "org 模块"
+      },
+      {
+        "id": "e1094cb9-4bb1-48b9-851a-b50ee2057b8d",
+        "name": "schabi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\debug\\java\\org\\schabi",
+        "description": "schabi 模块"
+      },
+      {
+        "id": "410531c6-2522-4a2c-91f9-28be5b8b095b",
+        "name": "main",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main",
+        "description": "main 模块"
+      },
+      {
+        "id": "1855052e-df7d-4559-9e3b-0b57c7c9df32",
+        "name": "assets",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\assets",
+        "description": "assets 模块"
+      },
+      {
+        "id": "5df0abf2-f9a8-45c6-8e7e-109f11250a08",
+        "name": "java",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\java",
+        "description": "java 模块"
+      },
+      {
+        "id": "58ec44b9-d53d-4bc8-85b4-15a3ddd09226",
+        "name": "androidx",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\java\\androidx",
+        "description": "androidx 模块"
+      },
+      {
+        "id": "e3a87c23-01e4-4496-a6ea-d454c5e035b8",
+        "name": "fragment",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\java\\androidx\\fragment",
+        "description": "fragment 模块"
+      },
+      {
+        "id": "746c825c-d8db-40d6-aa3f-548cbdbe0be2",
+        "name": "com",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\java\\com",
+        "description": "com 模块"
+      },
+      {
+        "id": "ec4713dc-1593-4906-b0de-031374767163",
+        "name": "google",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\java\\com\\google",
+        "description": "google 模块"
+      },
+      {
+        "id": "8c2fdfba-130d-4f00-be8c-afe41de2e51f",
+        "name": "org",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\java\\org",
+        "description": "org 模块"
+      },
+      {
+        "id": "6c56d014-f117-42bd-9056-35a377b19889",
+        "name": "apache",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\java\\org\\apache",
+        "description": "apache 模块"
+      },
+      {
+        "id": "a72f998b-8ac8-4251-8c65-08c2a10e83cf",
+        "name": "schabi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\java\\org\\schabi",
+        "description": "schabi 模块"
+      },
+      {
+        "id": "1665ec96-2ba0-4dee-ba68-c9570fe3b453",
+        "name": "us",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\java\\us",
+        "description": "us 模块"
+      },
+      {
+        "id": "ef1f54d2-8fd9-4ef1-8869-ed38ffec2435",
+        "name": "shandian",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\java\\us\\shandian",
+        "description": "shandian 模块"
+      },
+      {
+        "id": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "name": "res",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res",
+        "description": "res 模块"
+      },
+      {
+        "id": "86384ca0-b58b-4b38-8a58-acc83b12e971",
+        "name": "animator",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\animator",
+        "description": "animator 模块"
+      },
+      {
+        "id": "99081a43-5ad5-45a6-a97c-c844a35a1684",
+        "name": "drawable",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\drawable",
+        "description": "drawable 模块"
+      },
+      {
+        "id": "efdfc8a7-c223-451d-bcce-087039eaf585",
+        "name": "drawable-hdpi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\drawable-hdpi",
+        "description": "drawable-hdpi 模块"
+      },
+      {
+        "id": "b7625b51-6c83-4feb-a4bf-ab6a9cc6b4bb",
+        "name": "drawable-mdpi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\drawable-mdpi",
+        "description": "drawable-mdpi 模块"
+      },
+      {
+        "id": "53a26f3b-c2c0-4d86-bec6-95d38a213489",
+        "name": "drawable-night",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\drawable-night",
+        "description": "drawable-night 模块"
+      },
+      {
+        "id": "0a278728-1d1b-4d17-a0f5-bfd2185aea54",
+        "name": "drawable-night-v23",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\drawable-night-v23",
+        "description": "drawable-night-v23 模块"
+      },
+      {
+        "id": "c61d5ad9-8994-4e7d-895e-df1f218c95b3",
+        "name": "drawable-nodpi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\drawable-nodpi",
+        "description": "drawable-nodpi 模块"
+      },
+      {
+        "id": "b4136e9d-c5dc-40df-aad7-9d0ae85f70f4",
+        "name": "drawable-v23",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\drawable-v23",
+        "description": "drawable-v23 模块"
+      },
+      {
+        "id": "d7aff384-8a48-4176-9642-6a72af3113bf",
+        "name": "drawable-xhdpi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\drawable-xhdpi",
+        "description": "drawable-xhdpi 模块"
+      },
+      {
+        "id": "e1002003-f9f4-4bf0-a9cf-5f293756f333",
+        "name": "drawable-xxhdpi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\drawable-xxhdpi",
+        "description": "drawable-xxhdpi 模块"
+      },
+      {
+        "id": "c03fd1a4-fc08-4f4e-b630-0a5c36386422",
+        "name": "drawable-xxxhdpi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\drawable-xxxhdpi",
+        "description": "drawable-xxxhdpi 模块"
+      },
+      {
+        "id": "bc1ead72-b609-4fe9-a61c-667d261dbc62",
+        "name": "layout",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\layout",
+        "description": "layout 模块"
+      },
+      {
+        "id": "7dede23c-accc-4f3b-a9cb-ff0dbb173019",
+        "name": "layout-land",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\layout-land",
+        "description": "layout-land 模块"
+      },
+      {
+        "id": "0d8626e4-0000-4bd5-ab05-0c68f1a25134",
+        "name": "layout-large-land",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\layout-large-land",
+        "description": "layout-large-land 模块"
+      },
+      {
+        "id": "8fcc390b-991a-4d4c-8de2-b95a50689ac0",
+        "name": "menu",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\menu",
+        "description": "menu 模块"
+      },
+      {
+        "id": "a1bebfe5-ca66-4804-a477-d930ef024bf2",
+        "name": "mipmap-anydpi-v26",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\mipmap-anydpi-v26",
+        "description": "mipmap-anydpi-v26 模块"
+      },
+      {
+        "id": "c542f311-6e78-46c5-aacd-a857954f6b1f",
+        "name": "mipmap-hdpi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\mipmap-hdpi",
+        "description": "mipmap-hdpi 模块"
+      },
+      {
+        "id": "e71a00a4-15e3-4912-9b23-d8c0ee43454b",
+        "name": "mipmap-mdpi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\mipmap-mdpi",
+        "description": "mipmap-mdpi 模块"
+      },
+      {
+        "id": "fa5ae5d7-54e3-4a5b-bfab-0576859dc1e0",
+        "name": "mipmap-xhdpi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\mipmap-xhdpi",
+        "description": "mipmap-xhdpi 模块"
+      },
+      {
+        "id": "4c3da293-b0a8-4ef3-b411-b4272ada8cd3",
+        "name": "mipmap-xxhdpi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\mipmap-xxhdpi",
+        "description": "mipmap-xxhdpi 模块"
+      },
+      {
+        "id": "3a68e0d9-b058-4434-ae10-5ea7ef0e0018",
+        "name": "mipmap-xxxhdpi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\mipmap-xxxhdpi",
+        "description": "mipmap-xxxhdpi 模块"
+      },
+      {
+        "id": "0c7dacb6-3850-486f-a593-451567a364e8",
+        "name": "values",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values",
+        "description": "values 模块"
+      },
+      {
+        "id": "a8afa4b9-4df5-4d76-9255-b49e7f75e62d",
+        "name": "values-ace",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ace",
+        "description": "values-ace 模块"
+      },
+      {
+        "id": "8a877409-7219-415b-8d9e-0d48678e273e",
+        "name": "values-aeb",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-aeb",
+        "description": "values-aeb 模块"
+      },
+      {
+        "id": "f061449e-c7a8-44a4-a7ef-ced139650bfe",
+        "name": "values-af",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-af",
+        "description": "values-af 模块"
+      },
+      {
+        "id": "51dd1668-a47c-4d9b-acb1-98c6980f82e3",
+        "name": "values-ang",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ang",
+        "description": "values-ang 模块"
+      },
+      {
+        "id": "ceafd441-f872-4adb-a5d8-dba8fe9b1833",
+        "name": "values-ar",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ar",
+        "description": "values-ar 模块"
+      },
+      {
+        "id": "81169d6f-33ab-476a-bb6e-87a00c640086",
+        "name": "values-ar-rLY",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ar-rLY",
+        "description": "values-ar-rLY 模块"
+      },
+      {
+        "id": "7f7761fe-a32f-4944-8b95-bd612d490718",
+        "name": "values-ars",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ars",
+        "description": "values-ars 模块"
+      },
+      {
+        "id": "1b02ac63-4ec3-48c1-a3b3-d94063e1c137",
+        "name": "values-as",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-as",
+        "description": "values-as 模块"
+      },
+      {
+        "id": "04b4e32b-3c37-47c5-abe8-25845ceb5f45",
+        "name": "values-ay",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ay",
+        "description": "values-ay 模块"
+      },
+      {
+        "id": "08c5ebf3-6ffc-4c02-b2be-d4c4f90f0334",
+        "name": "values-ayc",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ayc",
+        "description": "values-ayc 模块"
+      },
+      {
+        "id": "78cc2534-27e4-4066-aa72-a7aace39e5df",
+        "name": "values-az",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-az",
+        "description": "values-az 模块"
+      },
+      {
+        "id": "d024cd40-c90a-4da4-a6d2-f12c179cf578",
+        "name": "values-azb",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-azb",
+        "description": "values-azb 模块"
+      },
+      {
+        "id": "091e16fa-8ca0-43e9-bf11-5d307c22ef70",
+        "name": "values-b+ast",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-b+ast",
+        "description": "values-b+ast 模块"
+      },
+      {
+        "id": "9bc0aa00-f2a2-40aa-b3e7-32a2ac5779e3",
+        "name": "values-b+uz+Latn",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-b+uz+Latn",
+        "description": "values-b+uz+Latn 模块"
+      },
+      {
+        "id": "de721a2a-3624-45a5-acda-5b43b3ae23eb",
+        "name": "values-bar",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-bar",
+        "description": "values-bar 模块"
+      },
+      {
+        "id": "5a82383a-c710-4f11-a506-44b5ce5f427a",
+        "name": "values-be",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-be",
+        "description": "values-be 模块"
+      },
+      {
+        "id": "4bab4b17-3295-4203-9ada-a7ab21518a43",
+        "name": "values-ber",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ber",
+        "description": "values-ber 模块"
+      },
+      {
+        "id": "5ea337f4-e351-4419-a131-5099f64ea92c",
+        "name": "values-bg",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-bg",
+        "description": "values-bg 模块"
+      },
+      {
+        "id": "65ba959b-c33a-437c-9915-30874b0e8436",
+        "name": "values-bm",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-bm",
+        "description": "values-bm 模块"
+      },
+      {
+        "id": "5151a0c4-3d7f-4757-89c4-8a1b6a059563",
+        "name": "values-bn",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-bn",
+        "description": "values-bn 模块"
+      },
+      {
+        "id": "39ef9a48-36e1-4eb2-906e-56f8d3cd5963",
+        "name": "values-bn-rBD",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-bn-rBD",
+        "description": "values-bn-rBD 模块"
+      },
+      {
+        "id": "0d89dea3-5981-4a60-a971-c7aee185ed1e",
+        "name": "values-bn-rIN",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-bn-rIN",
+        "description": "values-bn-rIN 模块"
+      },
+      {
+        "id": "d10a62d4-c2f1-4fa0-927d-d14fba5dfca9",
+        "name": "values-bqi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-bqi",
+        "description": "values-bqi 模块"
+      },
+      {
+        "id": "3d295351-02f1-4117-beca-4927f0b564ad",
+        "name": "values-br",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-br",
+        "description": "values-br 模块"
+      },
+      {
+        "id": "3a77c9ab-76d8-46ac-a29f-a34b9c28d9f7",
+        "name": "values-bs",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-bs",
+        "description": "values-bs 模块"
+      },
+      {
+        "id": "294ffdf2-1be9-43c9-b60f-3e01d893a027",
+        "name": "values-ca",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ca",
+        "description": "values-ca 模块"
+      },
+      {
+        "id": "709c0deb-e2f4-4cb5-a3d2-a5ef52cbdc56",
+        "name": "values-ckb",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ckb",
+        "description": "values-ckb 模块"
+      },
+      {
+        "id": "4848d2eb-d0ec-4c89-a84c-dee78cc2add2",
+        "name": "values-cs",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-cs",
+        "description": "values-cs 模块"
+      },
+      {
+        "id": "f7af0ec5-2b3d-4126-82c6-1830bdd1f67d",
+        "name": "values-cy",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-cy",
+        "description": "values-cy 模块"
+      },
+      {
+        "id": "f11f9b69-d663-42c2-afc4-fba504eccf1e",
+        "name": "values-da",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-da",
+        "description": "values-da 模块"
+      },
+      {
+        "id": "10488876-75ae-4f0b-8c87-d018ea1d75c1",
+        "name": "values-de",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-de",
+        "description": "values-de 模块"
+      },
+      {
+        "id": "2f420080-66ee-44d9-aa84-9203d01801c8",
+        "name": "values-dum",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-dum",
+        "description": "values-dum 模块"
+      },
+      {
+        "id": "cd0430fe-32d9-45a8-a564-ca0f11635eee",
+        "name": "values-el",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-el",
+        "description": "values-el 模块"
+      },
+      {
+        "id": "aed7e23f-9c41-41a7-98d1-40c3dcdfc663",
+        "name": "values-en-rGB",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-en-rGB",
+        "description": "values-en-rGB 模块"
+      },
+      {
+        "id": "d693435d-bf00-454c-a5c5-33dd99ddb2c1",
+        "name": "values-enm",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-enm",
+        "description": "values-enm 模块"
+      },
+      {
+        "id": "12a09a8d-9981-4d97-8438-74499b65d005",
+        "name": "values-eo",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-eo",
+        "description": "values-eo 模块"
+      },
+      {
+        "id": "298bfcd0-a1a2-41ab-b7b2-ec8344116651",
+        "name": "values-es",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-es",
+        "description": "values-es 模块"
+      },
+      {
+        "id": "529857e2-7b60-4f7b-ae3f-9de78c66d490",
+        "name": "values-et",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-et",
+        "description": "values-et 模块"
+      },
+      {
+        "id": "cc4e622c-2b19-4db1-ba0a-369f06e59d2e",
+        "name": "values-eu",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-eu",
+        "description": "values-eu 模块"
+      },
+      {
+        "id": "48a91fb1-4df4-4dba-b2dc-28008f05a53e",
+        "name": "values-fa",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-fa",
+        "description": "values-fa 模块"
+      },
+      {
+        "id": "95b02b0c-71e2-42ca-b9fe-510bd61da236",
+        "name": "values-fi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-fi",
+        "description": "values-fi 模块"
+      },
+      {
+        "id": "5afb0bc0-f3e6-40e7-ab7f-4c8d7b8e83ab",
+        "name": "values-fil",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-fil",
+        "description": "values-fil 模块"
+      },
+      {
+        "id": "96c1fe7a-d92e-4c80-96df-f8731c9542cb",
+        "name": "values-fr",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-fr",
+        "description": "values-fr 模块"
+      },
+      {
+        "id": "17dbc3da-cee9-481e-a867-1149e46c2945",
+        "name": "values-frc",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-frc",
+        "description": "values-frc 模块"
+      },
+      {
+        "id": "058eb9ef-9992-42bf-8316-87b595193860",
+        "name": "values-gl",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-gl",
+        "description": "values-gl 模块"
+      },
+      {
+        "id": "477df622-99c6-48c7-9173-3ece18072f78",
+        "name": "values-gu",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-gu",
+        "description": "values-gu 模块"
+      },
+      {
+        "id": "6178dd6f-d087-4b53-96a6-4fed23ec7343",
+        "name": "values-he",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-he",
+        "description": "values-he 模块"
+      },
+      {
+        "id": "29097e58-26f1-46ae-b214-0d5f8ccbe1a4",
+        "name": "values-hi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-hi",
+        "description": "values-hi 模块"
+      },
+      {
+        "id": "b76dd738-2f34-43c7-ad54-dd7de8ec285e",
+        "name": "values-hr",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-hr",
+        "description": "values-hr 模块"
+      },
+      {
+        "id": "0108bade-d0a6-4291-a4ec-ba6e8ae4974c",
+        "name": "values-hu",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-hu",
+        "description": "values-hu 模块"
+      },
+      {
+        "id": "6ab00f12-881c-46f3-9b5d-a50b11ad90df",
+        "name": "values-hy",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-hy",
+        "description": "values-hy 模块"
+      },
+      {
+        "id": "464170da-5f05-45cd-b08f-2495d76b42b7",
+        "name": "values-ia",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ia",
+        "description": "values-ia 模块"
+      },
+      {
+        "id": "f294f68a-15b2-4975-91df-5d225ca3d004",
+        "name": "values-in",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-in",
+        "description": "values-in 模块"
+      },
+      {
+        "id": "6892b312-c13c-4276-9611-20b05d360041",
+        "name": "values-is",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-is",
+        "description": "values-is 模块"
+      },
+      {
+        "id": "1b8ca0d1-8ef0-456a-b50a-1bbbbefdfb1a",
+        "name": "values-it",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-it",
+        "description": "values-it 模块"
+      },
+      {
+        "id": "64266a29-5e86-4371-81de-583864ef1ffa",
+        "name": "values-ja",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ja",
+        "description": "values-ja 模块"
+      },
+      {
+        "id": "15d63eb1-757a-4074-b35b-bc2bba6229ea",
+        "name": "values-jv",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-jv",
+        "description": "values-jv 模块"
+      },
+      {
+        "id": "20e9176e-566f-4ce8-96d7-f495e9933e2c",
+        "name": "values-ka",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ka",
+        "description": "values-ka 模块"
+      },
+      {
+        "id": "a7c0c699-b280-4ccf-8725-c92b7025a1ac",
+        "name": "values-kab",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-kab",
+        "description": "values-kab 模块"
+      },
+      {
+        "id": "8797648b-3cd1-4db8-9d0a-267c993fa1cf",
+        "name": "values-kk",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-kk",
+        "description": "values-kk 模块"
+      },
+      {
+        "id": "0b1a1945-bcc0-41eb-99a2-2edc58e2edf2",
+        "name": "values-kmr",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-kmr",
+        "description": "values-kmr 模块"
+      },
+      {
+        "id": "da4540b6-0bfc-4339-8d82-8da64954e2fd",
+        "name": "values-kn",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-kn",
+        "description": "values-kn 模块"
+      },
+      {
+        "id": "eabe72a2-c988-4669-8161-5ee3f17b5e18",
+        "name": "values-ko",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ko",
+        "description": "values-ko 模块"
+      },
+      {
+        "id": "0bfbc303-ba61-4032-82c6-e0d24692065f",
+        "name": "values-ks",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ks",
+        "description": "values-ks 模块"
+      },
+      {
+        "id": "b0b46abc-7a2b-4334-808e-771b61958561",
+        "name": "values-ku",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ku",
+        "description": "values-ku 模块"
+      },
+      {
+        "id": "f4e1b63e-75d9-439f-9674-6ef15f21614d",
+        "name": "values-la",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-la",
+        "description": "values-la 模块"
+      },
+      {
+        "id": "f213e75e-bcf9-40d6-9dc2-4e3028a1ee91",
+        "name": "values-land",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-land",
+        "description": "values-land 模块"
+      },
+      {
+        "id": "0970f907-963d-42e3-8b93-84d44285546f",
+        "name": "values-lt",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-lt",
+        "description": "values-lt 模块"
+      },
+      {
+        "id": "5c7200cd-1da8-4037-89d5-bccb118e3edb",
+        "name": "values-lv",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-lv",
+        "description": "values-lv 模块"
+      },
+      {
+        "id": "0ca41278-51fb-4583-872e-416d93a34001",
+        "name": "values-mk",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-mk",
+        "description": "values-mk 模块"
+      },
+      {
+        "id": "4b2aef56-ce7e-4ed6-b6dc-dad6bc38f5b1",
+        "name": "values-ml",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ml",
+        "description": "values-ml 模块"
+      },
+      {
+        "id": "f9900fac-4b41-40b2-83be-256136cbc07f",
+        "name": "values-mn",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-mn",
+        "description": "values-mn 模块"
+      },
+      {
+        "id": "7d366b02-b6fa-41ca-9ee2-d9fe75289486",
+        "name": "values-mr",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-mr",
+        "description": "values-mr 模块"
+      },
+      {
+        "id": "e56b31e9-370a-4cd9-a2d8-8ab1155c07c4",
+        "name": "values-ms",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ms",
+        "description": "values-ms 模块"
+      },
+      {
+        "id": "462445c3-a043-49ab-8f6a-d2fa95c44eaa",
+        "name": "values-my",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-my",
+        "description": "values-my 模块"
+      },
+      {
+        "id": "4ef33388-81b5-449f-adda-ce09125f47ef",
+        "name": "values-nap",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-nap",
+        "description": "values-nap 模块"
+      },
+      {
+        "id": "303d5224-50ef-4fd3-bbc8-1a7c08f34b82",
+        "name": "values-nb-rNO",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-nb-rNO",
+        "description": "values-nb-rNO 模块"
+      },
+      {
+        "id": "bf60e655-e2af-476e-b553-1268fbfe95f2",
+        "name": "values-nds",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-nds",
+        "description": "values-nds 模块"
+      },
+      {
+        "id": "a292f092-fc30-43e5-b058-e53897924a42",
+        "name": "values-ne",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ne",
+        "description": "values-ne 模块"
+      },
+      {
+        "id": "d845ca47-508a-44dd-9b1a-144237b0533b",
+        "name": "values-night",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-night",
+        "description": "values-night 模块"
+      },
+      {
+        "id": "80628fde-587e-473d-b2ce-40aa3d8ffd7a",
+        "name": "values-nl",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-nl",
+        "description": "values-nl 模块"
+      },
+      {
+        "id": "58f3ec3c-d0b4-474d-a7bd-eabd6fb5fd88",
+        "name": "values-nl-rBE",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-nl-rBE",
+        "description": "values-nl-rBE 模块"
+      },
+      {
+        "id": "d10851ad-dfcf-4d2c-9752-5111c883ec3f",
+        "name": "values-nn",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-nn",
+        "description": "values-nn 模块"
+      },
+      {
+        "id": "7ed98096-e183-4c24-8e47-2d92e11a796e",
+        "name": "values-nqo",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-nqo",
+        "description": "values-nqo 模块"
+      },
+      {
+        "id": "e57264e3-b9bc-43b6-940e-21624b7a27b1",
+        "name": "values-oc",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-oc",
+        "description": "values-oc 模块"
+      },
+      {
+        "id": "6c221e58-23e5-4432-a596-8a2c2b009696",
+        "name": "values-or",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-or",
+        "description": "values-or 模块"
+      },
+      {
+        "id": "2b2050c7-6295-449f-915e-95e3da010f29",
+        "name": "values-pa",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-pa",
+        "description": "values-pa 模块"
+      },
+      {
+        "id": "316649b4-322e-4de1-be46-acbca68cfa97",
+        "name": "values-pa-rPK",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-pa-rPK",
+        "description": "values-pa-rPK 模块"
+      },
+      {
+        "id": "471607ef-16c4-40a2-a347-45e2de1776c5",
+        "name": "values-pl",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-pl",
+        "description": "values-pl 模块"
+      },
+      {
+        "id": "66b228d7-6808-4c1c-8857-3e06859d1583",
+        "name": "values-pt",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-pt",
+        "description": "values-pt 模块"
+      },
+      {
+        "id": "de8bc9d9-eb3b-4c38-951b-2236b30cd76d",
+        "name": "values-pt-rBR",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-pt-rBR",
+        "description": "values-pt-rBR 模块"
+      },
+      {
+        "id": "184c003e-3737-4899-aaa0-6e174d4d7100",
+        "name": "values-pt-rPT",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-pt-rPT",
+        "description": "values-pt-rPT 模块"
+      },
+      {
+        "id": "a3f88156-93e9-4734-a781-47052b20cd17",
+        "name": "values-ro",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ro",
+        "description": "values-ro 模块"
+      },
+      {
+        "id": "7205287c-e6f4-4bfe-a6b2-c971a6dbe7ae",
+        "name": "values-ru",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ru",
+        "description": "values-ru 模块"
+      },
+      {
+        "id": "48b42122-76c4-4bd2-91e2-2b7974dbce7a",
+        "name": "values-ryu",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ryu",
+        "description": "values-ryu 模块"
+      },
+      {
+        "id": "e703b562-dc02-493e-8297-6c18be1186c3",
+        "name": "values-sat",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-sat",
+        "description": "values-sat 模块"
+      },
+      {
+        "id": "8caa0944-b9f3-4cc5-9c82-a7a428804f20",
+        "name": "values-sc",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-sc",
+        "description": "values-sc 模块"
+      },
+      {
+        "id": "16fcb1f1-24cd-471c-a008-f022e522bb0e",
+        "name": "values-scn",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-scn",
+        "description": "values-scn 模块"
+      },
+      {
+        "id": "7263c6e9-89ab-43e8-8e68-e8df2c69ed8d",
+        "name": "values-si",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-si",
+        "description": "values-si 模块"
+      },
+      {
+        "id": "fb9078b8-7f33-4f1f-a260-caf97ed2083d",
+        "name": "values-sk",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-sk",
+        "description": "values-sk 模块"
+      },
+      {
+        "id": "9b21115e-189b-46c6-9599-f09efd8d06bf",
+        "name": "values-sl",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-sl",
+        "description": "values-sl 模块"
+      },
+      {
+        "id": "782c5670-b98c-42aa-bac1-0f21b8e567f9",
+        "name": "values-so",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-so",
+        "description": "values-so 模块"
+      },
+      {
+        "id": "ddf8120c-e651-4ae3-af53-5125e1e4d303",
+        "name": "values-sq",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-sq",
+        "description": "values-sq 模块"
+      },
+      {
+        "id": "3dce514b-cbf6-4602-82a4-df1b209d8620",
+        "name": "values-sr",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-sr",
+        "description": "values-sr 模块"
+      },
+      {
+        "id": "9eba2822-6261-41fe-aaf1-49eb4746b5e2",
+        "name": "values-sv",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-sv",
+        "description": "values-sv 模块"
+      },
+      {
+        "id": "a5e75b8c-5aed-4e06-a5c9-31bafa64ad55",
+        "name": "values-sw",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-sw",
+        "description": "values-sw 模块"
+      },
+      {
+        "id": "d40d70b9-d838-4d09-b9b4-ecdb13d96a6f",
+        "name": "values-sw600dp",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-sw600dp",
+        "description": "values-sw600dp 模块"
+      },
+      {
+        "id": "11e9888d-b28c-4a74-863c-b2bfe5fdcc58",
+        "name": "values-sw600dp-land",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-sw600dp-land",
+        "description": "values-sw600dp-land 模块"
+      },
+      {
+        "id": "2cbc6e38-99d7-4527-9081-7694156cbaa8",
+        "name": "values-ta",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ta",
+        "description": "values-ta 模块"
+      },
+      {
+        "id": "067beabd-7606-4fc8-91dc-80781224a85c",
+        "name": "values-te",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-te",
+        "description": "values-te 模块"
+      },
+      {
+        "id": "a71f39d9-ddd0-4c05-953b-6344d1ada192",
+        "name": "values-th",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-th",
+        "description": "values-th 模块"
+      },
+      {
+        "id": "0f924c02-4f71-49f0-ab8e-1480ca702ead",
+        "name": "values-ti",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ti",
+        "description": "values-ti 模块"
+      },
+      {
+        "id": "059a51e2-7b05-49c2-a023-8b2e980ca2cb",
+        "name": "values-tl",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-tl",
+        "description": "values-tl 模块"
+      },
+      {
+        "id": "7f06885f-d28f-4095-9ce6-b91f4daa6087",
+        "name": "values-tok",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-tok",
+        "description": "values-tok 模块"
+      },
+      {
+        "id": "f7bdbd04-cc71-42c0-9cdd-f565dae17508",
+        "name": "values-tr",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-tr",
+        "description": "values-tr 模块"
+      },
+      {
+        "id": "eaadbd4d-b507-43c0-9362-dd21cf914712",
+        "name": "values-tt",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-tt",
+        "description": "values-tt 模块"
+      },
+      {
+        "id": "1f9bd3dc-3708-4071-b703-257b78be1dde",
+        "name": "values-tzm",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-tzm",
+        "description": "values-tzm 模块"
+      },
+      {
+        "id": "7ecbb439-85df-407d-bf1e-513a8362d062",
+        "name": "values-uk",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-uk",
+        "description": "values-uk 模块"
+      },
+      {
+        "id": "31a9d829-a10e-4c66-abe6-f17580d1ffc9",
+        "name": "values-und",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-und",
+        "description": "values-und 模块"
+      },
+      {
+        "id": "726a88ab-f2b1-406c-babc-d6308e451663",
+        "name": "values-ur",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-ur",
+        "description": "values-ur 模块"
+      },
+      {
+        "id": "f340ce64-3c40-440d-a9c0-283180c6381b",
+        "name": "values-v27",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-v27",
+        "description": "values-v27 模块"
+      },
+      {
+        "id": "e67f3e5f-c612-4524-839f-70a73af90e58",
+        "name": "values-v29",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-v29",
+        "description": "values-v29 模块"
+      },
+      {
+        "id": "c2bb2022-7615-422b-959f-8b54b4df8276",
+        "name": "values-v35",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-v35",
+        "description": "values-v35 模块"
+      },
+      {
+        "id": "8afcc6c7-44c5-4f45-83d9-2b0c7b4be6f3",
+        "name": "values-vi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-vi",
+        "description": "values-vi 模块"
+      },
+      {
+        "id": "9437a001-871d-401f-948c-9e20cede3659",
+        "name": "values-vmf",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-vmf",
+        "description": "values-vmf 模块"
+      },
+      {
+        "id": "8cb254ce-cb90-4cad-bd94-a8a5b03e5fe8",
+        "name": "values-w820dp",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-w820dp",
+        "description": "values-w820dp 模块"
+      },
+      {
+        "id": "94d107a2-8de1-4ca4-bc6b-46e8500c57a8",
+        "name": "values-zh-rCN",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-zh-rCN",
+        "description": "values-zh-rCN 模块"
+      },
+      {
+        "id": "63571326-8bbf-4cb2-b492-cc9a8ca16ce3",
+        "name": "values-zh-rHK",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-zh-rHK",
+        "description": "values-zh-rHK 模块"
+      },
+      {
+        "id": "8488626a-9c48-4a2b-b5f4-eaefc06c19d9",
+        "name": "values-zh-rTW",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\values-zh-rTW",
+        "description": "values-zh-rTW 模块"
+      },
+      {
+        "id": "58b2dac5-bcf8-47f0-bc7b-1208da5b2c2f",
+        "name": "xml",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\main\\res\\xml",
+        "description": "xml 模块"
+      },
+      {
+        "id": "6cca0dba-e616-4ff3-8183-3e7d61f5a3d0",
+        "name": "test",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\test",
+        "description": "test 模块"
+      },
+      {
+        "id": "3b1e2fd2-e255-4006-88d4-fd5961136543",
+        "name": "java",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\test\\java",
+        "description": "java 模块"
+      },
+      {
+        "id": "29559ef3-35b8-43d1-bc84-853e4596ee25",
+        "name": "org",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\test\\java\\org",
+        "description": "org 模块"
+      },
+      {
+        "id": "f55b75f2-357a-4ead-b5c3-a6e3c0baea42",
+        "name": "schabi",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\test\\java\\org\\schabi",
+        "description": "schabi 模块"
+      },
+      {
+        "id": "134b30ae-11b7-4480-a17a-48c9939dd5cf",
+        "name": "resources",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\test\\resources",
+        "description": "resources 模块"
+      },
+      {
+        "id": "3f00cb8f-917d-4da0-9a97-6bc3c6fce9a0",
+        "name": "settings",
+        "type": "class",
+        "stereotype": "module",
+        "file_path": "..\\NewPipe-dev\\app\\src\\test\\resources\\settings",
+        "description": "settings 模块"
+      }
+    ],
+    "edges": [
+      {
+        "id": "b95fcdad-1ecc-40e6-abaf-46953a9705a5",
+        "source": "2858440e-4231-4392-a908-1731a43915bb",
+        "target": "dcbf01f8-5280-4444-998b-0aae001132f8",
+        "type": "contains"
+      },
+      {
+        "id": "07496646-a41f-4f60-b51f-d0c3f098bd17",
+        "source": "dcbf01f8-5280-4444-998b-0aae001132f8",
+        "target": "c671e5be-d345-413b-a374-a695da9ae063",
+        "type": "contains"
+      },
+      {
+        "id": "e346f0bb-b254-44e1-bca7-f1a0264d89ef",
+        "source": "c671e5be-d345-413b-a374-a695da9ae063",
+        "target": "fdb569c5-70c3-43c5-b2b1-d1c10d1a1707",
+        "type": "contains"
+      },
+      {
+        "id": "85939ce2-f0cf-49f1-b4c8-dc1c054686bb",
+        "source": "fdb569c5-70c3-43c5-b2b1-d1c10d1a1707",
+        "target": "9e1bb20f-cae3-43ab-b80b-35e06e0bd6d8",
+        "type": "contains"
+      },
+      {
+        "id": "458f598b-a7b6-43b2-afa6-68d7ec9d2799",
+        "source": "2858440e-4231-4392-a908-1731a43915bb",
+        "target": "8527f55d-b77e-4348-8c7e-9d7026c39bca",
+        "type": "contains"
+      },
+      {
+        "id": "9584039e-fb62-4873-a328-c80cbad992a7",
+        "source": "8527f55d-b77e-4348-8c7e-9d7026c39bca",
+        "target": "def2e1ba-2edf-44bd-b96c-91e7f65c1e79",
+        "type": "contains"
+      },
+      {
+        "id": "04ecc1ad-e48c-4f84-96b3-a8df43bb0b08",
+        "source": "def2e1ba-2edf-44bd-b96c-91e7f65c1e79",
+        "target": "a4c8f9d3-4431-4581-a7c2-96f7d79e15f2",
+        "type": "contains"
+      },
+      {
+        "id": "7b1791f6-31e2-4674-8394-6834a22238df",
+        "source": "a4c8f9d3-4431-4581-a7c2-96f7d79e15f2",
+        "target": "e1094cb9-4bb1-48b9-851a-b50ee2057b8d",
+        "type": "contains"
+      },
+      {
+        "id": "5898f462-09ee-4075-8815-8909c2b42d5b",
+        "source": "2858440e-4231-4392-a908-1731a43915bb",
+        "target": "410531c6-2522-4a2c-91f9-28be5b8b095b",
+        "type": "contains"
+      },
+      {
+        "id": "4617bfd5-2377-4254-bfff-aeccea8b54a1",
+        "source": "410531c6-2522-4a2c-91f9-28be5b8b095b",
+        "target": "1855052e-df7d-4559-9e3b-0b57c7c9df32",
+        "type": "contains"
+      },
+      {
+        "id": "70bd12f6-beae-4870-8285-c265e3bccc46",
+        "source": "410531c6-2522-4a2c-91f9-28be5b8b095b",
+        "target": "5df0abf2-f9a8-45c6-8e7e-109f11250a08",
+        "type": "contains"
+      },
+      {
+        "id": "92f3c473-0453-48f5-b588-9d73ae0e6f34",
+        "source": "5df0abf2-f9a8-45c6-8e7e-109f11250a08",
+        "target": "58ec44b9-d53d-4bc8-85b4-15a3ddd09226",
+        "type": "contains"
+      },
+      {
+        "id": "48b8d07c-6c31-4b30-aa8f-e7638efae61b",
+        "source": "58ec44b9-d53d-4bc8-85b4-15a3ddd09226",
+        "target": "e3a87c23-01e4-4496-a6ea-d454c5e035b8",
+        "type": "contains"
+      },
+      {
+        "id": "d01d35cd-aaa8-4eef-a9a8-96ab79bbc9af",
+        "source": "5df0abf2-f9a8-45c6-8e7e-109f11250a08",
+        "target": "746c825c-d8db-40d6-aa3f-548cbdbe0be2",
+        "type": "contains"
+      },
+      {
+        "id": "5ed06926-61cf-422b-9d25-535d7265ba3b",
+        "source": "746c825c-d8db-40d6-aa3f-548cbdbe0be2",
+        "target": "ec4713dc-1593-4906-b0de-031374767163",
+        "type": "contains"
+      },
+      {
+        "id": "f7c1cc2e-d082-4bbe-8498-c751667138af",
+        "source": "5df0abf2-f9a8-45c6-8e7e-109f11250a08",
+        "target": "8c2fdfba-130d-4f00-be8c-afe41de2e51f",
+        "type": "contains"
+      },
+      {
+        "id": "285eda37-6043-4a84-9975-7ace60182e64",
+        "source": "8c2fdfba-130d-4f00-be8c-afe41de2e51f",
+        "target": "6c56d014-f117-42bd-9056-35a377b19889",
+        "type": "contains"
+      },
+      {
+        "id": "6878f354-99c5-4058-b7b5-b903cf2132ae",
+        "source": "8c2fdfba-130d-4f00-be8c-afe41de2e51f",
+        "target": "a72f998b-8ac8-4251-8c65-08c2a10e83cf",
+        "type": "contains"
+      },
+      {
+        "id": "2c60a9b5-7627-4941-ae75-f8f279d99c2a",
+        "source": "5df0abf2-f9a8-45c6-8e7e-109f11250a08",
+        "target": "1665ec96-2ba0-4dee-ba68-c9570fe3b453",
+        "type": "contains"
+      },
+      {
+        "id": "e3ad9faa-7cc9-4edc-a9c6-24dedd3dbb8e",
+        "source": "1665ec96-2ba0-4dee-ba68-c9570fe3b453",
+        "target": "ef1f54d2-8fd9-4ef1-8869-ed38ffec2435",
+        "type": "contains"
+      },
+      {
+        "id": "89c7e26d-d34a-4e23-a6a0-5367e9a684bc",
+        "source": "410531c6-2522-4a2c-91f9-28be5b8b095b",
+        "target": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "type": "contains"
+      },
+      {
+        "id": "4f04278e-6fcc-4bf7-bbef-9486973d94c7",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "86384ca0-b58b-4b38-8a58-acc83b12e971",
+        "type": "contains"
+      },
+      {
+        "id": "4eebc613-e659-4aef-9765-800c23a96484",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "99081a43-5ad5-45a6-a97c-c844a35a1684",
+        "type": "contains"
+      },
+      {
+        "id": "259fa259-b3ec-4f00-948f-cd4ecc9ac817",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "efdfc8a7-c223-451d-bcce-087039eaf585",
+        "type": "contains"
+      },
+      {
+        "id": "d557a944-7663-4343-8dbe-8ef469f5be35",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "b7625b51-6c83-4feb-a4bf-ab6a9cc6b4bb",
+        "type": "contains"
+      },
+      {
+        "id": "a5d0655a-77af-484e-8127-24e272ca2713",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "53a26f3b-c2c0-4d86-bec6-95d38a213489",
+        "type": "contains"
+      },
+      {
+        "id": "5e662ab0-2bf0-44a6-9adb-e0fdeb18af58",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "0a278728-1d1b-4d17-a0f5-bfd2185aea54",
+        "type": "contains"
+      },
+      {
+        "id": "7291d838-6fcd-442d-b049-b9a5bf21bf1b",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "c61d5ad9-8994-4e7d-895e-df1f218c95b3",
+        "type": "contains"
+      },
+      {
+        "id": "aa4f7e4f-148f-449c-8a7c-52a9d01d6bd9",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "b4136e9d-c5dc-40df-aad7-9d0ae85f70f4",
+        "type": "contains"
+      },
+      {
+        "id": "f9b23fbe-1674-4d2c-bca0-2e0f83403c75",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "d7aff384-8a48-4176-9642-6a72af3113bf",
+        "type": "contains"
+      },
+      {
+        "id": "730e0ed3-7399-40d4-996b-b4d0c8cb345d",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "e1002003-f9f4-4bf0-a9cf-5f293756f333",
+        "type": "contains"
+      },
+      {
+        "id": "f2d3fcfb-0425-4050-bfe3-59e958b3ad51",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "c03fd1a4-fc08-4f4e-b630-0a5c36386422",
+        "type": "contains"
+      },
+      {
+        "id": "028012f6-9ffd-4116-b0ba-9ef6a1058386",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "bc1ead72-b609-4fe9-a61c-667d261dbc62",
+        "type": "contains"
+      },
+      {
+        "id": "a97ea78f-7999-4ffa-a724-33d2d42436fe",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "7dede23c-accc-4f3b-a9cb-ff0dbb173019",
+        "type": "contains"
+      },
+      {
+        "id": "26d6144b-5aca-4731-ac60-36db6798204d",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "0d8626e4-0000-4bd5-ab05-0c68f1a25134",
+        "type": "contains"
+      },
+      {
+        "id": "3042188d-ec19-40d4-a852-0e01cc79c5ff",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "8fcc390b-991a-4d4c-8de2-b95a50689ac0",
+        "type": "contains"
+      },
+      {
+        "id": "d2050426-cfe5-4180-8d32-00cf702c45e6",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "a1bebfe5-ca66-4804-a477-d930ef024bf2",
+        "type": "contains"
+      },
+      {
+        "id": "883b5164-2371-4adc-8795-2ec6f5342f8d",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "c542f311-6e78-46c5-aacd-a857954f6b1f",
+        "type": "contains"
+      },
+      {
+        "id": "2dcd9615-52d9-413e-ad9b-d324443d01fc",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "e71a00a4-15e3-4912-9b23-d8c0ee43454b",
+        "type": "contains"
+      },
+      {
+        "id": "764cee49-e1e0-42f0-a456-b479d4de474f",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "fa5ae5d7-54e3-4a5b-bfab-0576859dc1e0",
+        "type": "contains"
+      },
+      {
+        "id": "4660fbf8-ffe9-4a9c-a30b-b135b447ec05",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "4c3da293-b0a8-4ef3-b411-b4272ada8cd3",
+        "type": "contains"
+      },
+      {
+        "id": "0d43cb32-9ba3-4405-bf4f-6803cc2d1366",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "3a68e0d9-b058-4434-ae10-5ea7ef0e0018",
+        "type": "contains"
+      },
+      {
+        "id": "b26ae172-b5db-4ce6-a84a-7042ef2797f7",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "0c7dacb6-3850-486f-a593-451567a364e8",
+        "type": "contains"
+      },
+      {
+        "id": "0a99f64e-7089-4067-8824-df4611e880ff",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "a8afa4b9-4df5-4d76-9255-b49e7f75e62d",
+        "type": "contains"
+      },
+      {
+        "id": "ca22170c-c417-4e2f-8e42-fcf146ea932b",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "8a877409-7219-415b-8d9e-0d48678e273e",
+        "type": "contains"
+      },
+      {
+        "id": "7d7f6ed6-e007-4b44-a65c-e779ca52a11b",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "f061449e-c7a8-44a4-a7ef-ced139650bfe",
+        "type": "contains"
+      },
+      {
+        "id": "04655ad1-21d3-44f9-9b17-8c8148f37b84",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "51dd1668-a47c-4d9b-acb1-98c6980f82e3",
+        "type": "contains"
+      },
+      {
+        "id": "ead1d70b-df5e-40d9-847a-ca9eee0e7f7e",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "ceafd441-f872-4adb-a5d8-dba8fe9b1833",
+        "type": "contains"
+      },
+      {
+        "id": "78a5436f-ba40-45ad-8529-e30993fc6d07",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "81169d6f-33ab-476a-bb6e-87a00c640086",
+        "type": "contains"
+      },
+      {
+        "id": "baed4f10-502a-49c7-9d1a-15a43f361f84",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "7f7761fe-a32f-4944-8b95-bd612d490718",
+        "type": "contains"
+      },
+      {
+        "id": "2fc5cf5b-7a33-4b8b-b61c-fe6d371430e2",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "1b02ac63-4ec3-48c1-a3b3-d94063e1c137",
+        "type": "contains"
+      },
+      {
+        "id": "514df62c-48d4-4208-9b24-c5d5b08f1eb4",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "04b4e32b-3c37-47c5-abe8-25845ceb5f45",
+        "type": "contains"
+      },
+      {
+        "id": "760171f1-143b-4bbd-8771-ea2346dd20c8",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "08c5ebf3-6ffc-4c02-b2be-d4c4f90f0334",
+        "type": "contains"
+      },
+      {
+        "id": "89e1def5-1b85-4aef-8eab-303a6c3ee621",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "78cc2534-27e4-4066-aa72-a7aace39e5df",
+        "type": "contains"
+      },
+      {
+        "id": "944548ca-9eb3-40e8-ad2f-8e691e491f78",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "d024cd40-c90a-4da4-a6d2-f12c179cf578",
+        "type": "contains"
+      },
+      {
+        "id": "0c6611b1-74b0-4d92-9662-e765ef4628a6",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "091e16fa-8ca0-43e9-bf11-5d307c22ef70",
+        "type": "contains"
+      },
+      {
+        "id": "d03cc13e-62b4-49f1-b075-7e4768b0acc5",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "9bc0aa00-f2a2-40aa-b3e7-32a2ac5779e3",
+        "type": "contains"
+      },
+      {
+        "id": "31482c75-9b67-43c3-91ca-c37adc367173",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "de721a2a-3624-45a5-acda-5b43b3ae23eb",
+        "type": "contains"
+      },
+      {
+        "id": "aa0ba6b0-16ad-411d-aae6-cefef3231e1e",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "5a82383a-c710-4f11-a506-44b5ce5f427a",
+        "type": "contains"
+      },
+      {
+        "id": "c2f2f153-bc84-4c19-b9d6-9f70c06d82cf",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "4bab4b17-3295-4203-9ada-a7ab21518a43",
+        "type": "contains"
+      },
+      {
+        "id": "764ecddc-58cf-4dbd-bdaa-6054d4bf2f73",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "5ea337f4-e351-4419-a131-5099f64ea92c",
+        "type": "contains"
+      },
+      {
+        "id": "b780747d-6b6f-4d08-aefb-6c65e0b2fb98",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "65ba959b-c33a-437c-9915-30874b0e8436",
+        "type": "contains"
+      },
+      {
+        "id": "1afd8b21-48f3-4efc-981b-95351a99d96c",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "5151a0c4-3d7f-4757-89c4-8a1b6a059563",
+        "type": "contains"
+      },
+      {
+        "id": "47420c67-e2bb-40bb-b303-9d4dfd397ead",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "39ef9a48-36e1-4eb2-906e-56f8d3cd5963",
+        "type": "contains"
+      },
+      {
+        "id": "b3361c0d-903a-4f39-9b0f-a004a59f7bdc",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "0d89dea3-5981-4a60-a971-c7aee185ed1e",
+        "type": "contains"
+      },
+      {
+        "id": "d3dc4dea-074f-4b53-8d94-df8bdc0c964e",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "d10a62d4-c2f1-4fa0-927d-d14fba5dfca9",
+        "type": "contains"
+      },
+      {
+        "id": "8b5db26a-d2d8-4db9-8625-03eb0a3daf21",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "3d295351-02f1-4117-beca-4927f0b564ad",
+        "type": "contains"
+      },
+      {
+        "id": "b4dce62e-780b-4269-b4b2-528255429452",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "3a77c9ab-76d8-46ac-a29f-a34b9c28d9f7",
+        "type": "contains"
+      },
+      {
+        "id": "1d32d1dd-7b6a-4f49-b6fa-0374ddc45bfb",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "294ffdf2-1be9-43c9-b60f-3e01d893a027",
+        "type": "contains"
+      },
+      {
+        "id": "1941993c-f12a-49cb-95d1-cfa94450fa61",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "709c0deb-e2f4-4cb5-a3d2-a5ef52cbdc56",
+        "type": "contains"
+      },
+      {
+        "id": "e7adadc4-a708-4865-9b0d-ba5eeb552a3d",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "4848d2eb-d0ec-4c89-a84c-dee78cc2add2",
+        "type": "contains"
+      },
+      {
+        "id": "c301f32f-5647-41ba-961f-ad52c8915c90",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "f7af0ec5-2b3d-4126-82c6-1830bdd1f67d",
+        "type": "contains"
+      },
+      {
+        "id": "87d5db64-6e67-4c35-83b2-e1e141ab423d",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "f11f9b69-d663-42c2-afc4-fba504eccf1e",
+        "type": "contains"
+      },
+      {
+        "id": "17b88f7e-749c-4a29-a2e4-ecbcf18bbb54",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "10488876-75ae-4f0b-8c87-d018ea1d75c1",
+        "type": "contains"
+      },
+      {
+        "id": "f48a65a9-a81b-49df-8414-dd07c760f24d",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "2f420080-66ee-44d9-aa84-9203d01801c8",
+        "type": "contains"
+      },
+      {
+        "id": "7c2bb7f4-c54d-41c2-b32e-1f8fa253d7b5",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "cd0430fe-32d9-45a8-a564-ca0f11635eee",
+        "type": "contains"
+      },
+      {
+        "id": "094aa286-2648-42ae-9719-1fa7145091be",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "aed7e23f-9c41-41a7-98d1-40c3dcdfc663",
+        "type": "contains"
+      },
+      {
+        "id": "eb4cf6b1-4a47-4c64-8f0c-090972f0af0d",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "d693435d-bf00-454c-a5c5-33dd99ddb2c1",
+        "type": "contains"
+      },
+      {
+        "id": "f748cee5-a341-46c2-be87-756b37c3558b",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "12a09a8d-9981-4d97-8438-74499b65d005",
+        "type": "contains"
+      },
+      {
+        "id": "6b3d7477-b3a8-4058-b1d8-80c909674a39",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "298bfcd0-a1a2-41ab-b7b2-ec8344116651",
+        "type": "contains"
+      },
+      {
+        "id": "7f9bf971-8f9a-4508-af7f-b13ca93bf667",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "529857e2-7b60-4f7b-ae3f-9de78c66d490",
+        "type": "contains"
+      },
+      {
+        "id": "6f2cfe66-8973-4f34-b0cf-4b1a7ac43bbc",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "cc4e622c-2b19-4db1-ba0a-369f06e59d2e",
+        "type": "contains"
+      },
+      {
+        "id": "b6eb0f67-11ee-4fae-88b1-eaa5153c3bac",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "48a91fb1-4df4-4dba-b2dc-28008f05a53e",
+        "type": "contains"
+      },
+      {
+        "id": "102b8c99-da17-41e5-b324-bf07e20b81a1",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "95b02b0c-71e2-42ca-b9fe-510bd61da236",
+        "type": "contains"
+      },
+      {
+        "id": "5d19d361-1eae-4d94-ab17-3aee2900bbbb",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "5afb0bc0-f3e6-40e7-ab7f-4c8d7b8e83ab",
+        "type": "contains"
+      },
+      {
+        "id": "89c054fa-412f-4dd1-ad75-db2c7d7bab96",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "96c1fe7a-d92e-4c80-96df-f8731c9542cb",
+        "type": "contains"
+      },
+      {
+        "id": "d205dee9-63ba-4463-88bd-a84a8a61e786",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "17dbc3da-cee9-481e-a867-1149e46c2945",
+        "type": "contains"
+      },
+      {
+        "id": "3af52121-b9a4-400b-ae7c-95ce2f185715",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "058eb9ef-9992-42bf-8316-87b595193860",
+        "type": "contains"
+      },
+      {
+        "id": "b585e915-ed0e-4efe-a9e5-a74cff31eac7",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "477df622-99c6-48c7-9173-3ece18072f78",
+        "type": "contains"
+      },
+      {
+        "id": "66da881d-f5c7-43ec-8fd9-424b6dddae18",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "6178dd6f-d087-4b53-96a6-4fed23ec7343",
+        "type": "contains"
+      },
+      {
+        "id": "e4786720-9690-4796-9e5a-60e2cc30587e",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "29097e58-26f1-46ae-b214-0d5f8ccbe1a4",
+        "type": "contains"
+      },
+      {
+        "id": "011edfe4-65a8-4528-b561-8f8bab860f94",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "b76dd738-2f34-43c7-ad54-dd7de8ec285e",
+        "type": "contains"
+      },
+      {
+        "id": "2f1b10ed-3bc4-46b2-83f5-83ccc8947bb4",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "0108bade-d0a6-4291-a4ec-ba6e8ae4974c",
+        "type": "contains"
+      },
+      {
+        "id": "02f1e2f1-0ec1-4059-854a-ba1d00ba1db1",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "6ab00f12-881c-46f3-9b5d-a50b11ad90df",
+        "type": "contains"
+      },
+      {
+        "id": "ae59eba7-ab31-4579-acbd-88486d5f5f7a",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "464170da-5f05-45cd-b08f-2495d76b42b7",
+        "type": "contains"
+      },
+      {
+        "id": "07a88036-3b84-4508-a5df-8719b7023f90",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "f294f68a-15b2-4975-91df-5d225ca3d004",
+        "type": "contains"
+      },
+      {
+        "id": "8245ee1f-aa87-49d5-bcbb-671573da0e80",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "6892b312-c13c-4276-9611-20b05d360041",
+        "type": "contains"
+      },
+      {
+        "id": "f4d4a5e7-7d23-4c2f-9ae7-de4b501489f1",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "1b8ca0d1-8ef0-456a-b50a-1bbbbefdfb1a",
+        "type": "contains"
+      },
+      {
+        "id": "a7f48590-51b7-4cd9-ac9b-a0a83aeaafb3",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "64266a29-5e86-4371-81de-583864ef1ffa",
+        "type": "contains"
+      },
+      {
+        "id": "3a068e35-3e5f-4e15-a9bf-69e6f6d31f65",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "15d63eb1-757a-4074-b35b-bc2bba6229ea",
+        "type": "contains"
+      },
+      {
+        "id": "54557d7f-416f-4cba-bd2a-0748f9f0c259",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "20e9176e-566f-4ce8-96d7-f495e9933e2c",
+        "type": "contains"
+      },
+      {
+        "id": "75d5f745-6662-491c-a68f-6ce3d06d9d8d",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "a7c0c699-b280-4ccf-8725-c92b7025a1ac",
+        "type": "contains"
+      },
+      {
+        "id": "a501a8d8-834a-4094-9285-7031ca09f9a6",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "8797648b-3cd1-4db8-9d0a-267c993fa1cf",
+        "type": "contains"
+      },
+      {
+        "id": "588a0f2e-12bd-4794-855c-2ed3037f566e",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "0b1a1945-bcc0-41eb-99a2-2edc58e2edf2",
+        "type": "contains"
+      },
+      {
+        "id": "0a58451a-5c6d-49ae-b4bd-abf510b9bd29",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "da4540b6-0bfc-4339-8d82-8da64954e2fd",
+        "type": "contains"
+      },
+      {
+        "id": "99db48ed-3622-4fd2-9683-b8f3c35d7bc3",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "eabe72a2-c988-4669-8161-5ee3f17b5e18",
+        "type": "contains"
+      },
+      {
+        "id": "446e1f98-dec1-4e8c-b0a6-846c25194b5c",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "0bfbc303-ba61-4032-82c6-e0d24692065f",
+        "type": "contains"
+      },
+      {
+        "id": "861fb4f8-b444-43c0-87b1-55e6b2ead61b",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "b0b46abc-7a2b-4334-808e-771b61958561",
+        "type": "contains"
+      },
+      {
+        "id": "6966c38d-af4b-4a38-910a-f477590d3d1f",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "f4e1b63e-75d9-439f-9674-6ef15f21614d",
+        "type": "contains"
+      },
+      {
+        "id": "f07be1b8-2012-42ba-90d6-3b4727b48ec8",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "f213e75e-bcf9-40d6-9dc2-4e3028a1ee91",
+        "type": "contains"
+      },
+      {
+        "id": "7d8d9b32-2591-4335-b6c3-ffbf5b798f8a",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "0970f907-963d-42e3-8b93-84d44285546f",
+        "type": "contains"
+      },
+      {
+        "id": "f92e5be2-ff8a-4ebd-98c1-e7388cd036ad",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "5c7200cd-1da8-4037-89d5-bccb118e3edb",
+        "type": "contains"
+      },
+      {
+        "id": "3d4c3158-cdeb-408e-968e-9ae3ef4265cf",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "0ca41278-51fb-4583-872e-416d93a34001",
+        "type": "contains"
+      },
+      {
+        "id": "16944397-7c7b-407c-950d-b47a7fb5aa64",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "4b2aef56-ce7e-4ed6-b6dc-dad6bc38f5b1",
+        "type": "contains"
+      },
+      {
+        "id": "2474fdfc-7ba1-4f6b-9300-9625911aed8a",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "f9900fac-4b41-40b2-83be-256136cbc07f",
+        "type": "contains"
+      },
+      {
+        "id": "5f898a81-21bd-4ff1-888a-122ee4117e50",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "7d366b02-b6fa-41ca-9ee2-d9fe75289486",
+        "type": "contains"
+      },
+      {
+        "id": "ad82b3c7-3964-4c1b-98cb-c161f0242422",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "e56b31e9-370a-4cd9-a2d8-8ab1155c07c4",
+        "type": "contains"
+      },
+      {
+        "id": "e9f0d2de-cbc9-4ee2-ac4f-3341a352883a",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "462445c3-a043-49ab-8f6a-d2fa95c44eaa",
+        "type": "contains"
+      },
+      {
+        "id": "b1fdf3d5-d193-4475-9cd1-42441c7a91a5",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "4ef33388-81b5-449f-adda-ce09125f47ef",
+        "type": "contains"
+      },
+      {
+        "id": "e6eff8a2-fb76-4edd-b5bd-8c70c62c517c",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "303d5224-50ef-4fd3-bbc8-1a7c08f34b82",
+        "type": "contains"
+      },
+      {
+        "id": "8ff44389-bd38-45f2-88a6-bf2cafdcdd15",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "bf60e655-e2af-476e-b553-1268fbfe95f2",
+        "type": "contains"
+      },
+      {
+        "id": "01ce100c-d209-4ed5-b384-1ef8e4b31bcf",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "a292f092-fc30-43e5-b058-e53897924a42",
+        "type": "contains"
+      },
+      {
+        "id": "d59a9a1e-5e2d-4d85-85ed-4670ea406d4c",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "d845ca47-508a-44dd-9b1a-144237b0533b",
+        "type": "contains"
+      },
+      {
+        "id": "0af3b42c-9cf3-4764-b209-8e9b734067bf",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "80628fde-587e-473d-b2ce-40aa3d8ffd7a",
+        "type": "contains"
+      },
+      {
+        "id": "e59ab6f3-ade7-40d9-be6b-9f621f16c0dd",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "58f3ec3c-d0b4-474d-a7bd-eabd6fb5fd88",
+        "type": "contains"
+      },
+      {
+        "id": "c2c9009c-4168-422d-98cf-9e86f14dde9e",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "d10851ad-dfcf-4d2c-9752-5111c883ec3f",
+        "type": "contains"
+      },
+      {
+        "id": "88595ab1-ce9f-4cc0-89f7-7dd00f15c315",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "7ed98096-e183-4c24-8e47-2d92e11a796e",
+        "type": "contains"
+      },
+      {
+        "id": "264ddbe7-1a09-4707-8528-38970a44ae59",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "e57264e3-b9bc-43b6-940e-21624b7a27b1",
+        "type": "contains"
+      },
+      {
+        "id": "6fb53a93-15f7-49ba-bcdc-5ec227c1bc43",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "6c221e58-23e5-4432-a596-8a2c2b009696",
+        "type": "contains"
+      },
+      {
+        "id": "96c75fc6-8f91-4526-b5e5-f2acb0463144",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "2b2050c7-6295-449f-915e-95e3da010f29",
+        "type": "contains"
+      },
+      {
+        "id": "12666eba-e93b-4502-b8cc-b941e66618a8",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "316649b4-322e-4de1-be46-acbca68cfa97",
+        "type": "contains"
+      },
+      {
+        "id": "4f63e65d-51ca-46c5-88cf-d4bca82988d7",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "471607ef-16c4-40a2-a347-45e2de1776c5",
+        "type": "contains"
+      },
+      {
+        "id": "5f45d4e0-fb8c-4cc8-afa0-24b1a46f9671",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "66b228d7-6808-4c1c-8857-3e06859d1583",
+        "type": "contains"
+      },
+      {
+        "id": "1f50aeba-9e9d-4db9-994d-5814ef2166d8",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "de8bc9d9-eb3b-4c38-951b-2236b30cd76d",
+        "type": "contains"
+      },
+      {
+        "id": "8fc4e209-e099-4ac6-9ee6-56f3dc7d2af8",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "184c003e-3737-4899-aaa0-6e174d4d7100",
+        "type": "contains"
+      },
+      {
+        "id": "253b588d-5206-40a6-9cdf-c74b604fd4f7",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "a3f88156-93e9-4734-a781-47052b20cd17",
+        "type": "contains"
+      },
+      {
+        "id": "99ed8942-bc4a-4dec-9fcc-ca9acfca9928",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "7205287c-e6f4-4bfe-a6b2-c971a6dbe7ae",
+        "type": "contains"
+      },
+      {
+        "id": "0f56a25c-d4c5-4e6f-986b-51993db3c888",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "48b42122-76c4-4bd2-91e2-2b7974dbce7a",
+        "type": "contains"
+      },
+      {
+        "id": "dcd8819d-73a1-4940-beaa-f3f346f4e95c",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "e703b562-dc02-493e-8297-6c18be1186c3",
+        "type": "contains"
+      },
+      {
+        "id": "ba898bd1-ce59-435a-9e23-b41a38420138",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "8caa0944-b9f3-4cc5-9c82-a7a428804f20",
+        "type": "contains"
+      },
+      {
+        "id": "1329ed36-e28f-4c5c-91e8-8207230bfea0",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "16fcb1f1-24cd-471c-a008-f022e522bb0e",
+        "type": "contains"
+      },
+      {
+        "id": "5dc43ec2-a613-4353-8241-6f76003b5efe",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "7263c6e9-89ab-43e8-8e68-e8df2c69ed8d",
+        "type": "contains"
+      },
+      {
+        "id": "4ea60344-30a8-4207-95b3-8c035caac318",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "fb9078b8-7f33-4f1f-a260-caf97ed2083d",
+        "type": "contains"
+      },
+      {
+        "id": "59f7d6b4-dd50-4f9b-ba65-dd3b2712b46d",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "9b21115e-189b-46c6-9599-f09efd8d06bf",
+        "type": "contains"
+      },
+      {
+        "id": "e9443ab1-1eda-462b-8ae4-5425431e504a",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "782c5670-b98c-42aa-bac1-0f21b8e567f9",
+        "type": "contains"
+      },
+      {
+        "id": "06071d19-951f-4c70-80c7-47c890086972",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "ddf8120c-e651-4ae3-af53-5125e1e4d303",
+        "type": "contains"
+      },
+      {
+        "id": "581a4e03-2641-451c-86fa-d60e8ab6d219",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "3dce514b-cbf6-4602-82a4-df1b209d8620",
+        "type": "contains"
+      },
+      {
+        "id": "893a6afc-58a0-4657-8a52-2b89aaa04ed1",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "9eba2822-6261-41fe-aaf1-49eb4746b5e2",
+        "type": "contains"
+      },
+      {
+        "id": "1f29ae87-29b7-47e4-992f-fa5c69819cf5",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "a5e75b8c-5aed-4e06-a5c9-31bafa64ad55",
+        "type": "contains"
+      },
+      {
+        "id": "a8e9cd94-ba21-4391-9896-ccf58b4057ed",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "d40d70b9-d838-4d09-b9b4-ecdb13d96a6f",
+        "type": "contains"
+      },
+      {
+        "id": "b0ccbf7c-6ace-4d2f-b688-89f254504c3d",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "11e9888d-b28c-4a74-863c-b2bfe5fdcc58",
+        "type": "contains"
+      },
+      {
+        "id": "03985ce2-ca1b-4b64-b714-e83aae31e96d",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "2cbc6e38-99d7-4527-9081-7694156cbaa8",
+        "type": "contains"
+      },
+      {
+        "id": "25415627-8d43-454c-985c-35132ab16a15",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "067beabd-7606-4fc8-91dc-80781224a85c",
+        "type": "contains"
+      },
+      {
+        "id": "e7942160-eea5-4c56-8f30-af68ae0cbb05",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "a71f39d9-ddd0-4c05-953b-6344d1ada192",
+        "type": "contains"
+      },
+      {
+        "id": "71831083-cfd8-4921-ae13-2a2d2f739ac1",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "0f924c02-4f71-49f0-ab8e-1480ca702ead",
+        "type": "contains"
+      },
+      {
+        "id": "18ab3e54-010f-46ec-9148-efc97529da7b",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "059a51e2-7b05-49c2-a023-8b2e980ca2cb",
+        "type": "contains"
+      },
+      {
+        "id": "b0da4f78-4b84-401b-80ee-836f70d11a04",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "7f06885f-d28f-4095-9ce6-b91f4daa6087",
+        "type": "contains"
+      },
+      {
+        "id": "1bf481f9-9b29-4d74-8c6b-b2a7c0d85fbc",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "f7bdbd04-cc71-42c0-9cdd-f565dae17508",
+        "type": "contains"
+      },
+      {
+        "id": "631f2d58-b098-4aed-9310-35803d0ebd2d",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "eaadbd4d-b507-43c0-9362-dd21cf914712",
+        "type": "contains"
+      },
+      {
+        "id": "0e06becb-b4fa-47e0-8a35-24d832dbeffe",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "1f9bd3dc-3708-4071-b703-257b78be1dde",
+        "type": "contains"
+      },
+      {
+        "id": "f71787c3-78cf-499f-b834-8c5fec962edd",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "7ecbb439-85df-407d-bf1e-513a8362d062",
+        "type": "contains"
+      },
+      {
+        "id": "9e48a870-f14f-4bc5-8b40-86a8ddbb93a1",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "31a9d829-a10e-4c66-abe6-f17580d1ffc9",
+        "type": "contains"
+      },
+      {
+        "id": "b29fe1b1-d8d5-4762-82ee-ed9596631dcc",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "726a88ab-f2b1-406c-babc-d6308e451663",
+        "type": "contains"
+      },
+      {
+        "id": "785af85c-d4f3-4cec-817d-f184a13263d7",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "f340ce64-3c40-440d-a9c0-283180c6381b",
+        "type": "contains"
+      },
+      {
+        "id": "7bee895f-1e32-4d57-a3d1-b215bd304f85",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "e67f3e5f-c612-4524-839f-70a73af90e58",
+        "type": "contains"
+      },
+      {
+        "id": "2d6b7520-41c8-41e4-9c79-15f627bc8b1b",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "c2bb2022-7615-422b-959f-8b54b4df8276",
+        "type": "contains"
+      },
+      {
+        "id": "623e442b-e755-4aee-8755-0d03a3f74c68",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "8afcc6c7-44c5-4f45-83d9-2b0c7b4be6f3",
+        "type": "contains"
+      },
+      {
+        "id": "45f7910b-af2c-4d3d-8315-34f2f8ddec13",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "9437a001-871d-401f-948c-9e20cede3659",
+        "type": "contains"
+      },
+      {
+        "id": "c7040856-84a0-4cd4-bf70-d6cb665389f9",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "8cb254ce-cb90-4cad-bd94-a8a5b03e5fe8",
+        "type": "contains"
+      },
+      {
+        "id": "db84d13b-321d-4762-bba4-74b0325efb6f",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "94d107a2-8de1-4ca4-bc6b-46e8500c57a8",
+        "type": "contains"
+      },
+      {
+        "id": "fc960370-0e1d-44ac-b58e-6f163d6e1c23",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "63571326-8bbf-4cb2-b492-cc9a8ca16ce3",
+        "type": "contains"
+      },
+      {
+        "id": "f1836823-1d9a-4cfd-be25-324752b53c69",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "8488626a-9c48-4a2b-b5f4-eaefc06c19d9",
+        "type": "contains"
+      },
+      {
+        "id": "9525019a-66a9-4ce0-a12c-199eb5d5c1bb",
+        "source": "b5202cb4-ab19-442c-b46c-7a9211bc614f",
+        "target": "58b2dac5-bcf8-47f0-bc7b-1208da5b2c2f",
+        "type": "contains"
+      },
+      {
+        "id": "d94d4ade-4131-418a-addc-481cae9fe948",
+        "source": "2858440e-4231-4392-a908-1731a43915bb",
+        "target": "6cca0dba-e616-4ff3-8183-3e7d61f5a3d0",
+        "type": "contains"
+      },
+      {
+        "id": "a056e97c-39b3-4541-b473-0b899773ed42",
+        "source": "6cca0dba-e616-4ff3-8183-3e7d61f5a3d0",
+        "target": "3b1e2fd2-e255-4006-88d4-fd5961136543",
+        "type": "contains"
+      },
+      {
+        "id": "382cccbb-9dea-4df8-be39-abac081227e6",
+        "source": "3b1e2fd2-e255-4006-88d4-fd5961136543",
+        "target": "29559ef3-35b8-43d1-bc84-853e4596ee25",
+        "type": "contains"
+      },
+      {
+        "id": "77d0cc91-fc6a-4ade-9b6e-1d620b4e8da6",
+        "source": "29559ef3-35b8-43d1-bc84-853e4596ee25",
+        "target": "f55b75f2-357a-4ead-b5c3-a6e3c0baea42",
+        "type": "contains"
+      },
+      {
+        "id": "af2507e4-9ccf-4b4b-9a25-e6f943b11da0",
+        "source": "6cca0dba-e616-4ff3-8183-3e7d61f5a3d0",
+        "target": "134b30ae-11b7-4480-a17a-48c9939dd5cf",
+        "type": "contains"
+      },
+      {
+        "id": "d6535a5f-187e-41e0-90f5-891934ec4488",
+        "source": "134b30ae-11b7-4480-a17a-48c9939dd5cf",
+        "target": "3f00cb8f-917d-4da0-9a97-6bc3c6fce9a0",
+        "type": "contains"
+      }
+    ]
+  },
+  "behavior_metadata": {
+    "launch_buttons": [
+      {
+        "id": "6debff99-792c-4369-925e-635a619c4dda",
+        "name": "NewPipe 应用启动",
+        "type": "macro",
+        "level": "system",
+        "description": "启动整个 NewPipe 应用",
+        "icon": "🚀",
+        "parent_button_id": null,
+        "child_button_ids": [
+          "a7df2264-833a-4c67-9f98-58f67a965db5",
+          "7d73b496-f1ba-4804-8648-078164fb2cea",
+          "f76696f5-ded6-42cb-83ae-9f3a732397c8",
+          "7125f15e-f8e0-4ca6-9fef-2ba0642f6182",
+          "0c17db37-336f-4f3e-a316-413bdf97f402",
+          "189e556d-109e-4835-878e-9763f9c387ca",
+          "6fb3aebf-54f3-422e-a7ba-e88b5cfa324c",
+          "a8409669-0643-4858-8981-59bbec3038b1"
+        ],
+        "metadata": {
+          "ai_confidence": 0.9,
+          "estimated_duration": 5000
+        }
+      },
+      {
+        "id": "a7df2264-833a-4c67-9f98-58f67a965db5",
+        "name": "androidTest 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "启动 androidTest 模块功能",
+        "icon": "📦",
+        "parent_button_id": "6debff99-792c-4369-925e-635a619c4dda",
+        "child_button_ids": [],
+        "metadata": {
+          "ai_confidence": 0.8
+        }
+      },
+      {
+        "id": "7d73b496-f1ba-4804-8648-078164fb2cea",
+        "name": "java 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "启动 java 模块功能",
+        "icon": "📦",
+        "parent_button_id": "6debff99-792c-4369-925e-635a619c4dda",
+        "child_button_ids": [],
+        "metadata": {
+          "ai_confidence": 0.8
+        }
+      },
+      {
+        "id": "f76696f5-ded6-42cb-83ae-9f3a732397c8",
+        "name": "org 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "启动 org 模块功能",
+        "icon": "📦",
+        "parent_button_id": "6debff99-792c-4369-925e-635a619c4dda",
+        "child_button_ids": [],
+        "metadata": {
+          "ai_confidence": 0.8
+        }
+      },
+      {
+        "id": "7125f15e-f8e0-4ca6-9fef-2ba0642f6182",
+        "name": "schabi 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "启动 schabi 模块功能",
+        "icon": "📦",
+        "parent_button_id": "6debff99-792c-4369-925e-635a619c4dda",
+        "child_button_ids": [],
+        "metadata": {
+          "ai_confidence": 0.8
+        }
+      },
+      {
+        "id": "0c17db37-336f-4f3e-a316-413bdf97f402",
+        "name": "debug 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "启动 debug 模块功能",
+        "icon": "📦",
+        "parent_button_id": "6debff99-792c-4369-925e-635a619c4dda",
+        "child_button_ids": [],
+        "metadata": {
+          "ai_confidence": 0.8
+        }
+      },
+      {
+        "id": "189e556d-109e-4835-878e-9763f9c387ca",
+        "name": "java 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "启动 java 模块功能",
+        "icon": "📦",
+        "parent_button_id": "6debff99-792c-4369-925e-635a619c4dda",
+        "child_button_ids": [],
+        "metadata": {
+          "ai_confidence": 0.8
+        }
+      },
+      {
+        "id": "6fb3aebf-54f3-422e-a7ba-e88b5cfa324c",
+        "name": "org 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "启动 org 模块功能",
+        "icon": "📦",
+        "parent_button_id": "6debff99-792c-4369-925e-635a619c4dda",
+        "child_button_ids": [],
+        "metadata": {
+          "ai_confidence": 0.8
+        }
+      },
+      {
+        "id": "a8409669-0643-4858-8981-59bbec3038b1",
+        "name": "schabi 模块",
+        "type": "macro",
+        "level": "module",
+        "description": "启动 schabi 模块功能",
+        "icon": "📦",
+        "parent_button_id": "6debff99-792c-4369-925e-635a619c4dda",
+        "child_button_ids": [],
+        "metadata": {
+          "ai_confidence": 0.8
+        }
+      }
+    ]
+  },
+  "execution_trace": {
+    "traceable_units": [
+      {
+        "id": "d7da674d-2807-4c09-aeb4-0d662b904fa3",
+        "name": "NewPipe 启动流程",
+        "description": "应用启动的主要流程",
+        "entry_point": "main()",
+        "traces": [
+          {
+            "format": "flowchart",
+            "data": {
+              "steps": [
+                {
+                  "id": "261b7acc-4b96-4718-af0b-4c2af04b8339",
+                  "label": "应用启动",
+                  "type": "start",
+                  "lineNumber": 1
+                },
+                {
+                  "id": "89bdb175-a5ec-442e-8f1b-e91f4206e7f8",
+                  "label": "初始化配置",
+                  "type": "process",
+                  "lineNumber": 10
+                },
+                {
+                  "id": "4dd6d9f0-0c65-4319-88b2-666bc6339d03",
+                  "label": "加载资源",
+                  "type": "process",
+                  "lineNumber": 20
+                },
+                {
+                  "id": "a6f2892b-c403-4836-aac4-be56225add6e",
+                  "label": "启动完成",
+                  "type": "end",
+                  "lineNumber": 30
+                }
+              ],
+              "connections": [
+                {
+                  "id": "bceac09d-0381-4a79-80cf-8abbd1191fe0",
+                  "source": "261b7acc-4b96-4718-af0b-4c2af04b8339",
+                  "target": "89bdb175-a5ec-442e-8f1b-e91f4206e7f8",
+                  "type": "control_flow"
+                },
+                {
+                  "id": "c105d2b4-fd6e-484b-8239-605d623eaf24",
+                  "source": "89bdb175-a5ec-442e-8f1b-e91f4206e7f8",
+                  "target": "4dd6d9f0-0c65-4319-88b2-666bc6339d03",
+                  "type": "control_flow"
+                },
+                {
+                  "id": "28d61e1b-2ddd-476b-a278-b85cdb99daaf",
+                  "source": "4dd6d9f0-0c65-4319-88b2-666bc6339d03",
+                  "target": "a6f2892b-c403-4836-aac4-be56225add6e",
+                  "type": "control_flow"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
