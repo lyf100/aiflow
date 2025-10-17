@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ExecutionTrace } from '../../types/protocol';
+import { ExecutionTrace, FlowchartStep } from '../../types/protocol';
 import { ExecutionAnimation } from '../ExecutionAnimation/ExecutionAnimation';
 import { PlaybackControls } from '../PlaybackControls/PlaybackControls';
 import './MultiTraceCoordinator.css';
@@ -18,8 +18,13 @@ export function MultiTraceCoordinator({ traces, isPlaying, onGlobalStepChange }:
   const [currentStep, setCurrentStep] = useState(0);
   const [totalSteps, setTotalSteps] = useState(0);
 
-  // 用于向ExecutionAnimation传递控制命令的ref
-  const controlCommandRef = useRef<{ command: string; value?: any } | null>(null);
+  // 🆕 为每个trace创建独立的控制ref
+  const controlCommandRefs = useRef<Array<{ command: string; value?: any } | null>>(
+    traces.map(() => null)
+  );
+
+  // 🆕 跟踪每个trace的当前步骤
+  const [traceSteps, setTraceSteps] = useState<number[]>(traces.map(() => 0));
 
   // 全局播放控制：同步所有Trace的播放状态
   useEffect(() => {
@@ -37,20 +42,80 @@ export function MultiTraceCoordinator({ traces, isPlaying, onGlobalStepChange }:
   // 处理Trace切换
   const handleTraceSwitch = (index: number) => {
     setActiveTraceIndex(index);
-    setCurrentStep(0); // 重置步骤
+    const stepIndex = traceSteps[index];
+    setCurrentStep(stepIndex ?? 0); // 恢复该trace的步骤位置，默认为0
   };
 
-  // 处理步骤变化 - 用于同步协调
+  // 🆕 计算累计时间戳（基于estimated_duration_ms）
+  const calculateCumulativeTime = (steps: FlowchartStep[], upToIndex: number): number => {
+    let cumulativeTime = 0;
+    for (let i = 0; i <= upToIndex && i < steps.length; i++) {
+      const step = steps[i];
+      if (step) {
+        cumulativeTime += step.estimated_duration_ms || 0;
+      }
+    }
+    return cumulativeTime;
+  };
+
+  // 🆕 处理步骤变化 - 实现synchronized模式的同步逻辑
   const handleStepChange = (traceIndex: number, stepId: string) => {
     const trace = traces[traceIndex];
-    if (!trace) return;  // 🔧 修复: 确保trace存在
+    if (!trace) return;
+
     onGlobalStepChange?.(trace.trace_id, stepId);
 
-    // TODO: 在synchronized模式下,同步其他traces的播放位置
-    if (syncMode === 'synchronized') {
-      // 未来可以实现跨trace的时间同步逻辑
-      console.log(`🔗 同步模式: Trace ${traceIndex} 到达步骤 ${stepId}`);
+    // 🆕 在synchronized模式下,同步其他traces的播放位置
+    if (syncMode === 'synchronized' && traces.length > 1) {
+      const currentSteps = trace.flowchart?.steps || [];
+      const currentStepIndex = currentSteps.findIndex(s => s.id === stepId);
+
+      if (currentStepIndex !== -1) {
+        // 计算当前步骤的累计时间戳
+        const currentTimestamp = calculateCumulativeTime(currentSteps, currentStepIndex);
+
+        console.log(`🔗 同步模式: Trace ${traceIndex} 到达步骤 ${stepId} (累计时间: ${currentTimestamp}ms)`);
+
+        // 同步其他traces到相同的累计时间位置
+        traces.forEach((otherTrace, otherIndex) => {
+          if (otherIndex === traceIndex) return; // 跳过当前trace
+
+          const otherSteps = otherTrace.flowchart?.steps || [];
+
+          // 找到最接近当前累计时间的步骤
+          let closestStepIndex = 0;
+          let minTimeDiff = Infinity;
+
+          otherSteps.forEach((_step, index) => {
+            const stepCumulativeTime = calculateCumulativeTime(otherSteps, index);
+            const timeDiff = Math.abs(stepCumulativeTime - currentTimestamp);
+
+            if (timeDiff < minTimeDiff) {
+              minTimeDiff = timeDiff;
+              closestStepIndex = index;
+            }
+          });
+
+          // 发送同步命令到其他ExecutionAnimation
+          controlCommandRefs.current[otherIndex] = {
+            command: 'jumpToStep',
+            value: closestStepIndex
+          };
+
+          console.log(`  ↪️ 同步 Trace ${otherIndex} 到步骤 ${closestStepIndex} (时间差: ${minTimeDiff}ms)`);
+        });
+      }
     }
+
+    // 更新当前trace的步骤记录
+    setTraceSteps(prev => {
+      const updated = [...prev];
+      const stepIndex = (trace.flowchart?.steps || []).findIndex(s => s.id === stepId);
+      if (stepIndex !== -1) {
+        updated[traceIndex] = stepIndex;
+      }
+      return updated;
+    });
   };
 
   // 播放控制处理
@@ -59,16 +124,25 @@ export function MultiTraceCoordinator({ traces, isPlaying, onGlobalStepChange }:
   };
 
   const handleReset = () => {
-    controlCommandRef.current = { command: 'reset' };
+    // 重置当前激活的trace
+    controlCommandRefs.current[activeTraceIndex] = { command: 'reset' };
     setCurrentStep(0);
+
+    // 在synchronized模式下，重置所有traces
+    if (syncMode === 'synchronized') {
+      controlCommandRefs.current.forEach((_, index) => {
+        controlCommandRefs.current[index] = { command: 'reset' };
+      });
+      setTraceSteps(traces.map(() => 0));
+    }
   };
 
   const handleStepForward = () => {
-    controlCommandRef.current = { command: 'stepForward' };
+    controlCommandRefs.current[activeTraceIndex] = { command: 'stepForward' };
   };
 
   const handleStepBackward = () => {
-    controlCommandRef.current = { command: 'stepBackward' };
+    controlCommandRefs.current[activeTraceIndex] = { command: 'stepBackward' };
   };
 
   const handleSpeedChange = (newSpeed: number) => {
@@ -76,7 +150,7 @@ export function MultiTraceCoordinator({ traces, isPlaying, onGlobalStepChange }:
   };
 
   const handleProgressChange = (step: number) => {
-    controlCommandRef.current = { command: 'jumpToStep', value: step };
+    controlCommandRefs.current[activeTraceIndex] = { command: 'jumpToStep', value: step };
     setCurrentStep(step);
   };
 
@@ -130,7 +204,7 @@ export function MultiTraceCoordinator({ traces, isPlaying, onGlobalStepChange }:
           trace={singleTrace}
           isPlaying={globalPlaybackState}
           onStepChange={(stepId) => handleStepChange(0, stepId)}
-          controlCommand={controlCommandRef.current}
+          controlCommand={controlCommandRefs.current[0]}
           onCurrentStepUpdate={handleCurrentStepUpdate}
         />
       </div>
@@ -196,6 +270,8 @@ export function MultiTraceCoordinator({ traces, isPlaying, onGlobalStepChange }:
             trace={traces[activeTraceIndex]}
             isPlaying={globalPlaybackState}
             onStepChange={(stepId) => handleStepChange(activeTraceIndex, stepId)}
+            controlCommand={controlCommandRefs.current[activeTraceIndex]}
+            onCurrentStepUpdate={handleCurrentStepUpdate}
           />
         )}
       </div>

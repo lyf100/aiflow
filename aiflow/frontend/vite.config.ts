@@ -19,7 +19,21 @@ export default defineConfig({
   server: {
     port: 5173,
     open: true,
-    cors: true,
+    // CORS配置：开发环境宽松，生产环境严格
+    cors: {
+      origin: process.env.VITE_CORS_ORIGIN?.split(',') || true,
+      credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
+    },
+    // 代理配置示例（如需访问外部API）
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://localhost:8000',
+    //     changeOrigin: true,
+    //     rewrite: (path) => path.replace(/^\/api/, '')
+    //   }
+    // },
   },
 
   build: {

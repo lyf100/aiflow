@@ -1,0 +1,164 @@
+.error-boundary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.error-boundary-container {
+  max-width: 600px;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.error-boundary-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+.error-boundary-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0 0 16px 0;
+}
+
+.error-boundary-message {
+  font-size: 16px;
+  color: #4a5568;
+  line-height: 1.6;
+  margin: 0 0 32px 0;
+}
+
+.error-boundary-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.error-boundary-button {
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.error-boundary-button.primary {
+  background: #667eea;
+  color: white;
+}
+
+.error-boundary-button.primary:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.error-boundary-button.secondary {
+  background: #e2e8f0;
+  color: #2d3748;
+}
+
+.error-boundary-button.secondary:hover {
+  background: #cbd5e0;
+  transform: translateY(-2px);
+}
+
+.error-boundary-details {
+  margin-top: 24px;
+  text-align: left;
+  background: #f7fafc;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+}
+
+.error-boundary-summary {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2d3748;
+  cursor: pointer;
+  user-select: none;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.error-boundary-summary:hover {
+  background: #edf2f7;
+}
+
+.error-boundary-debug {
+  margin-top: 16px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.error-section {
+  margin-bottom: 16px;
+}
+
+.error-section h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 8px 0;
+}
+
+.error-text,
+.error-stack {
+  background: #1a202c;
+  color: #f56565;
+  padding: 12px;
+  border-radius: 6px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-x: auto;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.error-stack {
+  color: #fc8181;
+}
+
+/* 响应式设计 */
+@media (max-width: 640px) {
+  .error-boundary-container {
+    padding: 24px;
+  }
+
+  .error-boundary-title {
+    font-size: 24px;
+  }
+
+  .error-boundary-actions {
+    flex-direction: column;
+  }
+
+  .error-boundary-button {
+    width: 100%;
+  }
+}
