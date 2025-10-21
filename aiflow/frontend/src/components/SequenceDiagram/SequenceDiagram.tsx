@@ -6,7 +6,7 @@
  */
 
 import { useEffect, useRef } from 'react';
-import * as d3 from 'd3';
+import { select } from 'd3-selection';
 import type { SequenceData } from '../../types/protocol';  // 🔧 修复: 使用type导入
 import './SequenceDiagram.css';
 
@@ -20,10 +20,10 @@ export function SequenceDiagram({ data, width = 800, height = 600 }: SequenceDia
   const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
-    if (!svgRef.current || !data) return;
+    if (!svgRef.current || !data) {return;}
 
     // 清空之前的内容
-    d3.select(svgRef.current).selectAll('*').remove();
+    select(svgRef.current).selectAll('*').remove();
 
     renderSequenceDiagram(svgRef.current, data, width, height);
   }, [data, width, height]);
@@ -76,7 +76,7 @@ function renderSequenceDiagram(
   const sortedMessages = [...messages].sort((a, b) => a.order - b.order);
 
   // 创建 SVG 根元素
-  const g = d3.select(svg)
+  const g = select(svg)
     .attr('width', width)
     .attr('height', Math.max(height, sortedMessages.length * messageSpacing + margin.top + margin.bottom + 100))
     .append('g')
@@ -130,7 +130,7 @@ function renderSequenceDiagram(
     const fromParticipant = participantMap.get(msg.from);
     const toParticipant = participantMap.get(msg.to);
 
-    if (!fromParticipant || !toParticipant) return;
+    if (!fromParticipant || !toParticipant) {return;}
 
     const y = participantHeight + lifelineTopMargin + (index + 1) * messageSpacing;
 
@@ -175,7 +175,7 @@ function renderSequenceDiagram(
   });
 
   // 4. 定义箭头标记
-  const defs = d3.select(svg).append('defs');
+  const defs = select(svg).append('defs');
 
   // 同步调用箭头 (实心)
   defs.append('marker')

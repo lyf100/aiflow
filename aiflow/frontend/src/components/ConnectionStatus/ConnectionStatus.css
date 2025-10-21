@@ -1,0 +1,128 @@
+/* ConnectionStatus.css - WebSocket 连接状态指示器样式 */
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.connection-status.connected {
+  background: rgba(76, 175, 80, 0.1);
+  border-color: rgba(76, 175, 80, 0.3);
+}
+
+.connection-status.disconnected {
+  background: rgba(244, 67, 54, 0.1);
+  border-color: rgba(244, 67, 54, 0.3);
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.connection-status.connected .status-dot {
+  background: #4caf50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+.connection-status.disconnected .status-dot {
+  background: #f44336;
+  box-shadow: 0 0 8px rgba(244, 67, 54, 0.6);
+  animation: none;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+.status-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.reconnect-info {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: normal;
+  margin-left: 8px;
+}
+
+.status-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.connect-btn,
+.disconnect-btn {
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.connect-btn:hover {
+  background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+  border-color: #4caf50;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.disconnect-btn:hover {
+  background: linear-gradient(135deg, #f44336 0%, #ef5350 100%);
+  border-color: #f44336;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+.connect-btn:active,
+.disconnect-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .connection-status {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .status-actions {
+    width: 100%;
+  }
+
+  .connect-btn,
+  .disconnect-btn {
+    flex: 1;
+  }
+}

@@ -1,0 +1,68 @@
+/* CodeEditor.css - Monaco Editor lazy loading styles */
+
+.code-editor-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 600px;
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+}
+
+.code-editor-loading .loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.code-editor-loading .spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #007acc;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.code-editor-loading p {
+  margin: 0;
+  font-size: 14px;
+  color: #888;
+}
+
+/* 🔴 Breakpoint glyph margin styling */
+.breakpoint-glyph {
+  background-color: #e51400 !important;
+  border-radius: 50%;
+  width: 12px !important;
+  height: 12px !important;
+  margin-left: 4px !important;
+  margin-top: 4px !important;
+}
+
+.breakpoint-glyph:hover {
+  background-color: #ff1e0d !important;
+  cursor: pointer;
+}
+
+/* 💡 Current line highlight */
+.current-line-highlight {
+  background-color: rgba(255, 255, 0, 0.15) !important;
+  border-left: 3px solid #ffcc00 !important;
+}
+
+/* 📦 Monaco Editor container */
+.monaco-editor-container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}

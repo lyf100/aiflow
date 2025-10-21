@@ -1,14 +1,35 @@
 import { useState, useEffect, useMemo } from 'react';
-import { ExecutionTrace } from '../../types/protocol';
+import { ExecutionTrace, FlowchartStep, TimelineEvent } from '../../types/protocol';
 import { ExecutionTimeline } from '../ExecutionTimeline/ExecutionTimeline';
 import { VariableInspector } from '../VariableInspector/VariableInspector';
 import './ExecutionAnimation.css';
+
+// 🔧 类型安全: 播放控制命令接口
+interface PlaybackControlCommand {
+  command: 'stepForward' | 'stepBackward' | 'reset' | 'jumpToStep';
+  value?: number;
+}
+
+// 🔧 类型安全: 扩展FlowchartStep以包含timeline event数据
+interface EnrichedFlowchartStep extends FlowchartStep {
+  source_location?: TimelineEvent['source_location'];
+  operation_detail?: string;
+  operation_type?: string;
+  input_data?: string | number | boolean | null;
+  output_data?: string | number | boolean | null;
+  tcu_cost?: number;
+  event_id?: string;
+  node_id?: string;
+  is_bottleneck?: boolean;
+  true_branch?: string;
+  false_branch?: string;
+}
 
 interface ExecutionAnimationProps {
   trace: ExecutionTrace;
   isPlaying: boolean;
   onStepChange?: (stepId: string) => void;
-  controlCommand?: { command: string; value?: any } | null;
+  controlCommand?: PlaybackControlCommand | null;
   onCurrentStepUpdate?: (stepIndex: number) => void;
 }
 
@@ -27,10 +48,10 @@ export function ExecutionAnimation({
   const events = trace.timeline_estimation?.events || [];
 
   // 🆕 将 timeline events 映射到 flowchart steps，获取详细执行信息
-  const enrichedSteps = useMemo(() => {
-    return steps.map((step: any, index: number) => {
+  const enrichedSteps = useMemo((): EnrichedFlowchartStep[] => {
+    return steps.map((step, index) => {
       // 尝试找到对应的 event（通过序号匹配或ID匹配）
-      const correspondingEvent = events[index] || events.find((e: any) =>
+      const correspondingEvent = events[index] || events.find((e: TimelineEvent) =>
         e.event_id.includes(`${index + 1}`) || e.event_id.includes(step.id)
       );
 
@@ -40,9 +61,9 @@ export function ExecutionAnimation({
         source_location: correspondingEvent?.source_location,
         operation_detail: correspondingEvent?.operation_detail,
         operation_type: correspondingEvent?.operation_type,
-        input_data: correspondingEvent?.input_data,
-        output_data: correspondingEvent?.output_data,
-        tcu_cost: step.tcu_cost || correspondingEvent?.duration_tcu,
+        input_data: correspondingEvent?.input_data != null ? String(correspondingEvent.input_data) : undefined,
+        output_data: correspondingEvent?.output_data != null ? String(correspondingEvent.output_data) : undefined,
+        tcu_cost: step.estimated_duration_ms || correspondingEvent?.duration_tcu,
         event_id: correspondingEvent?.event_id
       };
     });
@@ -50,18 +71,18 @@ export function ExecutionAnimation({
 
   // 动画播放逻辑
   useEffect(() => {
-    if (!isPlaying || currentStepIndex >= steps.length) return;
+    if (!isPlaying || currentStepIndex >= steps.length) {return;}
 
     const timer = setTimeout(() => {
       const step = steps[currentStepIndex];
-      if (!step) return; // Guard against undefined
+      if (!step) {return;} // Guard against undefined
 
       // 标记当前步骤为已执行
       setExecutedSteps(prev => new Set([...prev, step.id]));
-      
-      // 记录分支ID
-      if (step.type === 'process' && 'branch_id' in step) {
-        setActiveBranches(prev => new Set([...prev, (step as any).branch_id]));
+
+      // 记录分支ID (类型安全检查)
+      if (step.type === 'process' && step.branch_id !== undefined) {
+        setActiveBranches(prev => new Set([...prev, step.branch_id!]));
       }
       
       // 通知父组件
@@ -78,7 +99,7 @@ export function ExecutionAnimation({
 
   // 🆕 响应播放控制命令 (Previous/Next/Reset/Jump)
   useEffect(() => {
-    if (!controlCommand) return;
+    if (!controlCommand) {return;}
 
     switch (controlCommand.command) {
       case 'stepForward':
@@ -119,7 +140,7 @@ export function ExecutionAnimation({
 
   // 转换步骤数据为 ExecutionTimeline 格式
   const timelineSteps = useMemo(() => {
-    return steps.map((step: any, index: number) => ({
+    return steps.map((step, index) => ({
       id: step.id,
       description: step.description || step.label || `步骤 ${index + 1}`,
       index: index,
@@ -130,7 +151,7 @@ export function ExecutionAnimation({
   // 创建变量历史数据 - 支持 Per-Step 变量追踪
   // 🆕 Phase 4.2: 优先使用每个步骤自己的 variables 字段
   const variableHistory = useMemo(() => {
-    return steps.map((step: any, index: number) => {
+    return steps.map((step, index) => {
       // 优先使用 per-step 变量快照 (Phase 4.1+ 协议)
       if (step.variables) {
         return {
@@ -174,26 +195,26 @@ export function ExecutionAnimation({
       const newExecutedSteps = new Set<string>();
       for (let i = 0; i <= stepIndex; i++) {
         const id = steps[i]?.id;
-        if (id) newExecutedSteps.add(id);
+        if (id) {newExecutedSteps.add(id);}
       }
       setExecutedSteps(newExecutedSteps);
 
       // 通知父组件
       const targetStep = steps[stepIndex];
-      if (targetStep) onStepChange?.(targetStep.id);
+      if (targetStep) {onStepChange?.(targetStep.id);}
     }
   };
 
   // 获取步骤样式类名
-  const getStepClassName = (step: any, index: number): string => {
+  const getStepClassName = (step: FlowchartStep, index: number): string => {
     const classes = ['flowchart-step', `step-${step.type}`];
-    
-    if (index === currentStepIndex) classes.push('current');
-    if (executedSteps.has(step.id)) classes.push('executed');
-    if (step.branch_id && activeBranches.has(step.branch_id)) {
+
+    if (index === currentStepIndex) {classes.push('current');}
+    if (executedSteps.has(step.id)) {classes.push('executed');}
+    if (step.branch_id !== undefined && activeBranches.has(step.branch_id)) {
       classes.push(`branch-${step.branch_id}`);
     }
-    
+
     return classes.join(' ');
   };
 
@@ -248,89 +269,88 @@ export function ExecutionAnimation({
       <div className="flowchart-container">
         <div className="flowchart-steps">
           {enrichedSteps.map((step, index) => {
-            const stepData = step as any;
-            const isDivergence = stepData.type === 'decision';
-            const isConvergence = enrichedSteps.some((s: any) =>
-              s.true_branch === stepData.id || s.false_branch === stepData.id
+            const isDivergence = step.type === 'decision';
+            const isConvergence = enrichedSteps.some((s) =>
+              s.true_branch === step.id || s.false_branch === step.id
             );
 
             return (
-              <div key={stepData.id} className="step-wrapper">
+              <div key={step.id} className="step-wrapper">
                 {/* 步骤节点 */}
-                <div className={getStepClassName(stepData, index)}>
-                  <div className="step-icon">{getStepIcon(stepData.type)}</div>
+                <div className={getStepClassName(step, index)}>
+                  <div className="step-icon">{getStepIcon(step.type)}</div>
                   <div className="step-content">
                     <div className="step-header">
-                      <div className="step-id">{stepData.id}</div>
-                      {stepData.node_id && (
+                      <div className="step-id">{step.id}</div>
+                      {step.node_id && (
                         <div className="step-node-ref" title="执行的节点">
-                          📍 {stepData.node_id}
+                          📍 {step.node_id}
                         </div>
                       )}
                     </div>
-                    <div className="step-description">{stepData.description || stepData.label || `步骤 ${index + 1}`}</div>
+                    <div className="step-description">{step.description || step.label || `步骤 ${index + 1}`}</div>
 
                     {/* 🆕 详细操作信息 */}
-                    {stepData.operation_detail && (
+                    {step.operation_detail && (
                       <div className="operation-detail">
-                        <strong>操作:</strong> {stepData.operation_detail}
+                        <strong>操作:</strong> {step.operation_detail}
                       </div>
                     )}
 
                     {/* 🆕 源代码位置 */}
-                    {stepData.source_location && (
+                    {step.source_location && (
                       <div className="source-location">
                         <div className="file-info">
-                          📄 <code>{stepData.source_location.file}</code>
-                          {stepData.source_location.line && (
-                            <span className="line-number">:{stepData.source_location.line}</span>
+                          📄 <code>{step.source_location.file}</code>
+                          {step.source_location.line && (
+                            <span className="line-number">:{step.source_location.line}</span>
                           )}
                         </div>
-                        {stepData.source_location.code_snippet && (
+                        {step.source_location.code_snippet && (
                           <pre className="code-snippet">
-                            <code>{stepData.source_location.code_snippet}</code>
+                            <code>{step.source_location.code_snippet}</code>
                           </pre>
                         )}
                       </div>
                     )}
 
                     {/* 🆕 输入输出数据 */}
-                    {(stepData.input_data || stepData.output_data) && (
+                    {(step.input_data || step.output_data) && (
                       <div className="data-flow">
-                        {stepData.input_data && (
+                        {step.input_data && (
                           <div className="data-item input">
                             <span className="data-label">输入:</span>
-                            <code className="data-value">{stepData.input_data}</code>
+                            <code className="data-value">{step.input_data}</code>
                           </div>
                         )}
-                        {stepData.output_data && (
+                        {step.output_data && (
                           <div className="data-item output">
                             <span className="data-label">输出:</span>
-                            <code className="data-value">{stepData.output_data}</code>
+                            <code className="data-value">{step.output_data}</code>
                           </div>
                         )}
                       </div>
                     )}
 
                     {/* 性能指标 */}
-                    {stepData.tcu_cost && (
+                    {step.tcu_cost && (
                       <div className="performance-metrics">
-                        <span className={`tcu-badge ${stepData.is_bottleneck ? 'bottleneck' : ''}`}>
-                          ⏱️ {stepData.tcu_cost} TCU
-                          {stepData.operation_type && ` (${stepData.operation_type})`}
-                          {stepData.is_bottleneck && ' ⚠️ 瓶颈'}
+                        <span className={`tcu-badge ${step.is_bottleneck ? 'bottleneck' : ''}`}>
+                          ⏱️ {step.tcu_cost} TCU
+                          {step.operation_type && ` (${step.operation_type})`}
+                          {step.is_bottleneck && ' ⚠️ 瓶颈'}
                         </span>
                       </div>
                     )}
 
-                    {stepData.condition && (
+                    {step.condition && (
                       <div className="step-condition">
-                        <strong>条件:</strong> {stepData.condition}
+                        <strong>条件:</strong> {step.condition}
                       </div>
                     )}
-                    {stepData.branch_id && (
+                    {step.branch_id !== undefined && (
                       <div className="branch-badge">
-                        分支 {stepData.branch_id}
+                        分支 {step.branch_id}
                       </div>
                     )}
                   </div>
@@ -340,21 +360,21 @@ export function ExecutionAnimation({
                 {index < steps.length - 1 && (
                   <div className="step-connector">
                     {/* Fork节点：并发分叉 */}
-                    {stepData.type === 'fork' ? (
+                    {step.type === 'fork' ? (
                       <div className="fork-connector concurrent">
                         <div className="fork-line branch-1">
-                          <span className="fork-label">🔀 分支 {stepData.concurrent_branches || 2}</span>
+                          <span className="fork-label">🔀 分支 {step.concurrent_branches || 2}</span>
                         </div>
                         <div className="fork-line branch-2">
                           <span className="fork-label">⚡ 并发执行</span>
                         </div>
                       </div>
                     ) : /* Join节点：并发汇合 */
-                    stepData.type === 'join' ? (
+                    step.type === 'join' ? (
                       <div className="join-connector">
                         <div className="join-symbol">🔗</div>
-                        {stepData.waits_for && stepData.waits_for.length > 0 && (
-                          <span className="join-label">等待 {stepData.waits_for.length} 个分支</span>
+                        {step.waits_for && step.waits_for.length > 0 && (
+                          <span className="join-label">等待 {step.waits_for.length} 个分支</span>
                         )}
                       </div>
                     ) : /* Decision节点：条件分支 */
@@ -393,7 +413,7 @@ export function ExecutionAnimation({
       )}
 
       {/* 🆕 调用栈面板 - 显示当前步骤的调用栈 (Phase 4.2) */}
-      {variableHistory.length > 0 && variableHistory[currentStepIndex]?.callStack?.length > 0 && (
+      {variableHistory.length > 0 && variableHistory[currentStepIndex]?.callStack && variableHistory[currentStepIndex]!.callStack.length > 0 && (
         <div className="callstack-panel">
           <h4>📚 调用栈 (步骤 {currentStepIndex + 1})</h4>
           <ol className="callstack-list">

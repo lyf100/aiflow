@@ -1,0 +1,66 @@
+.execution-timeline-container {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.timeline-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.timeline-progress {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(102, 126, 234, 0.2);
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+.timeline-svg {
+  width: 100%;
+  height: 150px;
+  display: block;
+}
+
+/* D3可视化样式增强 */
+.timeline-node {
+  transition: all 0.3s ease;
+}
+
+.timeline-node:hover circle {
+  r: 10;
+  filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.8));
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .execution-timeline-container {
+    padding: 12px;
+  }
+
+  .timeline-header h4 {
+    font-size: 14px;
+  }
+
+  .timeline-progress {
+    font-size: 12px;
+    padding: 3px 10px;
+  }
+
+  .timeline-svg {
+    height: 120px;
+  }
+}

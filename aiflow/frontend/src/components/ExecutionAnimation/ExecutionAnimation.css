@@ -1,0 +1,683 @@
+.execution-animation-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #ffffff;
+}
+
+/* 动画控制栏 */
+.animation-controls {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 16px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.animation-controls h3 {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.controls-buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.control-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.control-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.progress-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.step-counter {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  min-width: 100px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.5s ease;
+  border-radius: 4px;
+}
+
+/* 流程图容器 */
+.flowchart-container {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.flowchart-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+}
+
+.step-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* 步骤节点 */
+.flowchart-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.flowchart-step.current {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.15);
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(102, 126, 234, 0.6);
+  }
+}
+
+.flowchart-step.executed {
+  border-color: #48bb78;
+  background: rgba(72, 187, 120, 0.1);
+  opacity: 0.7;
+}
+
+.flowchart-step.step-start {
+  border-color: #4caf50;
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.2) 0%, rgba(76, 175, 80, 0.05) 100%);
+}
+
+.flowchart-step.step-end {
+  border-color: #f44336;
+  background: linear-gradient(135deg, rgba(244, 67, 54, 0.2) 0%, rgba(244, 67, 54, 0.05) 100%);
+}
+
+.flowchart-step.step-decision {
+  border-color: #ff9800;
+  background: linear-gradient(135deg, rgba(255, 152, 0, 0.2) 0%, rgba(255, 152, 0, 0.05) 100%);
+}
+
+.flowchart-step.branch-1 {
+  border-left: 4px solid #2196f3;
+}
+
+.flowchart-step.branch-2 {
+  border-left: 4px solid #9c27b0;
+}
+
+.step-icon {
+  font-size: 32px;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.step-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.step-id {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 4px;
+}
+
+.step-description {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.step-condition {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 8px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+.step-condition strong {
+  color: #ff9800;
+}
+
+.branch-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  background: linear-gradient(135deg, #2196f3 0%, #9c27b0 100%);
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+  margin-top: 8px;
+}
+
+.code-snippet {
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  border-left: 3px solid #667eea;
+  overflow-x: auto;
+}
+
+.code-snippet code {
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #a8dadc;
+}
+
+/* 连接线 */
+.step-connector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+}
+
+.normal-connector {
+  display: flex;
+  justify-content: center;
+}
+
+.connector-arrow {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.4);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.fork-connector {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+  justify-content: center;
+}
+
+.fork-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.fork-label {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 12px;
+  background: rgba(255, 152, 0, 0.2);
+  color: #ff9800;
+}
+
+.fork-line.left .fork-label {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+}
+
+.fork-line.right .fork-label {
+  background: rgba(244, 67, 54, 0.2);
+  color: #f44336;
+}
+
+.join-connector {
+  display: flex;
+  justify-content: center;
+}
+
+.join-symbol {
+  font-size: 24px;
+  color: #9c27b0;
+  font-weight: 700;
+}
+
+.join-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(156, 39, 176, 0.9);
+  margin-top: 4px;
+  text-align: center;
+}
+
+/* Fork节点并发分支样式 */
+.fork-connector.concurrent {
+  gap: 60px;
+}
+
+.fork-line.branch-1 .fork-label {
+  background: rgba(33, 150, 243, 0.2);
+  color: #2196f3;
+}
+
+.fork-line.branch-2 .fork-label {
+  background: rgba(156, 39, 176, 0.2);
+  color: #9c27b0;
+}
+
+/* 变量状态面板 */
+.variables-panel {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.variables-panel h4 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.variable-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.variable-group {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.variable-group h5 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.variable-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.variable-group li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+}
+
+.var-name {
+  font-weight: 600;
+  color: #667eea;
+}
+
+.var-value {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+/* 调用栈面板 */
+.callstack-panel {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.callstack-panel h4 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.callstack-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.callstack-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border-left: 3px solid #667eea;
+}
+
+.stack-depth {
+  min-width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.stack-function {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 🆕 步骤头部 - 显示步骤ID和节点引用 */
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.step-node-ref {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: rgba(102, 126, 234, 0.15);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #667eea;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  cursor: help;
+}
+
+/* 🆕 操作详情 - 显示当前步骤正在执行的具体操作 */
+.operation-detail {
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: rgba(72, 187, 120, 0.1);
+  border-left: 3px solid #48bb78;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.operation-detail strong {
+  color: #48bb78;
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+/* 🆕 源代码位置 - 显示执行的文件路径、行号和代码片段 */
+.source-location {
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.file-info code {
+  background: rgba(102, 126, 234, 0.2);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 11px;
+  color: #a8dadc;
+  font-weight: 600;
+}
+
+.line-number {
+  color: #f39c12;
+  font-weight: 700;
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+/* 代码片段样式已存在，但确保与source-location配合 */
+.source-location .code-snippet {
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+/* 🆕 数据流 - 显示输入输出数据 */
+.data-flow {
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(52, 152, 219, 0.08);
+  border-radius: 8px;
+  border: 1px solid rgba(52, 152, 219, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.data-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.data-item.input {
+  background: rgba(52, 152, 219, 0.12);
+  border-left: 3px solid #3498db;
+}
+
+.data-item.output {
+  background: rgba(46, 204, 113, 0.12);
+  border-left: 3px solid #2ecc71;
+}
+
+.data-label {
+  font-weight: 700;
+  min-width: 40px;
+  flex-shrink: 0;
+}
+
+.data-item.input .data-label {
+  color: #3498db;
+}
+
+.data-item.output .data-label {
+  color: #2ecc71;
+}
+
+.data-value {
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  word-break: break-word;
+  flex: 1;
+}
+
+/* 🆕 性能指标 - 显示TCU成本和操作类型 */
+.performance-metrics {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.tcu-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, rgba(155, 89, 182, 0.2) 0%, rgba(142, 68, 173, 0.15) 100%);
+  border: 1px solid rgba(155, 89, 182, 0.3);
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #9b59b6;
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.tcu-badge.bottleneck {
+  background: linear-gradient(135deg, rgba(231, 76, 60, 0.25) 0%, rgba(192, 57, 43, 0.2) 100%);
+  border-color: rgba(231, 76, 60, 0.5);
+  color: #e74c3c;
+  animation: warningPulse 1.5s infinite;
+  box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
+}
+
+@keyframes warningPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(231, 76, 60, 0.5);
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .execution-animation-container {
+    padding: 16px;
+  }
+
+  .animation-controls {
+    padding: 12px;
+  }
+
+  .controls-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .progress-info {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .flowchart-container {
+    padding: 16px;
+  }
+
+  .step-wrapper {
+    max-width: 100%;
+  }
+
+  .flowchart-step {
+    padding: 12px;
+  }
+
+  .step-icon {
+    font-size: 24px;
+    min-width: 32px;
+  }
+
+  .variable-groups {
+    grid-template-columns: 1fr;
+  }
+
+  /* 🆕 移动端优化 - 代码级详情响应式 */
+  .source-location .code-snippet {
+    font-size: 10px;
+    padding: 8px;
+  }
+
+  .data-flow {
+    padding: 10px;
+  }
+
+  .data-item {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .data-label {
+    min-width: auto;
+  }
+
+  .file-info code {
+    font-size: 10px;
+    word-break: break-all;
+  }
+}

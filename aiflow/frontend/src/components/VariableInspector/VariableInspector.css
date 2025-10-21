@@ -1,0 +1,300 @@
+.variable-inspector-container {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
+}
+
+.inspector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.inspector-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.current-step-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(102, 126, 234, 0.2);
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+.inspector-content {
+  display: flex;
+  gap: 20px;
+  min-height: 400px;
+}
+
+/* 左侧：当前变量列表 */
+.variables-list {
+  flex: 0 0 300px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 12px;
+  overflow-y: auto;
+  max-height: 500px;
+}
+
+.variable-group {
+  margin-bottom: 16px;
+}
+
+.variable-group:last-child {
+  margin-bottom: 0;
+}
+
+.variable-group h5 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.variable-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.variable-group li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  margin-bottom: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.variable-group li:hover {
+  background: rgba(102, 126, 234, 0.2);
+  transform: translateX(2px);
+}
+
+.variable-group li.selected {
+  background: rgba(102, 126, 234, 0.3);
+  border-left: 3px solid #667eea;
+}
+
+.var-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #667eea;
+  font-family: 'Courier New', monospace;
+}
+
+.var-value {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Courier New', monospace;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 右侧：变量历史面板 */
+.variable-history-panel {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 12px;
+  overflow-y: auto;
+  max-height: 500px;
+}
+
+.no-selection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+}
+
+.variable-history h5 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 变量历史表格 */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.history-table thead {
+  background: rgba(102, 126, 234, 0.1);
+  position: sticky;
+  top: 0;
+}
+
+.history-table th {
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.history-table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.2s ease;
+}
+
+.history-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.history-table tbody tr.current-step {
+  background: rgba(102, 126, 234, 0.2);
+  border-left: 3px solid #667eea;
+}
+
+.history-table td {
+  padding: 10px 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.step-id {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.value-cell code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #48bb78;
+}
+
+/* 变化指示器 */
+.change-indicator {
+  text-align: center;
+}
+
+.change-indicator span {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.change-indicator .changed {
+  background: rgba(237, 137, 54, 0.2);
+  color: #ed8936;
+}
+
+.change-indicator .unchanged {
+  background: rgba(160, 174, 192, 0.2);
+  color: #a0aec0;
+}
+
+.change-indicator .new {
+  background: rgba(72, 187, 120, 0.2);
+  color: #48bb78;
+}
+
+.no-variables {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+}
+
+/* 滚动条样式 */
+.variables-list::-webkit-scrollbar,
+.variable-history-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.variables-list::-webkit-scrollbar-track,
+.variable-history-panel::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.variables-list::-webkit-scrollbar-thumb,
+.variable-history-panel::-webkit-scrollbar-thumb {
+  background: rgba(102, 126, 234, 0.5);
+  border-radius: 4px;
+}
+
+.variables-list::-webkit-scrollbar-thumb:hover,
+.variable-history-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 126, 234, 0.7);
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .inspector-content {
+    flex-direction: column;
+  }
+
+  .variables-list {
+    flex: 0 0 auto;
+    max-height: 250px;
+  }
+
+  .variable-history-panel {
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .variable-inspector-container {
+    padding: 12px;
+  }
+
+  .inspector-header h4 {
+    font-size: 14px;
+  }
+
+  .current-step-label {
+    font-size: 12px;
+    padding: 3px 10px;
+  }
+
+  .variables-list {
+    flex: 0 0 auto;
+    max-height: 200px;
+  }
+
+  .variable-history-panel {
+    max-height: 250px;
+  }
+
+  .history-table {
+    font-size: 12px;
+  }
+
+  .history-table th,
+  .history-table td {
+    padding: 8px 10px;
+  }
+}

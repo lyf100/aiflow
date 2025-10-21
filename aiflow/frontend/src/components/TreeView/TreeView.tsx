@@ -22,7 +22,7 @@ export function TreeView({ nodes, onNodeClick }: TreeViewProps) {
   // 构建树形结构
   const buildTree = (): TreeNode | null => {
     const systemNode = nodes.find(n => n.stereotype === 'system');
-    if (!systemNode) return null;
+    if (!systemNode) {return null;}
 
     const tree: TreeNode = {
       id: systemNode.id,

@@ -44,8 +44,13 @@ export default defineConfig({
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
-          'visualization': ['cytoscape', 'cytoscape-dagre', 'd3'],
+          // 🎯 优化: 分离可视化库，CodeGraph可懒加载
+          'graph-viz': ['cytoscape', 'cytoscape-dagre'],
+          // 🎯 优化: D3子模块独立（轻量级）
+          'd3-viz': ['d3-selection', 'd3-scale'],
+          // Monaco Editor独立
           'editor': ['monaco-editor', '@monaco-editor/react'],
+          // 状态管理独立
           'state': ['zustand'],
         },
       },
@@ -68,7 +73,9 @@ export default defineConfig({
       'zustand',
       'cytoscape',
       'cytoscape-dagre',
-      'd3',
+      // 🎯 优化: D3子模块
+      'd3-selection',
+      'd3-scale',
       'monaco-editor',
       '@monaco-editor/react',
       'pako',

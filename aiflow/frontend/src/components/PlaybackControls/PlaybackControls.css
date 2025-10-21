@@ -1,0 +1,237 @@
+.playback-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* 控制区域 */
+.controls-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.controls-section.primary-controls {
+  flex-shrink: 0;
+}
+
+.controls-section.progress-section {
+  flex: 1;
+  min-width: 200px;
+}
+
+.controls-section.speed-controls {
+  flex-shrink: 0;
+}
+
+/* 通用控制按钮 */
+.control-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+  min-width: 40px;
+}
+
+.control-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.control-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.control-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* 播放/暂停按钮 */
+.play-pause-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #667eea;
+  font-size: 20px;
+  padding: 10px 16px;
+  min-width: 50px;
+}
+
+.play-pause-btn:hover {
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.5);
+}
+
+/* 步进按钮 */
+.step-btn {
+  font-size: 16px;
+}
+
+/* 重置按钮 */
+.reset-btn {
+  background: rgba(244, 67, 54, 0.1);
+  border-color: rgba(244, 67, 54, 0.3);
+}
+
+.reset-btn:hover {
+  background: rgba(244, 67, 54, 0.2);
+  border-color: rgba(244, 67, 54, 0.5);
+}
+
+/* 步骤计数器 */
+.step-counter {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  min-width: 80px;
+  text-align: center;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+/* 进度条轨道 */
+.progress-track {
+  position: relative;
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: visible;
+}
+
+.progress-track:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* 进度填充 */
+.progress-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* 进度拖动点 */
+.progress-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  background: #667eea;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: left 0.3s ease;
+  cursor: pointer;
+}
+
+.progress-thumb:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* 速度选择器 */
+.speed-selector {
+  position: relative;
+}
+
+.speed-btn {
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 70px;
+}
+
+/* 速度菜单 */
+.speed-menu {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  margin-bottom: 8px;
+  background: rgba(30, 30, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 100px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.speed-option {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: left;
+}
+
+.speed-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.speed-option.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .playback-controls {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .controls-section {
+    width: 100%;
+  }
+
+  .controls-section.primary-controls {
+    justify-content: center;
+  }
+
+  .controls-section.progress-section {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .progress-track {
+    width: 100%;
+  }
+
+  .step-counter {
+    width: 100%;
+  }
+
+  .controls-section.speed-controls {
+    justify-content: center;
+  }
+}

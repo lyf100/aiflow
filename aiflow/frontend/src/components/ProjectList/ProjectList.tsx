@@ -69,7 +69,7 @@ export const ProjectList = ({ onProjectSelect, currentProjectName }: ProjectList
 
   // 格式化文件大小
   const formatBytes = (bytes: number) => {
-    if (bytes === 0) return '0 B';
+    if (bytes === 0) {return '0 B';}
     const k = 1024;
     const sizes = ['B', 'KB', 'MB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));

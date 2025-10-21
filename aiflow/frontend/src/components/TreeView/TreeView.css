@@ -218,3 +218,217 @@
 .tree-content::-webkit-scrollbar-thumb:hover {
   background: #999;
 }
+
+/* 🆕 详细信息面板样式 */
+.node-details-panel {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.node-info-section {
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 6px;
+  border-left: 3px solid #667eea;
+}
+
+.tree-node:hover .node-info-section {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tree-node.selected .node-info-section {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.info-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #667eea;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tree-node:hover .info-label,
+.tree-node.selected .info-label {
+  color: #a8dadc;
+}
+
+.info-value {
+  font-size: 12px;
+  color: #555;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.tree-node:hover .info-value,
+.tree-node.selected .info-value {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 目录项样式 */
+.directory-item {
+  padding: 4px 0;
+}
+
+.directory-item code {
+  background: rgba(102, 126, 234, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 11px;
+  color: #667eea;
+  font-weight: 600;
+}
+
+.tree-node:hover .directory-item code,
+.tree-node.selected .directory-item code {
+  background: rgba(168, 218, 220, 0.2);
+  color: #a8dadc;
+}
+
+/* 文件路径样式 */
+.file-path code {
+  background: rgba(102, 126, 234, 0.12);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 11px;
+  color: #667eea;
+  font-weight: 600;
+  display: inline-block;
+  word-break: break-all;
+}
+
+.tree-node:hover .file-path code,
+.tree-node.selected .file-path code {
+  background: rgba(168, 218, 220, 0.25);
+  color: #a8dadc;
+}
+
+.line-number {
+  color: #f39c12;
+  font-weight: 700;
+  font-family: 'Consolas', 'Monaco', monospace;
+  margin-left: 4px;
+}
+
+/* 复杂度徽章 */
+.complexity-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.complexity-badge[data-level="low"] {
+  background: rgba(46, 204, 113, 0.15);
+  color: #27ae60;
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.complexity-badge[data-level="medium"] {
+  background: rgba(243, 156, 18, 0.15);
+  color: #e67e22;
+  border: 1px solid rgba(243, 156, 18, 0.3);
+}
+
+.complexity-badge[data-level="high"] {
+  background: rgba(231, 76, 60, 0.15);
+  color: #c0392b;
+  border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+.tree-node:hover .complexity-badge,
+.tree-node.selected .complexity-badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* 函数签名样式 */
+.function-signature code {
+  background: rgba(79, 172, 254, 0.1);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 11px;
+  color: #4facfe;
+  font-weight: 600;
+  display: inline-block;
+  word-break: break-all;
+}
+
+.tree-node:hover .function-signature code,
+.tree-node.selected .function-signature code {
+  background: rgba(168, 218, 220, 0.25);
+  color: #a8dadc;
+}
+
+/* 职责列表 */
+.responsibility-item {
+  padding: 3px 0;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* 关键路径徽章 */
+.critical-badge {
+  background: rgba(231, 76, 60, 0.15);
+  border-color: #e74c3c;
+}
+
+.critical-badge .info-label {
+  color: #e74c3c;
+  font-weight: 800;
+}
+
+.tree-node:hover .critical-badge,
+.tree-node.selected .critical-badge {
+  background: rgba(231, 76, 60, 0.3);
+}
+
+/* 描述区域 */
+.description {
+  border-left-color: #9b59b6;
+}
+
+.description .info-label {
+  color: #9b59b6;
+}
+
+.description .info-value {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* 空状态 */
+.info-value.empty {
+  color: #999;
+  font-style: italic;
+  font-size: 11px;
+}
+
+.tree-node:hover .info-value.empty,
+.tree-node.selected .info-value.empty {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* expanded状态优化 */
+.tree-node.expanded {
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.tree-node.expanded:hover {
+  background: rgba(102, 126, 234, 0.15);
+}
+
+.tree-node.expanded.selected {
+  background: rgba(102, 126, 234, 0.2);
+}

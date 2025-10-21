@@ -261,7 +261,7 @@ export class WebSocketService {
   }
 
   private flushMessageQueue(): void {
-    if (this.messageQueue.length === 0) return;
+    if (this.messageQueue.length === 0) {return;}
 
     console.log(`[WebSocket] 发送队列中的 ${this.messageQueue.length} 条消息`);
 

@@ -4,6 +4,12 @@ import { ExecutionAnimation } from '../ExecutionAnimation/ExecutionAnimation';
 import { PlaybackControls } from '../PlaybackControls/PlaybackControls';
 import './MultiTraceCoordinator.css';
 
+// 🔧 类型安全: 播放控制命令接口
+interface PlaybackControlCommand {
+  command: 'stepForward' | 'stepBackward' | 'reset' | 'jumpToStep';
+  value?: number;
+}
+
 interface MultiTraceCoordinatorProps {
   traces: ExecutionTrace[];
   isPlaying: boolean;
@@ -19,7 +25,7 @@ export function MultiTraceCoordinator({ traces, isPlaying, onGlobalStepChange }:
   const [totalSteps, setTotalSteps] = useState(0);
 
   // 🆕 为每个trace创建独立的控制ref
-  const controlCommandRefs = useRef<Array<{ command: string; value?: any } | null>>(
+  const controlCommandRefs = useRef<Array<PlaybackControlCommand | null>>(
     traces.map(() => null)
   );
 
@@ -61,7 +67,7 @@ export function MultiTraceCoordinator({ traces, isPlaying, onGlobalStepChange }:
   // 🆕 处理步骤变化 - 实现synchronized模式的同步逻辑
   const handleStepChange = (traceIndex: number, stepId: string) => {
     const trace = traces[traceIndex];
-    if (!trace) return;
+    if (!trace) {return;}
 
     onGlobalStepChange?.(trace.trace_id, stepId);
 
@@ -78,7 +84,7 @@ export function MultiTraceCoordinator({ traces, isPlaying, onGlobalStepChange }:
 
         // 同步其他traces到相同的累计时间位置
         traces.forEach((otherTrace, otherIndex) => {
-          if (otherIndex === traceIndex) return; // 跳过当前trace
+          if (otherIndex === traceIndex) {return;} // 跳过当前trace
 
           const otherSteps = otherTrace.flowchart?.steps || [];
 
@@ -182,7 +188,7 @@ export function MultiTraceCoordinator({ traces, isPlaying, onGlobalStepChange }:
   // 单Trace模式：只有一个trace时直接显示
   if (traces.length === 1) {
     const singleTrace = traces[0];
-    if (!singleTrace) return null;  // 🔧 修复: 确保trace存在
+    if (!singleTrace) {return null;}  // 🔧 修复: 确保trace存在
 
     return (
       <div className="multi-trace-coordinator single-trace">
