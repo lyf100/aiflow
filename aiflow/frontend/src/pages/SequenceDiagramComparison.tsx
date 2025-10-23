@@ -5,7 +5,7 @@
  */
 
 import { useState } from 'react';
-import { SequenceDiagram } from '../components/SequenceDiagram/SequenceDiagram';
+import { SequenceDiagram as SequenceDiagramD3 } from '../components/SequenceDiagram/SequenceDiagramD3';
 import { SequenceDiagramMermaid } from '../components/SequenceDiagram/SequenceDiagramMermaid';
 import type { SequenceData } from '../types/protocol';
 import './SequenceDiagramComparison.css';
@@ -73,7 +73,7 @@ export function SequenceDiagramComparison() {
               </div>
             </div>
             <div className="panel-content">
-              <SequenceDiagram data={testSequenceData} />
+              <SequenceDiagramD3 data={testSequenceData} />
             </div>
             <div className="panel-footer">
               <h3>优势</h3>
